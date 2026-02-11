@@ -125,6 +125,28 @@ export const homeMenuConfig: SidebarConfig = {
 }
 
 /**
+ * Menu do usuário externo (apenas Projetos).
+ */
+export const externalUserHomeMenuConfig: SidebarConfig = {
+  user: {
+    name: "UserName",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
+  teams: [
+    { name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" },
+  ],
+  navMain: [
+    {
+      title: "Projetos",
+      url: "/ExternalUser/projects",
+      isActive: true,
+      items: [{ title: "Ver projetos", url: "/ExternalUser/projects" }],
+    },
+  ],
+}
+
+/**
  * Mapa rota -> config do menu.
  * Rotas privadas seguem o padrão /{tipoUsuario}/{pagina}, ex.: /InternalUser/dashboard.
  */
@@ -132,6 +154,9 @@ const routeMenuMap: Record<string, SidebarConfig> = {
   "/InternalUser/dashboard": dashboardMenuConfig,
   "/InternalUser/home": homeMenuConfig,
   "/InternalUser": homeMenuConfig,
+  "/ExternalUser/home": externalUserHomeMenuConfig,
+  "/ExternalUser/projects": externalUserHomeMenuConfig,
+  "/ExternalUser": externalUserHomeMenuConfig,
 }
 
 /** Tipos de usuário para variar o menu por perfil (ex.: admin vê mais itens). */

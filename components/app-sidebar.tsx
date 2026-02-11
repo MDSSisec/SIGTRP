@@ -44,7 +44,7 @@ export function AppSidebar({
       <SidebarHeader>
         <TeamSwitcher teams={t} />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="gap-1">
         <NavMain items={n} onMenuItemClick={onMenuItemClick} />
       </SidebarContent>
       <SidebarFooter>
