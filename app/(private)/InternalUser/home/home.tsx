@@ -33,7 +33,7 @@ export function InternalUserHome() {
         />
         <ActionCard
           icon={ClipboardList}
-          title="Análise Pendêntes"
+          title="Análise Pendentes"
           subtitle="Visualize todas as análises pendêntes"
           onClick={() => router.push("/InternalUser/settings")}
         />

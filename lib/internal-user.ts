@@ -1,4 +1,16 @@
-import { GalleryVerticalEnd } from "lucide-react"
+import {
+  GalleryVerticalEnd,
+  Fingerprint,
+  FileText,
+  Users,
+  Building2,
+  Calculator,
+  BarChart3,
+  Home,
+  LayoutDashboard,
+  FolderOpen,
+  Settings,
+} from "lucide-react"
 import type { SidebarConfig } from "./sidebar-types"
 
 /**
@@ -18,6 +30,7 @@ export const dashboardMenuConfig: SidebarConfig = {
     {
       title: "I - Identificação",
       url: "#",
+      icon: Fingerprint,
       isActive: true,
       items: [
         { title: "1. Identificação do Projeto", url: "#" },
@@ -28,6 +41,7 @@ export const dashboardMenuConfig: SidebarConfig = {
     {
       title: "II - Descrição do Projeto",
       url: "#",
+      icon: FileText,
       items: [
         { title: "5.Justificativa e Motivação para celebração do instrumento", url: "#" },
         { title: "6. Objetivos", url: "#" },
@@ -41,6 +55,7 @@ export const dashboardMenuConfig: SidebarConfig = {
     {
       title: "III - Participantes e Abrangência do Projeto",
       url: "#",
+      icon: Users,
       items: [
         { title: "12. Histórico e situação socioeconômica do território e da população a ser beneficiada", url: "#" },
         { title: "13. Detalhamento da base territorial do projeto", url: "#" },
@@ -53,6 +68,7 @@ export const dashboardMenuConfig: SidebarConfig = {
     {
       title: "IV - Caracterização do(a) proponente",
       url: "#",
+      icon: Building2,
       items: [
         { title: "12. Outras informações julgadas apropiadas sobre o(a) proponente", url: "#" },
       ],
@@ -60,6 +76,7 @@ export const dashboardMenuConfig: SidebarConfig = {
     {
       title: "V - Dados Físicos-Financeiros: Planilhas Orçamentárias",
       url: "#",
+      icon: Calculator,
       items: [
         { title: "19. Valor total do projeto", url: "#" },
         { title: "20. Cronograma de desembolso", url: "#" },
@@ -70,6 +87,7 @@ export const dashboardMenuConfig: SidebarConfig = {
     {
       title: "VI - Monitoramento e Avaliação",
       url: "#",
+      icon: BarChart3,
       items: [
         { title: "23. Procedimentos de monitoramento e avaliação da execução e resultados", url: "#" },
         { title: "24. Indicadores de eficiência e eficácia", url: "#" },
@@ -91,9 +109,33 @@ export const internalUserHomeMenuConfig: SidebarConfig = {
     { name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" },
   ],
   navMain: [
-    { title: "Início", url: "/InternalUser/home", isActive: true, items: [{ title: "Página inicial", url: "/InternalUser/home" }] },
-    { title: "Dashboard", url: "/InternalUser/dashboard", items: [{ title: "Painel", url: "/InternalUser/dashboard" }] },
-    { title: "Meus Projetos", url: "#", items: [{ title: "Listar projetos", url: "/InternalUser/projects" }] },
-    { title: "Configurações", url: "#", items: [{ title: "Ajustes", url: "#" }] },
+    {
+      title: "Início",
+      url: "/InternalUser/home",
+      icon: Home,
+      isActive: true,
+      items: [{ title: "Página inicial", url: "/InternalUser/home" }],
+    },
+    {
+      title: "Dashboard",
+      url: "/InternalUser/dashboard",
+      icon: LayoutDashboard,
+      items: [{ title: "Painel", url: "/InternalUser/dashboard" }],
+    },
+    {
+      title: "Projetos",
+      url: "#",
+      icon: FolderOpen,
+      items: [
+        { title: "Todos os projetos", url: "/InternalUser/projects" },
+        { title: "Projetos Pendentes", url: "#" },
+      ],
+    },
+    {
+      title: "Configurações",
+      url: "#",
+      icon: Settings,
+      items: [{ title: "Ajustes", url: "#" }],
+    },
   ],
 }
