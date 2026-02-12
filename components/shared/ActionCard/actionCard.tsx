@@ -1,8 +1,9 @@
 import React from "react";
 import { LucideIcon } from "lucide-react";
+import { IconType } from "react-icons";
 
 type ActionCardProps = {
-  icon: LucideIcon;
+  icon: LucideIcon | IconType;
   title: string;
   subtitle: string;
   onClick?: () => void;
