@@ -29,12 +29,12 @@ export function DataTable<T extends Record<string, unknown>>({
     <div className="pt-0 pb-6">
       <div className="overflow-hidden rounded-[10px] border border-gray-300">
         <table className="w-full text-sm">
-          <thead className="bg-gray-200">
+          <thead style={{ backgroundColor: "#1e2938" }}>
             <tr>
               {columns.map((col) => (
                 <th
                   key={col.id}
-                  className={`border p-2 ${alignClass[col.align ?? "left"]}`}
+                  className={`border border-gray-300 p-2 text-white ${alignClass[col.align ?? "left"]}`}
                 >
                   {col.label}
                 </th>

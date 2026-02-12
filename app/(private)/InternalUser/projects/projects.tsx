@@ -1,6 +1,11 @@
 "use client"
 
+import { useMemo, useState } from "react"
 import { Pencil, Trash2 } from "lucide-react"
+import OpenPopUpButton from "@/components/shared/Buttons/openPopUpButton"
+import FiltroGenerico, {
+  type FiltroConfig,
+} from "@/components/shared/GenericFilter/genericFilter"
 import {
   DataTable,
   type TableColumn,
@@ -76,15 +81,77 @@ const columns: TableColumn<Projeto>[] = [
   },
 ]
 
+const filtrosProjetos: FiltroConfig[] = [
+  {
+    name: "nome",
+    placeholder: "Buscar por nome...",
+    type: "text",
+  },
+  {
+    name: "status",
+    placeholder: "Status",
+    type: "select",
+    options: [
+      { label: "Todos", value: "" },
+      { label: "Pendente", value: "Pendente" },
+      { label: "Em Andamento", value: "Em Andamento" },
+      { label: "Concluído", value: "Concluído" },
+      { label: "Suspenso", value: "Suspenso" },
+    ],
+  },
+  {
+    name: "tipo",
+    placeholder: "Tipo",
+    type: "select",
+    options: [
+      { label: "Todos", value: "" },
+      { label: "TED", value: "TED" },
+    ],
+  },
+]
+
 export function ProjectsContent() {
-  const projetos = projetosData as Projeto[]
+  const [filtrosValores, setFiltrosValores] = useState<Record<string, string>>({})
+  const projetosBase = useMemo(() => projetosData as Projeto[], [])
+
+  const projetosFiltrados = useMemo(() => {
+    return projetosBase.filter((p) => {
+      const nome = (filtrosValores.nome ?? "").trim().toLowerCase()
+      if (nome && !p.nome.toLowerCase().includes(nome)) return false
+      const status = filtrosValores.status ?? ""
+      if (status && p.status !== status) return false
+      const tipo = filtrosValores.tipo ?? ""
+      if (tipo && p.tipo !== tipo) return false
+      return true
+    })
+  }, [projetosBase, filtrosValores])
+
+  const handleFiltroChange = (name: string, value: string) => {
+    setFiltrosValores((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleLimpar = () => {
+    setFiltrosValores({})
+  }
 
   return (
     <div className="px-6">
-      <h1 className="text-xl font-semibold mb-4">Todos os Projetos</h1>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-xl font-semibold">Todos os Projetos</h1>
+        <OpenPopUpButton
+          title="+ Adicionar projeto"
+          onClick={() => {}}
+        />
+      </div>
+      <FiltroGenerico
+        filtros={filtrosProjetos}
+        valores={filtrosValores}
+        onChange={handleFiltroChange}
+        onLimpar={handleLimpar}
+      />
       <DataTable<Projeto>
         columns={columns}
-        data={projetos}
+        data={projetosFiltrados}
         getRowKey={(row) => row.id}
       />
     </div>
