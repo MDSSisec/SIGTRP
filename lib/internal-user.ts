@@ -135,7 +135,7 @@ export const internalUserHomeMenuConfig: SidebarConfig = {
       title: "Configurações",
       url: "#",
       icon: Settings,
-      items: [{ title: "Usuários Internos", url: "/InternalUser/config/internalUser" }, { title: "Usuários Externos", url: "/InternalUser/config/externalUser" }, { title: "Configurações do Sistema", url: "#" }],
+      items: [{ title: "Usuários Internos", url: "/InternalUser/config/internalUser" }, { title: "Usuários Externos", url: "/InternalUser/config/externalUser" }, { title: "Configurações do Sistema", url: "/InternalUser/config/configSistema" }],
     },
   ],
 }
