@@ -21,7 +21,7 @@ export const dashboardMenuConfig: SidebarConfig = {
   user: {
     name: "UserName",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "",
   },
   teams: [
     { name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" },
@@ -103,7 +103,7 @@ export const internalUserHomeMenuConfig: SidebarConfig = {
   user: {
     name: "UserName",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "",
   },
   teams: [
     { name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" },
