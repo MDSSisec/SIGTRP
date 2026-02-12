@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react"
 import { Pencil, Trash2 } from "lucide-react"
 import OpenPopUpButton from "@/components/shared/Buttons/openPopUpButton"
+import Popup from "@/components/shared/PopUps/Generico/popUpGenerico"
 import FiltroGenerico, { type FiltroConfig } from "@/components/shared/GenericFilter/genericFilter"
 import {
   DataTable,
@@ -21,7 +22,7 @@ type Usuario = {
   perfil: PerfilUsuario
 }
 
-const dadosUsuarios: Usuario[] = [
+const dadosIniciais: Usuario[] = [
   { id: 1, nome: "Maria Silva", email: "maria.silva@email.com", status: "Ativo", perfil: "Administrador" },
   { id: 2, nome: "João Santos", email: "joao.santos@email.com", status: "Ativo", perfil: "Usuário" },
   { id: 3, nome: "Ana Costa", email: "ana.costa@email.com", status: "Inativo", perfil: "Usuário" },
@@ -106,11 +107,31 @@ const filtrosUsuarios: FiltroConfig[] = [
   },
 ]
 
+const statusOptions: { label: string; value: StatusUsuario }[] = [
+  { label: "Ativo", value: "Ativo" },
+  { label: "Inativo", value: "Inativo" },
+  { label: "Pendente", value: "Pendente" },
+]
+
+const perfilOptions: { label: string; value: PerfilUsuario }[] = [
+  { label: "Administrador", value: "Administrador" },
+  { label: "Usuário", value: "Usuário" },
+  { label: "Gestor", value: "Gestor" },
+]
+
 export function InternalUsersContent() {
   const [filtrosValores, setFiltrosValores] = useState<Record<string, string>>({})
+  const [usuarios, setUsuarios] = useState<Usuario[]>(dadosIniciais)
+  const [popupAberto, setPopupAberto] = useState(false)
+  const [form, setForm] = useState({
+    nome: "",
+    email: "",
+    status: "Ativo" as StatusUsuario,
+    perfil: "Usuário" as PerfilUsuario,
+  })
 
   const usuariosFiltrados = useMemo(() => {
-    return dadosUsuarios.filter((u) => {
+    return usuarios.filter((u) => {
       const nome = (filtrosValores.nome ?? "").trim().toLowerCase()
       if (nome && !u.nome.toLowerCase().includes(nome)) return false
       const status = filtrosValores.status ?? ""
@@ -119,7 +140,25 @@ export function InternalUsersContent() {
       if (perfil && u.perfil !== perfil) return false
       return true
     })
-  }, [filtrosValores])
+  }, [filtrosValores, usuarios])
+
+  const abrirPopup = () => {
+    setForm({ nome: "", email: "", status: "Ativo", perfil: "Usuário" })
+    setPopupAberto(true)
+  }
+
+  const fecharPopup = () => setPopupAberto(false)
+
+  const handleSalvarUsuario = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!form.nome.trim() || !form.email.trim()) return
+    const novoId = Math.max(0, ...usuarios.map((u) => u.id)) + 1
+    setUsuarios((prev) => [
+      ...prev,
+      { id: novoId, nome: form.nome.trim(), email: form.email.trim(), status: form.status, perfil: form.perfil },
+    ])
+    fecharPopup()
+  }
 
   return (
     <div className="px-6">
@@ -127,9 +166,75 @@ export function InternalUsersContent() {
         <h1 className="text-xl font-semibold">Usuários Internos</h1>
         <OpenPopUpButton
           title="+ Adicionar usuário"
-          onClick={() => {}}
+          onClick={abrirPopup}
         />
       </div>
+
+      <Popup open={popupAberto} title="Cadastrar usuário" onClose={fecharPopup}>
+        <form onSubmit={handleSalvarUsuario} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+            <input
+              type="text"
+              value={form.nome}
+              onChange={(e) => setForm((f) => ({ ...f, nome: e.target.value }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              placeholder="Nome completo"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+            <input
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              placeholder="email@exemplo.com"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+            <select
+              value={form.status}
+              onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as StatusUsuario }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white"
+            >
+              {statusOptions.map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Perfil</label>
+            <select
+              value={form.perfil}
+              onChange={(e) => setForm((f) => ({ ...f, perfil: e.target.value as PerfilUsuario }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white"
+            >
+              {perfilOptions.map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+          <div className="flex justify-end gap-2 pt-2">
+            <button
+              type="button"
+              onClick={fecharPopup}
+              className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 text-sm hover:bg-gray-50"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 rounded-lg bg-[#1e2938] text-white text-sm hover:opacity-90"
+            >
+              Salvar
+            </button>
+          </div>
+        </form>
+      </Popup>
       <FiltroGenerico
         filtros={filtrosUsuarios}
         valores={filtrosValores}
