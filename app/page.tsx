@@ -1,17 +1,10 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { LoginForm } from "@/components/login-form"
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-6 p-4">
-      <h1 className="text-xl font-semibold text-neutral-800">SIGTRP</h1>
-      <div className="flex flex-wrap gap-4 justify-center">
-        <Button asChild size="lg">
-          <Link href="/InternalUser/home">Internal User</Link>
-        </Button>
-        <Button asChild variant="outline" size="lg">
-          <Link href="/ExternalUser/home">External User</Link>
-        </Button>
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-sm">
+        <LoginForm />
       </div>
     </div>
   )
