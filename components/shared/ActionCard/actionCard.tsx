@@ -18,20 +18,20 @@ export default function ActionCard({
   return (
     <div
       onClick={onClick}
-      className="bg-white border border-gray-300 rounded-2xl transition-all duration-300 cursor-pointer p-8 flex flex-col items-center text-center w-full max-w-sm hover:border-gray-400"
+      className="bg-white border border-gray-300 rounded-2xl transition-all duration-300 cursor-pointer p-6 sm:p-8 flex flex-col items-center text-center w-full min-w-0 hover:border-gray-400"
     >
       {/* Ícone */}
-      <div className="mb-6">
-        <Icon size={80} className="text-black" />
+      <div className="mb-4 sm:mb-6 flex-shrink-0">
+        <Icon className="h-14 w-14 sm:h-20 sm:w-20 text-black" />
       </div>
 
       {/* Título */}
-      <h2 className="text-xl font-semibold text-black mb-2">
+      <h2 className="text-lg sm:text-xl font-semibold text-black mb-2 break-words">
         {title}
       </h2>
 
       {/* Subtítulo */}
-      <p className="text-gray-500 text-sm">
+      <p className="text-gray-500 text-xs sm:text-sm break-words">
         {subtitle}
       </p>
     </div>

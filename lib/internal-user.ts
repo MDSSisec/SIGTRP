@@ -128,7 +128,6 @@ export const internalUserHomeMenuConfig: SidebarConfig = {
       icon: FolderOpen,
       items: [
         { title: "Todos os projetos", url: "/InternalUser/projects" },
-        { title: "Projetos Pendentes", url: "#" },
       ],
     },
     {
