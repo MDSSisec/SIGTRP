@@ -20,6 +20,8 @@ export type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
   teams?: SidebarTeam[]
   navMain?: NavMainItem[]
   onMenuItemClick?: (parentTitle: string, childTitle: string) => void
+  /** Maior espaçamento entre itens do menu (ex.: página de edição do projeto). */
+  spaciousMenu?: boolean
 }
 
 export function AppSidebar({
@@ -28,6 +30,7 @@ export function AppSidebar({
   teams,
   navMain,
   onMenuItemClick,
+  spaciousMenu,
   ...props
 }: AppSidebarProps) {
   const u = user ?? config?.user
@@ -44,8 +47,8 @@ export function AppSidebar({
       <SidebarHeader>
         <TeamSwitcher teams={t} />
       </SidebarHeader>
-      <SidebarContent className="gap-1">
-        <NavMain items={n} onMenuItemClick={onMenuItemClick} />
+      <SidebarContent className={spaciousMenu ? "gap-5" : "gap-1"}>
+        <NavMain items={n} onMenuItemClick={onMenuItemClick} spaciousMenu={spaciousMenu} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={u} />

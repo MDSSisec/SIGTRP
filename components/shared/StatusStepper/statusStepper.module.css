@@ -1,0 +1,138 @@
+.wrapper {
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 0.25rem 0.5rem 1rem 0.5rem;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    min-width: max-content;
+}
+
+.stepItem {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.stepInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 7rem;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 2px solid;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.completed {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-color: var(--primary);
+}
+
+.active {
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
+}
+
+.inactive {
+    border-color: var(--muted);
+    color: var(--muted-foreground);
+}
+
+.label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    max-width: 7rem;
+    word-break: break-word;
+}
+
+.labelActive {
+    color: var(--foreground);
+}
+
+.labelInactive {
+    color: var(--muted-foreground);
+}
+
+.connector {
+    flex: 1;
+    min-width: 1rem;
+    height: 2px;
+    margin: 1.625rem 0.25rem 0 0.25rem;
+}
+
+.connectorActive {
+    background: var(--primary);
+}
+
+.connectorInactive {
+    background: var(--muted);
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.trigger {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.03);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.trigger:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.triggerContent {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.triggerIcon {
+    color: var(--muted-foreground);
+    flex-shrink: 0;
+}
+
+.triggerSubLabel {
+    color: var(--muted-foreground);
+    font-weight: 400;
+}
+
+.chevron {
+    flex-shrink: 0;
+    color: var(--muted-foreground);
+    transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+}
+
+.motionWrapper {
+    overflow: hidden;
+}

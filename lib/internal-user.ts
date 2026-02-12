@@ -10,6 +10,7 @@ import {
   LayoutDashboard,
   FolderOpen,
   Settings,
+  MessageCircle,
 } from "lucide-react"
 import type { SidebarConfig } from "./sidebar-types"
 
@@ -93,6 +94,14 @@ export const dashboardMenuConfig: SidebarConfig = {
         { title: "24. Indicadores de eficiência e eficácia", url: "#" },
       ],
     },
+    {
+      title: "Observações",
+      url: "#",
+      icon: MessageCircle,
+      items: [
+        { title: "25. Observações", url: "#" },
+      ],
+    }
   ],
 }
 

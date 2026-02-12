@@ -7,7 +7,7 @@ import FiltroGenerico, { type FiltroConfig } from "@/components/shared/GenericFi
 import {
   DataTable,
   type TableColumn,
-} from "@/components/shared/Tables/genericTable"
+} from "@/components/shared/Tables/GenericTable/genericTable"
 
 type StatusUsuario = "Ativo" | "Inativo" | "Pendente"
 

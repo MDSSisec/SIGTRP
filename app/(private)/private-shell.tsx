@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useMemo, useState } from "react"
 import { AppSidebar } from "@/components/app-sidebar"
@@ -7,6 +8,7 @@ import { Separator } from "@/components/ui/separator"
 import {
   Breadcrumb,
   BreadcrumbItem,
+  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -16,28 +18,100 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { BreadcrumbProvider, useBreadcrumb } from "@/lib/breadcrumb-context"
 import { getSidebarConfig } from "@/lib/sidebar-config"
 
-/**
- * Shell que aparece em todas as páginas privadas.
- * O menu lateral muda conforme a rota (e no futuro conforme o usuário).
- */
-export function PrivateShell({ children }: { children: React.ReactNode }) {
+function HeaderBreadcrumb({
+  menuBreadcrumb,
+}: {
+  menuBreadcrumb: { parent: string; child: string } | null
+}) {
   const pathname = usePathname()
-  const [breadcrumb, setBreadcrumb] = useState<{
+  const { projectName } = useBreadcrumb()
+
+  const isProjectsList = pathname === "/InternalUser/projects"
+  const isProjectEdit = /^\/InternalUser\/projects\/[^/]+$/.test(pathname)
+  const showProjectsBreadcrumb = isProjectsList || isProjectEdit
+
+  const breadcrumbContent = useMemo(() => {
+    if (showProjectsBreadcrumb) {
+      const projectsUrl = "/InternalUser/projects"
+      return (
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href={projectsUrl}>Projetos</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              {isProjectEdit ? (
+                <BreadcrumbLink asChild>
+                  <Link href={projectsUrl}>Todos os projetos</Link>
+                </BreadcrumbLink>
+              ) : (
+                <BreadcrumbPage>Todos os projetos</BreadcrumbPage>
+              )}
+            </BreadcrumbItem>
+            {isProjectEdit && projectName && (
+              <>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{projectName}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </>
+            )}
+          </BreadcrumbList>
+        </Breadcrumb>
+      )
+    }
+    if (menuBreadcrumb) {
+      return (
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbPage>{menuBreadcrumb.parent}</BreadcrumbPage>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{menuBreadcrumb.child}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      )
+    }
+    return null
+  }, [showProjectsBreadcrumb, isProjectEdit, projectName, menuBreadcrumb])
+
+  return (
+    <div className="flex items-center gap-2 px-4">
+      <SidebarTrigger className="-ml-1" />
+      <Separator
+        orientation="vertical"
+        className="mr-2 data-[orientation=vertical]:h-4"
+      />
+      {breadcrumbContent}
+    </div>
+  )
+}
+
+function PrivateShellInner({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  const [menuBreadcrumb, setMenuBreadcrumb] = useState<{
     parent: string
     child: string
   } | null>(null)
 
-  // Para variar o menu por usuário: use o role da sessão, ex.:
-  // const { data: session } = useSession(); const userRole = session?.user?.role;
   const sidebarConfig = useMemo(
     () => getSidebarConfig(pathname /* , userRole */),
     [pathname]
   )
 
+  const isProjectEditPage = /^\/InternalUser\/projects\/[^/]+$/.test(pathname)
+
   const handleMenuItemClick = (parentTitle: string, childTitle: string) => {
-    setBreadcrumb({ parent: parentTitle, child: childTitle })
+    setMenuBreadcrumb({ parent: parentTitle, child: childTitle })
   }
 
   return (
@@ -45,34 +119,29 @@ export function PrivateShell({ children }: { children: React.ReactNode }) {
       <AppSidebar
         config={sidebarConfig}
         onMenuItemClick={handleMenuItemClick}
+        spaciousMenu={isProjectEditPage}
       />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator
-              orientation="vertical"
-              className="mr-2 data-[orientation=vertical]:h-4"
-            />
-            {breadcrumb && (
-              <Breadcrumb>
-                <BreadcrumbList>
-                  <BreadcrumbItem>
-                    <BreadcrumbPage>{breadcrumb.parent}</BreadcrumbPage>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                    <BreadcrumbPage>{breadcrumb.child}</BreadcrumbPage>
-                  </BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
-            )}
-          </div>
+          <HeaderBreadcrumb menuBreadcrumb={menuBreadcrumb} />
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 pt-0">
           {children}
         </main>
       </SidebarInset>
     </SidebarProvider>
+  )
+}
+
+/**
+ * Shell que aparece em todas as páginas privadas.
+ * O menu lateral muda conforme a rota (e no futuro conforme o usuário).
+ * Na área de projetos, o breadcrumb mostra "Projetos > Todos os projetos" e, na edição, o nome do projeto.
+ */
+export function PrivateShell({ children }: { children: React.ReactNode }) {
+  return (
+    <BreadcrumbProvider>
+      <PrivateShellInner>{children}</PrivateShellInner>
+    </BreadcrumbProvider>
   )
 }

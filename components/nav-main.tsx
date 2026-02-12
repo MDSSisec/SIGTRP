@@ -32,9 +32,12 @@ type NavItem = {
 export function NavMain({
   items,
   onMenuItemClick,
+  spaciousMenu,
 }: {
   items: NavItem[]
   onMenuItemClick?: (parentTitle: string, childTitle: string) => void
+  /** Maior espaçamento entre itens (ex.: página de edição do projeto). */
+  spaciousMenu?: boolean
 }) {
   const pathname = usePathname()
 
@@ -67,7 +70,7 @@ export function NavMain({
               onOpenChange={(open) => setOpenKey(open ? item.title : null)}
               className="group/collapsible"
             >
-              <SidebarMenuItem className="mb-1">
+              <SidebarMenuItem className={spaciousMenu ? "mb-5" : "mb-1"}>
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton tooltip={item.title}>
                     {item.icon && <item.icon />}

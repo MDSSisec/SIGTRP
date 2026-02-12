@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useMemo, useState } from "react"
 import { Pencil, Trash2 } from "lucide-react"
 import OpenPopUpButton from "@/components/shared/Buttons/openPopUpButton"
@@ -7,10 +8,9 @@ import FiltroGenerico, { type FiltroConfig } from "@/components/shared/GenericFi
 import {
   DataTable,
   type TableColumn,
-} from "@/components/shared/Tables/genericTable"
+} from "@/components/shared/Tables/GenericTable/genericTable"
+import { getStatusStyle, STATUS_PROJETO_LIST, type StatusProjeto } from "@/lib/project-status"
 import projetosData from "./dataProjetos.json"
-
-type StatusProjeto = "Pendente" | "Em Andamento" | "Concluído" | "Suspenso"
 
 type Projeto = {
   id: number
@@ -18,21 +18,6 @@ type Projeto = {
   responsavel: string
   status: StatusProjeto
   tipo: string
-}
-
-const getStatusStyle = (status: StatusProjeto) => {
-  switch (status) {
-    case "Concluído":
-      return "bg-green-100 text-green-700"
-    case "Em Andamento":
-      return "bg-blue-100 text-blue-700"
-    case "Pendente":
-      return "bg-yellow-100 text-yellow-700"
-    case "Suspenso":
-      return "bg-red-100 text-red-700"
-    default:
-      return ""
-  }
 }
 
 const columns: TableColumn<Projeto>[] = [
@@ -56,15 +41,15 @@ const columns: TableColumn<Projeto>[] = [
     id: "acoes",
     label: "Ações",
     align: "center",
-    render: () => (
+    render: (row) => (
       <div className="flex justify-center gap-2">
-        <button
-          type="button"
-          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+        <Link
+          href={`/InternalUser/projects/${row.id}`}
+          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 inline-flex items-center justify-center"
           aria-label="Editar"
         >
           <Pencil size={16} />
-        </button>
+        </Link>
         <button
           type="button"
           className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 text-red-600 hover:text-red-800"
@@ -84,10 +69,7 @@ const filtrosProjetos: FiltroConfig[] = [
     type: "select",
     options: [
       { label: "Todos", value: "" },
-      { label: "Pendente", value: "Pendente" },
-      { label: "Em Andamento", value: "Em Andamento" },
-      { label: "Concluído", value: "Concluído" },
-      { label: "Suspenso", value: "Suspenso" },
+      ...STATUS_PROJETO_LIST.map((s) => ({ label: s, value: s })),
     ],
   },
   {
