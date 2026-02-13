@@ -23,9 +23,9 @@ export function InternalUserHome() {
       <div className="flex flex-row gap-6 overflow-x-auto pb-4">
         <div className="min-w-[300px] w-[300px]">
           <ActionCard
-            icon={FaFolderPlus}
-            title="Novo Projeto"
-            subtitle="Crie um novo projeto"
+            icon={FolderOpen}
+            title="Projetos"
+            subtitle="Visualize todos os projetos"
             onClick={() => router.push("/InternalUser/projects")}
           />
         </div>
@@ -37,13 +37,12 @@ export function InternalUserHome() {
             onClick={() => router.push("/InternalUser/dashboard")}
           />
         </div>
-        
         <div className="min-w-[300px] w-[300px]">
           <ActionCard
             icon={LuFolderClock}
-            title="Projetos Pendentes"
-            subtitle="Visualize e gerencie todos os projetos pendentes"
-            onClick={() => router.push("/InternalUser/pending")}
+            title="Novo Card"
+            subtitle="Descrição do novo card"
+            onClick={() => {}}
           />
         </div>
       </div>
