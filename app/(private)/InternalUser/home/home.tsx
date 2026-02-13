@@ -1,9 +1,11 @@
 "use client"
 
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { FolderPlus, FolderOpen, ClipboardList, CheckCircle, Search, Clock, LayoutGrid } from "lucide-react"
 import ActionCard from "@/components/shared/ActionCard/actionCard"
 import TotalCard from "@/components/shared/Totais/TotalCard/totalCard"
+import PopupNovoProjeto from "@/components/shared/PopUps/Generico/popupNovoProjeto"
 
 const totaisHome = [
   { title: "Projetos", total: 20, icon: LayoutGrid, description: "Total de projetos" },
@@ -15,6 +17,7 @@ const totaisHome = [
 
 export function InternalUserHome() {
   const router = useRouter()
+  const [isNovoProjetoOpen, setIsNovoProjetoOpen] = useState(false)
 
   return (
     <div className="space-y-6 sm:space-y-8 w-full min-w-0">
@@ -44,7 +47,7 @@ export function InternalUserHome() {
           icon={FolderPlus}
           title="Novo Projeto"
           subtitle="Iniciar um novo projeto"
-          onClick={() => router.push("/InternalUser/projects")}
+          onClick={() => setIsNovoProjetoOpen(true)}
         />
         <ActionCard
           icon={FolderOpen}
@@ -59,6 +62,11 @@ export function InternalUserHome() {
           onClick={() => router.push("/InternalUser/projects")}
         />
       </div>
+
+      <PopupNovoProjeto 
+        open={isNovoProjetoOpen} 
+        onClose={() => setIsNovoProjetoOpen(false)} 
+      />
     </div>
   )
 }

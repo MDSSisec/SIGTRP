@@ -1,33 +1,23 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { Pencil, Trash2 } from "lucide-react"
+import Link from "next/link"
+import { Pencil, Trash2, KeyRound } from "lucide-react"
 import OpenPopUpButton from "@/components/shared/Buttons/openPopUpButton"
+import Popup from "@/components/shared/PopUps/Generico/popUpGenerico"
 import FiltroGenerico, { type FiltroConfig } from "@/components/shared/GenericFilter/genericFilter"
 import {
   DataTable,
   type TableColumn,
 } from "@/components/shared/Tables/GenericTable/genericTable"
-
-type StatusUsuario = "Ativo" | "Inativo" | "Pendente"
-
-type PerfilUsuario = "Proponente" | "Parceiro" | "Consultor"
-
-type UsuarioExterno = {
-  id: number
-  nome: string
-  email: string
-  status: StatusUsuario
-  perfil: PerfilUsuario
-}
-
-const dadosUsuariosExternos: UsuarioExterno[] = [
-  { id: 1, nome: "Roberto Souza", email: "roberto.souza@org.com", status: "Ativo", perfil: "Proponente" },
-  { id: 2, nome: "Carla Mendes", email: "carla.mendes@parceiro.org", status: "Ativo", perfil: "Parceiro" },
-  { id: 3, nome: "Paulo Ferreira", email: "paulo.ferreira@email.com", status: "Inativo", perfil: "Consultor" },
-  { id: 4, nome: "Juliana Rocha", email: "juliana.rocha@projeto.org", status: "Pendente", perfil: "Proponente" },
-  { id: 5, nome: "Marcos Almeida", email: "marcos@consultor.com", status: "Ativo", perfil: "Consultor" },
-]
+import { 
+  type UsuarioExterno, 
+  type StatusUsuario, 
+  type PerfilUsuario, 
+  dadosUsuariosExternos, 
+  statusOptions,
+  perfilOptions
+} from "./data"
 
 const getStatusStyle = (status: StatusUsuario) => {
   switch (status) {
@@ -44,6 +34,7 @@ const getStatusStyle = (status: StatusUsuario) => {
 
 const columns: TableColumn<UsuarioExterno>[] = [
   { id: "nome", label: "Nome", align: "left" },
+  { id: "email", label: "Email", align: "left" },
   {
     id: "status",
     label: "Status",
@@ -61,15 +52,24 @@ const columns: TableColumn<UsuarioExterno>[] = [
     id: "acoes",
     label: "Ações",
     align: "center",
-    render: () => (
+    render: (row) => (
       <div className="flex justify-center gap-2">
         <button
           type="button"
-          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 text-amber-600 hover:text-amber-800"
+          aria-label="Redefinir Senha"
+          title="Redefinir Senha"
+          onClick={() => alert(`Solicitação de redefinição de senha para: ${row.nome}`)}
+        >
+          <KeyRound size={16} />
+        </button>
+        <Link
+          href={`/InternalUser/config/externalUser/${row.id}`}
+          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 inline-flex items-center justify-center"
           aria-label="Editar"
         >
           <Pencil size={16} />
-        </button>
+        </Link>
         <button
           type="button"
           className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 text-red-600 hover:text-red-800"
@@ -108,6 +108,13 @@ const filtrosUsuariosExternos: FiltroConfig[] = [
 
 export function ExternalUsersContent() {
   const [filtrosValores, setFiltrosValores] = useState<Record<string, string>>({})
+  const [popupAberto, setPopupAberto] = useState(false)
+  const [form, setForm] = useState({
+    nome: "",
+    email: "",
+    status: "Ativo" as StatusUsuario,
+    perfil: "Proponente" as PerfilUsuario,
+  })
 
   const usuariosFiltrados = useMemo(() => {
     return dadosUsuariosExternos.filter((u) => {
@@ -121,15 +128,96 @@ export function ExternalUsersContent() {
     })
   }, [filtrosValores])
 
+  const abrirPopup = () => {
+    setForm({ nome: "", email: "", status: "Ativo", perfil: "Proponente" })
+    setPopupAberto(true)
+  }
+
+  const fecharPopup = () => setPopupAberto(false)
+
+  const handleSalvarUsuario = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!form.nome.trim() || !form.email.trim()) return
+    // Lógica para salvar usuário externo (simulação)
+    console.log("Salvando usuário externo:", form)
+    fecharPopup()
+  }
+
   return (
     <div className="px-6">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-xl font-semibold">Usuários Externos</h1>
         <OpenPopUpButton
           title="+ Adicionar usuário externo"
-          onClick={() => {}}
+          onClick={abrirPopup}
         />
       </div>
+
+      <Popup open={popupAberto} title="Cadastrar usuário externo" onClose={fecharPopup}>
+        <form onSubmit={handleSalvarUsuario} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+            <input
+              type="text"
+              value={form.nome}
+              onChange={(e) => setForm((f) => ({ ...f, nome: e.target.value }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              placeholder="Nome completo"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+            <input
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              placeholder="email@exemplo.com"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+            <select
+              value={form.status}
+              onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as StatusUsuario }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white"
+            >
+              {statusOptions.map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Perfil</label>
+            <select
+              value={form.perfil}
+              onChange={(e) => setForm((f) => ({ ...f, perfil: e.target.value as PerfilUsuario }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white"
+            >
+              {perfilOptions.map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+          <div className="flex justify-end gap-2 pt-2">
+            <button
+              type="button"
+              onClick={fecharPopup}
+              className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 text-sm hover:bg-gray-50"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 rounded-lg bg-[#1e2938] text-white text-sm hover:opacity-90"
+            >
+              Salvar
+            </button>
+          </div>
+        </form>
+      </Popup>
       <FiltroGenerico
         filtros={filtrosUsuariosExternos}
         valores={filtrosValores}

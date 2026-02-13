@@ -5,6 +5,7 @@ import { useMemo, useState } from "react"
 import { Pencil, Trash2 } from "lucide-react"
 import OpenPopUpButton from "@/components/shared/Buttons/openPopUpButton"
 import FiltroGenerico, { type FiltroConfig } from "@/components/shared/GenericFilter/genericFilter"
+import PopupNovoProjeto from "@/components/shared/PopUps/Generico/popupNovoProjeto"
 import {
   DataTable,
   type TableColumn,
@@ -84,6 +85,7 @@ const filtrosProjetos: FiltroConfig[] = [
 
 export function ProjectsContent() {
   const [filtrosValores, setFiltrosValores] = useState<Record<string, string>>({})
+  const [isNovoProjetoOpen, setIsNovoProjetoOpen] = useState(false)
   const projetosBase = useMemo(() => projetosData as Projeto[], [])
 
   const projetosFiltrados = useMemo(() => {
@@ -102,7 +104,7 @@ export function ProjectsContent() {
     <div className="px-6">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-xl font-semibold">Todos os Projetos</h1>
-        <OpenPopUpButton title="+ Adicionar projeto" onClick={() => {}} />
+        <OpenPopUpButton title="+ Adicionar projeto" onClick={() => setIsNovoProjetoOpen(true)} />
       </div>
       <FiltroGenerico
         filtros={filtrosProjetos}
@@ -116,6 +118,10 @@ export function ProjectsContent() {
         columns={columns}
         data={projetosFiltrados}
         getRowKey={(row) => row.id}
+      />
+      <PopupNovoProjeto 
+        open={isNovoProjetoOpen} 
+        onClose={() => setIsNovoProjetoOpen(false)} 
       />
     </div>
   )
