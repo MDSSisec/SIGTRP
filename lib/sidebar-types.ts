@@ -1,11 +1,18 @@
 import type { LucideIcon } from "lucide-react"
 
+export type NavMainSubItem = {
+  title: string
+  url: string
+  /** Slug para formulário do projeto (ex.: identificacao-projeto). Usado em /InternalUser/projects/[id]?secao= */
+  slug?: string
+}
+
 export type NavMainItem = {
   title: string
   url: string
   icon?: LucideIcon
   isActive?: boolean
-  items?: { title: string; url: string }[]
+  items?: NavMainSubItem[]
 }
 
 export type SidebarUser = {

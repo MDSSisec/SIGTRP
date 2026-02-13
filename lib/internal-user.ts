@@ -7,7 +7,6 @@ import {
   Calculator,
   BarChart3,
   Home,
-  LayoutDashboard,
   FolderOpen,
   Settings,
   MessageCircle,
@@ -15,7 +14,7 @@ import {
 import type { SidebarConfig } from "./sidebar-types"
 
 /**
- * Menu do Dashboard (formulário TRP - seções I a VI).
+ * Menu do Projeto (formulário TRP - seções I a VI).
  * Use para páginas de edição/gestão do projeto.
  */
 export const dashboardMenuConfig: SidebarConfig = {
@@ -34,9 +33,10 @@ export const dashboardMenuConfig: SidebarConfig = {
       icon: Fingerprint,
       isActive: true,
       items: [
-        { title: "1. Identificação do Projeto", url: "#" },
-        { title: "2. Identificação do(a) proponente", url: "#" },
-        { title: "3. Identificação do representante legal do(a) proponente", url: "#" },
+        { title: "1. Identificação do Projeto", url: "#", slug: "identificacao-projeto" },
+        { title: "2. Identificação do(a) proponente", url: "#", slug: "identificacao-proponente" },
+        { title: "3. Identificação do representante legal do(a) proponente", url: "#", slug: "identificacao-representante-legal" },
+        { title: "4. Identificação do responsável técnico", url: "#", slug: "identificacao-responsavel-tecnico" },
       ],
     },
     {
@@ -44,13 +44,13 @@ export const dashboardMenuConfig: SidebarConfig = {
       url: "#",
       icon: FileText,
       items: [
-        { title: "5.Justificativa e Motivação para celebração do instrumento", url: "#" },
-        { title: "6. Objetivos", url: "#" },
-        { title: "7. Metas", url: "#" },
-        { title: "8. Etapas e cronograma de execução", url: "#" },
-        { title: "9. Metodologia", url: "#" },
-        { title: "10. Resultados Esperados", url: "#" },
-        { title: "11. Gestão do Projeto", url: "#" },
+        { title: "5.Justificativa e Motivação para celebração do instrumento", url: "#", slug: "justificativa" },
+        { title: "6. Objetivos", url: "#", slug: "objetivos" },
+        { title: "7. Metas", url: "#", slug: "metas" },
+        { title: "8. Etapas e cronograma de execução", url: "#", slug: "etapas-cronograma" },
+        { title: "9. Metodologia", url: "#", slug: "metodologia" },
+        { title: "10. Resultados Esperados", url: "#", slug: "resultados-esperados" },
+        { title: "11. Gestão do Projeto", url: "#", slug: "gestao-projeto" },
       ],
     },
     {
@@ -58,12 +58,12 @@ export const dashboardMenuConfig: SidebarConfig = {
       url: "#",
       icon: Users,
       items: [
-        { title: "12. Histórico e situação socioeconômica do território e da população a ser beneficiada", url: "#" },
-        { title: "13. Detalhamento da base territorial do projeto", url: "#" },
-        { title: "14. Público beneficiário do projeto", url: "#" },
-        { title: "15. Informe se o público faz parte de algum destes povos ou comunidades tradicionais", url: "#" },
-        { title: "16. Informe o perfil sócio-ocupacional predominante do público beneficiário", url: "#" },
-        { title: "17. Informe se o público beneficiário está acessando alguns dos seguintes serviços", url: "#" },
+        { title: "12. Histórico e situação socioeconômica do território e da população a ser beneficiada", url: "#", slug: "historico-situacao-territorio" },
+        { title: "13. Detalhamento da base territorial do projeto", url: "#", slug: "base-territorial" },
+        { title: "14. Público beneficiário do projeto", url: "#", slug: "publico-beneficiario" },
+        { title: "15. Informe se o público faz parte de algum destes povos ou comunidades tradicionais", url: "#", slug: "povos-comunidades-tradicionais" },
+        { title: "16. Informe o perfil sócio-ocupacional predominante do público beneficiário", url: "#", slug: "perfil-socio-ocupacional" },
+        { title: "17. Informe se o público beneficiário está acessando alguns dos seguintes serviços", url: "#", slug: "servicos-acessados" },
       ],
     },
     {
@@ -71,18 +71,18 @@ export const dashboardMenuConfig: SidebarConfig = {
       url: "#",
       icon: Building2,
       items: [
-        { title: "12. Outras informações julgadas apropiadas sobre o(a) proponente", url: "#" },
+        { title: "12. Outras informações julgadas apropiadas sobre o(a) proponente", url: "#", slug: "outras-informacoes-proponente" },
       ],
     },
     {
-      title: "V - Dados Físicos-Financeiros: Planilhas Orçamentárias",
+      title: "V - Dados Financeiros",
       url: "#",
       icon: Calculator,
       items: [
-        { title: "19. Valor total do projeto", url: "#" },
-        { title: "20. Cronograma de desembolso", url: "#" },
-        { title: "21. Detalhamento do orçamento de bens e serviços com memória de cálculo por meta, etapa e tipo de despesa", url: "#" },
-        { title: "22. Resumo do plano de aplicação por elemento de despesa", url: "#" },
+        { title: "19. Valor total do projeto", url: "#", slug: "valor-total" },
+        { title: "20. Cronograma de desembolso", url: "#", slug: "cronograma-desembolso" },
+        { title: "21. Detalhamento do orçamento de bens e serviços com memória de cálculo por meta, etapa e tipo de despesa", url: "#", slug: "detalhamento-orcamento" },
+        { title: "22. Resumo do plano de aplicação por elemento de despesa", url: "#", slug: "resumo-plano-aplicacao" },
       ],
     },
     {
@@ -90,8 +90,8 @@ export const dashboardMenuConfig: SidebarConfig = {
       url: "#",
       icon: BarChart3,
       items: [
-        { title: "23. Procedimentos de monitoramento e avaliação da execução e resultados", url: "#" },
-        { title: "24. Indicadores de eficiência e eficácia", url: "#" },
+        { title: "23. Procedimentos de monitoramento e avaliação da execução e resultados", url: "#", slug: "procedimentos-monitoramento" },
+        { title: "24. Indicadores de eficiência e eficácia", url: "#", slug: "indicadores-eficiencia" },
       ],
     },
     {
@@ -99,7 +99,7 @@ export const dashboardMenuConfig: SidebarConfig = {
       url: "#",
       icon: MessageCircle,
       items: [
-        { title: "25. Observações", url: "#" },
+        { title: "25. Observações", url: "#", slug: "observacoes" },
       ],
     }
   ],
@@ -124,12 +124,6 @@ export const internalUserHomeMenuConfig: SidebarConfig = {
       icon: Home,
       isActive: true,
       items: [{ title: "Página inicial", url: "/InternalUser/home" }],
-    },
-    {
-      title: "Dashboard",
-      url: "/InternalUser/dashboard",
-      icon: LayoutDashboard,
-      items: [{ title: "Painel", url: "/InternalUser/dashboard" }],
     },
     {
       title: "Projetos",

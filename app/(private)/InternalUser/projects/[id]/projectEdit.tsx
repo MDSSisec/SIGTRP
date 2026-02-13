@@ -1,7 +1,11 @@
 "use client"
 
-import { useParams } from "next/navigation"
+import { useParams, useSearchParams } from "next/navigation"
 import { useEffect, useMemo } from "react"
+import {
+  DEFAULT_FORM_SECTION,
+  PROJECT_FORM_SECTIONS,
+} from "@/components/projectForms"
 import StatusStepper from "@/components/shared/StatusStepper/statusStepper"
 import { useBreadcrumb } from "@/lib/breadcrumb-context"
 import {
@@ -17,8 +21,17 @@ import projetosData from "../dataProjetos.json"
  */
 export function ProjectEditContent() {
   const params = useParams()
+  const searchParams = useSearchParams()
   const projectId = (params?.id as string) ?? ""
+  const secao = searchParams.get("secao") ?? DEFAULT_FORM_SECTION
   const { setProjectName } = useBreadcrumb()
+
+  const FormSection = useMemo(
+    () =>
+      PROJECT_FORM_SECTIONS[secao] ??
+      PROJECT_FORM_SECTIONS[DEFAULT_FORM_SECTION],
+    [secao]
+  )
 
   const projeto = (projetosData as { id: number; nome: string; status?: StatusProjeto }[]).find(
     (p) => String(p.id) === projectId
@@ -42,10 +55,8 @@ export function ProjectEditContent() {
         </div>
       )}
 
-      <div className="bg-muted/50 min-h-[50vh] rounded-xl p-6">
-        <p className="text-muted-foreground text-sm">
-          Conteúdo da seção selecionada será exibido aqui. Navegue pelos itens do menu lateral: I - Identificação, II - Descrição do Projeto, III - Participantes e Abrangência, IV - Caracterização do proponente, V - Dados Físicos-Financeiros, VI - Monitoramento e Avaliação.
-        </p>
+      <div className="min-h-[50vh] rounded-xl border bg-muted/40 p-6">
+        <FormSection projectId={projectId} />
       </div>
     </div>
   )

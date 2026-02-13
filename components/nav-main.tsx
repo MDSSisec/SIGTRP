@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useCallback, useEffect, useState } from "react"
+import { usePathname, useSearchParams } from "next/navigation"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { ChevronRight, type LucideIcon } from "lucide-react"
 
 import {
@@ -21,12 +21,18 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 
+type NavSubItem = {
+  title: string
+  url: string
+  slug?: string
+}
+
 type NavItem = {
   title: string
   url: string
   icon?: LucideIcon
   isActive?: boolean
-  items?: { title: string; url: string }[]
+  items?: NavSubItem[]
 }
 
 export function NavMain({
@@ -40,13 +46,50 @@ export function NavMain({
   spaciousMenu?: boolean
 }) {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const secao = searchParams.get("secao")
+
+  const projectId = useMemo(() => {
+    const m = pathname.match(/^\/InternalUser\/projects\/([^/]+)/)
+    return m?.[1] ?? null
+  }, [pathname])
 
   const getOpenKeyFromPath = useCallback(() => {
+    if (projectId) {
+      if (secao) {
+        const item = items.find((i) =>
+          i.items?.some((sub) => "slug" in sub && sub.slug === secao)
+        )
+        return item?.title ?? null
+      }
+      return items[0]?.title ?? null
+    }
     const item = items.find((i) =>
       i.items?.some((sub) => sub.url === pathname)
     )
     return item?.title ?? null
-  }, [items, pathname])
+  }, [items, pathname, projectId, secao])
+
+  const getSubItemHref = useCallback(
+    (sub: NavSubItem) => {
+      if (projectId && sub.slug) {
+        return `/InternalUser/projects/${projectId}?secao=${sub.slug}`
+      }
+      return sub.url
+    },
+    [projectId]
+  )
+
+  const isSubItemActive = useCallback(
+    (sub: NavSubItem) => {
+      if (projectId && sub.slug) {
+        const currentSecao = secao ?? "identificacao-projeto"
+        return currentSecao === sub.slug
+      }
+      return pathname === sub.url
+    },
+    [projectId, pathname, secao]
+  )
 
   const [openKey, setOpenKey] = useState<string | null>(() =>
     getOpenKeyFromPath()
@@ -84,10 +127,10 @@ export function NavMain({
                       <SidebarMenuSubItem key={subItem.title}>
                         <SidebarMenuSubButton
                           asChild
-                          isActive={pathname === subItem.url}
+                          isActive={isSubItemActive(subItem)}
                         >
                           <Link
-                            href={subItem.url}
+                            href={getSubItemHref(subItem)}
                             onClick={() =>
                               onMenuItemClick?.(item.title, subItem.title)
                             }
