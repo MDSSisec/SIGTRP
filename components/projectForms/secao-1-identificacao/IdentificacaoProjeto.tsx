@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import { useProjectData } from "@/lib/project-data-context"
 import { cn } from "@/lib/utils"
 
 interface DadosIdentificacaoProjeto {
@@ -18,15 +19,38 @@ interface PropsFormularioIdentificacaoProjeto {
   projectId?: string
 }
 
+function getInicialIdentificacao(projectData: ReturnType<typeof useProjectData>): DadosIdentificacaoProjeto {
+  const p = projectData?.identificacao?.projeto
+  if (!p) return { nomeProjeto: "", localExecucao: "", duracao: "", resumoProjeto: "" }
+  return {
+    nomeProjeto: p.nome ?? "",
+    localExecucao: p.local_execucao ?? "",
+    duracao: p.duracao ?? "",
+    resumoProjeto: p.resumo ?? "",
+  }
+}
+
+const VAZIO: DadosIdentificacaoProjeto = {
+  nomeProjeto: "",
+  localExecucao: "",
+  duracao: "",
+  resumoProjeto: "",
+}
+
 function FormularioIdentificacaoProjeto({
   onChange,
+  projectId,
 }: PropsFormularioIdentificacaoProjeto) {
-  const [dadosFormulario, setDadosFormulario] = useState<DadosIdentificacaoProjeto>({
-    nomeProjeto: "",
-    localExecucao: "",
-    duracao: "",
-    resumoProjeto: "",
-  })
+  const projectData = useProjectData()
+  const [dadosFormulario, setDadosFormulario] = useState<DadosIdentificacaoProjeto>(() =>
+    projectId === "2" && projectData ? getInicialIdentificacao(projectData) : VAZIO
+  )
+
+  useEffect(() => {
+    if (projectId === "2" && projectData) {
+      setDadosFormulario(getInicialIdentificacao(projectData))
+    }
+  }, [projectId, projectData])
 
   const aoAlterar = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

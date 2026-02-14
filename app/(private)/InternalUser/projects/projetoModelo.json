@@ -1,0 +1,697 @@
+{
+    "id": 2,
+    "nome": "Programa Acredita no Primeiro Passo",
+    "responsavel": "João Santos",
+    "status": "Projeto Encerrado",
+    "tipo": "TED",
+    "identificacao": {
+      "projeto": {
+        "nome": "Programa Acredita no Primeiro Passo",
+        "local_execucao": "Unidades Penais do Estado do Piauí",
+        "duracao": "24 meses",
+        "resumo": "Implantação de Oficinas e oferta qualificação profissional para pessoas cadastradas no Cadastro Único para Programas Sociais do Governo Federal (CadÚnico), com idade entre 16 a 65 anos, no âmbito do sistema prisional do Piauí."
+      },
+      "entidade_proponente": {
+        "nome": "Secretaria de Estado da Justiça do Piauí (SEJUS-PI)",
+        "cnpj": "07.217.342/0001-07",
+        "data_fundacao": "13/05/1983",
+        "registro_cnpj": "07.217.342/0001-07",
+        "endereco": {
+          "logradouro": "Av. Pedro Freitas, S/Nº - Centro Administrativo, Bloco G, 2º Andar",
+          "bairro": "São Pedro",
+          "municipio": "Teresina",
+          "uf": "PI",
+          "cep": "64018-900"
+        },
+        "contato": {
+          "telefone": "(86)99949-8122",
+          "emails": [
+            "sejus@sejus.pi.gov.br",
+            "projetos.convenios@sejus.pi.gov.br"
+          ],
+          "site": "https://www.sejus.pi.gov.br/"
+        }
+      },
+      "representante_legal": {
+        "nome": "Carlos Augusto Gomes de Souza",
+        "matricula": "014433-9",
+        "cargo": "Secretário de Estado da Justiça",
+        "estado_civil": "Casado",
+        "telefone": "(86) 99998-2774",
+        "email": "celcarlosaugustogs@gmail.com"
+      },
+      "responsaveis_tecnicos": [
+        {
+          "area": "Diretoria da Unidade de Humanização e Reintegração Social",
+          "nome": "Geusélia Gonçalves de Moura Cavalcante",
+          "matricula": "103937-7",
+          "profissao": "Professora",
+          "cargo": "Diretora de Humanização e Reintegração Social",
+          "estado_civil": "Casada",
+          "telefone": "(86) 98833-8089"
+        },
+        {
+          "area": "Gerente de Ensino Profissionalizante, Trabalho e Renda",
+          "nome": "Joanna Caroline Pontes Vilanova",
+          "matricula": "380930-7",
+          "profissao": "Educadora",
+          "cargo": "Gerente",
+          "estado_civil": "Solteira",
+          "telefone": "(86) 99540-9191"
+        },
+        {
+          "area": "Coordenador de Projetos e Convênios",
+          "nome": "Fagner Martins de Santana",
+          "matricula": "258131-X",
+          "profissao": "Policial Penal",
+          "cargo": "Coordenador de Projetos e Convênios",
+          "estado_civil": "Casado",
+          "telefone": "(89) 98106-1290"
+        }
+      ]
+    },
+    "descricao_projeto": {
+          "justificativa_motivacao": {
+            "caracterizacao_interesses_reciprocos": "Em conformidade com a Lei n° 7.883 de 08 de dezembro de 2022, a Secretaria da Justiça tem por finalidade a promoção, manutenção, execução e acompanhamento da política de Governo do Estado do Piauí relacionada com a cidadania, o sistema penitenciário e os serviços prisionais, competindo-lhe: I administrar o sistema penitenciário do Estado, desenvolvendo programas de ressocialização dos presos, com a participação da sociedade; II - promover a modernização do sistema penitenciário com implantação de políticas disciplinares, com vistas à segurança e à ordem dos presídios; III - elaborar e executar serviços, programas e projetos de proteção especial às vítimas e testemunhas de crimes. À luz das competências da SEJUS acima, considerando que o Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome (MDS), por meio do Programa 5127 - Inclusão Socioeconômica do Público do Cadastro Único, da Ação 20GG - Promoção da Inclusão Socioeconômica de Pessoas em Situação de Vulnerabilidade, busca ofertar apoio ao desenvolvimento das capacidades necessárias e das oportunidades de emancipação às pessoas inscritas no CadÚnico, fomentando a geração de trabalho, ocupação e renda por intermédio de atividades de capacitação, fomento ao empreendedorismo e assistência técnica e gerencial, bem como induzir a intermediação de mão-de-obra entre trabalhadores e empregadores, como forma de reduzir o tempo de desemprego ou propiciar melhores trajetórias profissionais; fica caracterizada a existência de interesses recíprocos entre a SEJUS e o MDS na celebração de parceria para atendimento da população privada de liberdade inscrita no CadÚnico, objetivando oferecer estratégias de reinserção social por meio da oferta de melhores condições de empregabilidade para inserção no mercado de trabalho, seja pela via do emprego ou do empreendedorismo."
+          },
+          "publico_alvo": "Pessoas em situação de vulnerabilidade social, com idade entre 18 a 65 anos, inscritas no Cadastro Único para Programas Sociais do Governo Federal – CadÚnico, especialmente aquelas em situação de pobreza, no sistema prisional do Piauí.",
+          "problema": "Baixo nível de capacitação profissional do público-alvo para reinserção social, em especial, no mercado de trabalho.",
+          "resultados_esperados": "Melhoria das condições de capacitação profissional do público-alvo, pela participação em cursos e oficinas de qualificação a serem ofertadas, com o objetivo de facilitar o processo de empregabilidade ou desenvolvimento de atividade empreendedora para geração de renda, elevando a autonomia socioeconômica, minimizando ainda os efeitos da prisionalização e o estigma social fruto da experiência no cárcere.",
+          "relacao_proposta_programa": "A implantação de Oficinas e oferta de cursos de qualificação profissional no âmbito do Sistema Prisional do Piauí está em consonância com os objetivos e diretrizes do Programa 5127 – Inclusão Socioeconômica do Público do CadÚnico, vez que objetiva proporcionar, por meio da oferta de capacitação profissional, melhores condições para obtenção de renda, seja pela via do emprego ou do empreendedorismo, promovendo a inclusão socioeconômica dos participantes e favorecendo um processo de reinserção social mais sustentável, aumentando a empregabilidade e o empreendedorismo, possibilitando a obtenção de renda pelos beneficiários."
+        },
+    "objetivos": {
+          "objetivo_geral": "Promover a capacitação de pessoas em situação de vulnerabilidade social, inscritas no Cadastro Único para Programas Sociais do Governo Federal – CadÚnico, por meio de ações de qualificação profissional no âmbito do sistema prisional do Estado do Piauí, oportunizando condições mínimas de iniciar uma atividade produtiva e obter renda e contribuindo para a reinserção social e produtiva dos participantes, em alinhamento às diretrizes do Programa Acredita no Primeiro Passo.",
+          "objetivos_especificos": [
+            "Aumentar o acesso a cursos de qualificação para os inscritos no CadÚnico, no âmbito do sistema prisional do Piauí.",
+            "Implantar novas oficinas de trabalho e impulsionar as oficinas já existentes do sistema prisional do Piauí, associando a áreas estratégicas de cada unidade."
+          ]
+        },
+        "metas": [
+          {
+            "meta": "Meta 1",
+            "descricao": "Realizar capacitações profissionais para 500 pessoas no sistema prisional do Piauí, inscritas no CadÚnico."
+          },
+          {
+            "meta": "Meta 2",
+            "descricao": "Estruturação de 13 espaços para realização de ações de qualificação profissional no sistema prisional do Piauí, nas áreas de panificação e marcenaria, e impulsionar 01 espaço de qualificação na área de piscicultura."
+          }
+        ],
+    "resultados_esperados": {
+      "itens": [
+        "500 pessoas inscritas no CadÚnico capacitadas profissionalmente.",
+        "Aumentar a oferta de cursos para mulheres em situação de vulnerabilidade social.",
+        "Aumentar a oferta de cursos de qualificação aos beneficiários do SUAS no Estado do Piauí, inseridos nos programas de trabalho prisional.",
+        "Proporcionar a concepção e estruturação de espaços físicos aptos à permanência dos ciclos de capacitação, de forma a aumentar os beneficiários, tanto direta como indiretamente."
+      ]
+    },
+    "gestao_projeto": {
+      "dimensionamento_equipe": "O projeto será coordenado por equipe própria da SEJUS-PI que fiscalizará a execução de contrato a ser firmado com empresas para fornecimento dos materiais e equipamentos, bem como a seleção de instituição de ensino para ofertar os cursos de capacitação profissional.",
+      "dimensionamento_contratacoes": {
+        "necessidade": "Realização dos Cursos",
+        "servicos_ou_bens": "Empresa especializada em oferta de cursos, que ofereça: material didático, professor e todos os outros insumos e itens necessários para oferta dos cursos, conforme metodologia detalhada no item 9.1, nos termos da Portaria MDS Nº 1.131/2025.",
+        "forma_selecao": "Processo Licitatório"
+      }
+    },
+    "participantes": {
+      "historico_situacao_territorios": "O sistema prisional brasileiro, historicamente marcado pela superlotação, fragilidade estrutural e baixa oferta de políticas de reintegração social, demanda ações estruturantes. No Estado do Piauí, constituído por 17 unidades penais, gerido pela SEJUS, segundo SISDEPEN/MJ 2025.1, registrou população de 7.777 pessoas presas, das quais 1.527 exercem atividades laborais (19,63%). O projeto propõe implantação de oficinas produtivas e ações formativas nas áreas de panificação, marcenaria, serralheria, corte e costura industrial e piscicultura, voltadas a pessoas privadas de liberdade inscritas no CadÚnico.",
+      "base_territorial": {
+        "descricao": "Distribuição das ações por territórios e unidades penais (Planície Litorânea, Cocais, Carnaubais, Entre Rios, Teresina, Vale dos Rios Piauí, Vale do Canindé, Vale do Rio Guaribas, Serra da Capivara).",
+        "total_beneficiarios_cadunico": 2419
+      },
+      "publico_beneficiario": {
+        "descricao": "Pessoas em situação de vulnerabilidade social, com idade entre 18 a 65 anos, inscritas no Cadastro Único para Programas Sociais do Governo Federal – CadÚnico, especialmente aquelas em situação de pobreza, inseridas no sistema prisional do Piauí.",
+        "link_comprovante_cadunico": "https://cadunico.dataprev.gov.br/#/consultaCpf",
+        "beneficiarios_diretos": { "homens": 420, "mulheres": 80, "total": 500 },
+        "beneficiarios_indiretos": { "homens": 1260, "mulheres": 240, "total": 1500 }
+      },
+      "povos_comunidades_tradicionais": "Não se aplica",
+      "perfil_socio_ocupacional": "Outros: Pessoas privadas de liberdade",
+      "servicos_acessados": "Outros: Inscritos no CadÚnico"
+    },
+    "caracterizacao_proponente": {
+      "outras_informacoes": "A Secretaria de Estado da Justiça do Piauí (SEJUS) é o órgão da administração direta do Estado do Piauí, cujas competências estão previstas na Lei n° 7.883/2022, as quais dispõem que tem por finalidade a promoção, a manutenção, a execução e o acompanhamento da política de Governo relacionada com a cidadania, o sistema penitenciário e os serviços prisionais, competindo-lhe administrar o sistema penitenciário do Estado do Piauí, desenvolvendo programas de ressocialização dos presos, promovendo a modernização do sistema penitenciário, bem como a criação e a execução de programas de proteção especial às vítimas e testemunhas de crimes."
+    },
+    "dados_fisico_financeiros": {
+      "valor_total": {
+        "fonte_recurso": "Repasse MDS",
+        "custeio": 1508710.00,
+        "investimento": 1102367.84,
+        "valor_total_mds": 2611077.84,
+        "contrapartida": 26208.00,
+        "total_geral": 2637285.84
+      },
+      "cronograma_desembolso": {
+        "parcela": "Única",
+        "mes_ano": "Mês 2",
+        "mds_sisec": 2611077.84,
+        "contrapartida": 26208.00,
+        "total": 2637285.84
+      },
+      "resumo_plano_aplicacao": {
+        "elementos": [
+          { "elemento": "Material Permanente", "codigo": "449052", "mds_sisec": 1102367.84, "contrapartida": 26208.00, "total": 1128575.84 },
+          { "elemento": "Material de Consumo", "codigo": "339030", "mds_sisec": 8710.00, "contrapartida": 0, "total": 8710.00 },
+          { "elemento": "Contratação de Serv. Terceiros PJ", "codigo": "339039", "mds_sisec": 1500000.00, "contrapartida": 0, "total": 1500000.00 }
+        ],
+        "total_geral": { "mds_sisec": 2611077.84, "contrapartida": 26208.00, "total": 2637285.84 }
+      }
+    },
+    "monitoramento": {
+      "procedimentos_meta_1": "Monitoramento por acompanhamento sistemático da execução dos cursos: execução física (turmas, matrículas, concluintes, carga horária), qualidade pedagógica (frequência mínima 70%, pesquisa de satisfação), conformidade contratual, resultados (taxa de conclusão, participação de mulheres, inserção em atividades laborais). Instrumentos: listas de presença, diários de classe, relatórios pedagógicos, certificados, registros fotográficos.",
+      "procedimentos_meta_2": "Monitoramento da implantação e funcionamento das oficinas: execução física (quantidade implantada, equipamentos instalados), conformidade técnica (estrutura, segurança), gestão das contratações, operacionalização (taxa de utilização, turmas realizadas). Instrumentos: vistorias técnicas, relatórios fotográficos, termos de recebimento, checklists.",
+      "indicadores": {
+        "objetivo_1": {
+          "descricao": "Mínimo de 70% dos participantes dos cursos com frequência nas aulas igual ou superior a 70%.",
+          "forma_verificacao": "Número de pessoas inseridas no CadÚnico capacitadas / Total de Pessoas no CadÚnico no sistema prisional x 100"
+        },
+        "objetivo_2": {
+          "descricao": "100% das oficinas previstas no projeto implantadas/impulsionadas no sistema prisional do Piauí.",
+          "forma_verificacao": "Relatório com fotos dos espaços e equipamentos; Notas fiscais."
+        }
+      }
+    },
+        "etapas_cronograma": {
+          "periodo_total": {
+            "inicio": "Março/2026",
+            "termino": "Dezembro/2027",
+            "valor_total": "R$ 2.637.285,84"
+          },
+          "metas": [
+            {
+              "meta": "Meta 1",
+              "etapas": [
+                {
+                  "codigo": "1.1",
+                  "atividade": "Realizar Curso de Panificação, com carga horária de 120 horas, para 240 pessoas, distribuídas em 12 turmas com 20 alunos por turma.",
+                  "carga_horaria": "120 horas",
+                  "vagas": 240,
+                  "turmas": 12,
+                  "alunos_por_turma": 20,
+                  "valor": "R$ 720.000,00",
+                  "inicio": "Julho/2026",
+                  "termino": "Dezembro/2027"
+                },
+                {
+                  "codigo": "1.2",
+                  "atividade": "Realizar Curso de Marcenaria, com carga horária de 120 horas, para 120 pessoas, distribuídas em 06 turmas com 20 alunos por",
+                  "carga_horaria": "120 horas",
+                  "vagas": 120,
+                  "turmas": 6,
+                  "alunos_por_turma": 20,
+                  "valor": "R$ 360.000,00",
+                  "inicio": "Julho/2026",
+                  "termino": "Dezembro/2027"
+                },
+                {
+                  "codigo": "1.3",
+                  "atividade": "Realizar Curso de Corte e Costura Industrial com carga horária de 120 horas, para 40 pessoas, distribuídas em 02 turmas com 20 alunos por turma.",
+                  "carga_horaria": "120 horas",
+                  "vagas": 40,
+                  "turmas": 2,
+                  "alunos_por_turma": 20,
+                  "valor": "R$ 120.000,00",
+                  "inicio": "Maio/2026",
+                  "termino": "Dezembro/2026"
+                },
+                {
+                  "codigo": "1.4",
+                  "atividade": "Realizar Curso de Psicultura, com carga horária de 120 horas, para 40 pessoas, distribuídas em 02 turmas com 20 alunos por turma.",
+                  "carga_horaria": "120 horas",
+                  "vagas": 40,
+                  "turmas": 2,
+                  "alunos_por_turma": 20,
+                  "valor": "R$ 120.000,00",
+                  "inicio": "Julho/2026",
+                  "termino": "Dezembro/2026"
+                },
+                {
+                  "codigo": "1.5",
+                  "atividade": "Realizar Curso de Serralheria, com carga horária de 120 horas, para 60 pessoas, distribuídas em 02 turmas com 20 alunos por turma",
+                  "carga_horaria": "120 horas",
+                  "vagas": 60,
+                  "turmas": 2,
+                  "alunos_por_turma": 20,
+                  "valor": "R$ 180.000,00",
+                  "inicio": "Maio/2026",
+                  "termino": "Junho/2027"
+                }
+              ]
+            },
+            {
+              "meta": "Meta 2",
+              "etapas": [
+                {
+                  "codigo": "2.1",
+                  "atividade": "Implantar 07 (sete) espaços para realização de ações de qualificação profissional na área de Panificação.",
+                  "quantidade": 7,
+                  "valor": "R$ 805.337,96",
+                  "inicio": "Março/2026",
+                  "termino": "Junho/2026"
+                },
+                {
+                  "codigo": "2.2",
+                  "atividade": "Implantar 6(seis) espaços na área da Marcenaria no sistema prisional do Piauí.",
+                  "quantidade": 6,
+                  "valor": "R$ 323.237,88",
+                  "inicio": "Março/2026",
+                  "termino": "Junho/2026"
+                },
+                {
+                  "codigo": "2.3",
+                  "atividade": "Impulsionar 01 (um) espaço na área da Psicultura no sistema prisional do Piauí",
+                  "quantidade": 1,
+                  "valor": "R$ 8.710,00",
+                  "inicio": "Março/2026",
+                  "termino": "Junho/2026"
+                }
+              ]
+            }
+          ]
+        },
+        "metodologia": {
+          "meta_1": {
+            "descricao": "Serão executados cursos profissionalizantes presenciais com carga horária de 120 horas cada, contemplando as áreas de Panificação, Marcenaria, Serralheria, Piscicultura e Corte e Costura Industrial. Os cursos serão realizados em turmas de 20 alunos, utilizando oficinas estruturadas pelo projeto como espaço de formação prática.",
+            "modalidade": "Presencial",
+            "carga_horaria": {
+              "total": "120 horas",
+              "percentual_pratico_minimo": "30%",
+              "horas_praticas_minimas": 36
+            },
+            "estrategias_ensino": [
+              "Aulas expositivas dialogadas com recursos didáticos.",
+              "Aulas práticas supervisionadas em oficinas.",
+              "Materiais didáticos impressos.",
+              "Estudos de caso e atividades em grupo.",
+              "Acompanhamento contínuo da aprendizagem."
+            ],
+            "execucao": {
+              "instrutores": "Empresa especializada contratada pela SEJUS-PI",
+              "criterios_legais": [
+                "Lei 14.133/2021",
+                "Portaria MDS Nº 1.131/2025"
+              ],
+              "componentes_custos_previstos": [
+                "Alimentação",
+                "Certificado",
+                "Equipamentos de proteção individual (EPI’s)",
+                "Instrutor",
+                "Insumos para as aulas",
+                "Materiais didáticos e de apoio",
+                "Monitor",
+                "Uniforme",
+                "Gestão das atividades"
+              ],
+              "observacoes": [
+                "Não será necessário auxílio transporte aos participantes.",
+                "Exigida frequência mínima de 70% para certificação."
+              ]
+            },
+            "responsaveis": "Gerência de Educação Profissional, Trabalho e Renda da SEJUS-PI"
+          },
+          "etapa_1_1": {
+              "atividade": "Realizar Curso de Panificação",
+              "carga_horaria": "120 horas",
+              "vagas": 240,
+              "turmas": {
+                "quantidade": 12,
+                "alunos_por_turma": 20
+              },
+              "unidades_penais_novas_oficinas": [
+                "Penitenciária Cap. Carlos José Gomes de Assis – Altos-PI",
+                "Penitenciária José Arimatéia Barbosa Leite – Campo Maior-PI",
+                "Penitenciária Gonçalo de Castro Lima – Floriano-PI",
+                "Penitenciária Regional de Oeiras-PI",
+                "Penitenciária Feminina de Teresina",
+                "Penitenciária Dom Inocêncio López Santamaria – São Raimundo Nonato-PI",
+                "Nova Penitenciária Feminina de Picos-PI"
+              ],
+              "unidades_penais_existentes": [
+                "Colônia Agrícola Penal Major César Oliveira",
+                "Penitenciária Mista Juiz Fontes Ibiapina – Parnaíba-PI",
+                "Penitenciária Professor José de Ribamar Leite – Teresina-PI",
+                "Penitenciária José de Deus Barros – Picos-PI",
+                "Penitenciária Luiz Gonzaga Rebêlo – Esperantina-PI"
+              ],
+              "grade_curricular": {
+                "carga_horaria_total": 120,
+                "conteudos_basicos": [
+                  {
+                    "componente": "Higiene e segurança alimentar",
+                    "teorica_horas": 8,
+                    "pratica_horas": 8,
+                    "total_horas": 16
+                  },
+                  {
+                    "componente": "Boas práticas de manipulação",
+                    "teorica_horas": 4,
+                    "pratica_horas": 4,
+                    "total_horas": 8
+                  },
+                  {
+                    "componente": "Noções de custos e precificação",
+                    "teorica_horas": 4,
+                    "pratica_horas": 4,
+                    "total_horas": 8
+                  },
+                  {
+                    "componente": "Noções de precificação e empreendedorismo",
+                    "teorica_horas": 4,
+                    "pratica_horas": 4,
+                    "total_horas": 8
+                  }
+                ],
+                "conteudos_especificos": [
+                  {
+                    "componente": "Ingredientes e suas funções",
+                    "teorica_horas": 3,
+                    "pratica_horas": 12,
+                    "total_horas": 15
+                  },
+                  {
+                    "componente": "Preparo de Massas básicas e Fermentação",
+                    "teorica_horas": 3,
+                    "pratica_horas": 12,
+                    "total_horas": 15
+                  },
+                  {
+                    "componente": "Modelagem Pães doces e salgados",
+                    "teorica_horas": 3,
+                    "pratica_horas": 12,
+                    "total_horas": 15
+                  },
+                  {
+                    "componente": "Assamento / Cozimento",
+                    "teorica_horas": 3,
+                    "pratica_horas": 12,
+                    "total_horas": 15
+                  },
+                  {
+                    "componente": "Padronização de produtos",
+                    "teorica_horas": 2,
+                    "pratica_horas": 8,
+                    "total_horas": 10
+                  },
+                  {
+                    "componente": "Armazenamento e conservação",
+                    "teorica_horas": 2,
+                    "pratica_horas": 8,
+                    "total_horas": 10
+                  }
+                ],
+                "resumo_carga_horaria": {
+                  "teorica_horas": 36,
+                  "pratica_horas": 84,
+                  "percentual_teorica": "30%",
+                  "percentual_pratica": "70%"
+                },
+                "observacao": "Os conteúdos poderão sofrer ajustes pedagógicos ou operacionais, vedada qualquer redução de conteúdo ou da carga horária estabelecida."
+              },
+              "insumos": [
+                { "item": "Apostila", "unidade": "UND", "quantidade": 240, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Caderno", "unidade": "UND", "quantidade": 240, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Lápis", "unidade": "UND", "quantidade": 240, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Borracha", "unidade": "UND", "quantidade": 240, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Apontador", "unidade": "UND", "quantidade": 240, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Pasta", "unidade": "UND", "quantidade": 240, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Caneta", "unidade": "UND", "quantidade": 240, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Camiseta", "unidade": "UND", "quantidade": 240, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Certificado", "unidade": "UND", "quantidade": 240, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Lanche", "unidade": "UND", "quantidade": 240, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+      
+                { "item": "Ad bicarbonato de sódio pct. 30g", "unidade": "PCT", "quantidade": 24, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Amido de milho 200g", "unidade": "CX", "quantidade": 60, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Canela em pó pct. 50g", "unidade": "PCT", "quantidade": 24, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Chocolate granulado marrom 1kg", "unidade": "PCT", "quantidade": 12, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Creme de leite UHT 200g", "unidade": "UND", "quantidade": 120, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Essência artificial de baunilha 30ml", "unidade": "FRASCO", "quantidade": 60, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Farinha (fubá) de milho fino 500g", "unidade": "PCT", "quantidade": 36, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Farinha de tapioca granulada 1kg", "unidade": "PCT", "quantidade": 36, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Farinha de trigo profissional tipo 1 - saco 25kg", "unidade": "SACOS", "quantidade": 36, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Farinha de trigo tipo 1 tradicional", "unidade": "PCT", "quantidade": 264, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Gergelim branco", "unidade": "UND", "quantidade": 24, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Leite condensado 395g", "unidade": "LATA", "quantidade": 180, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Maracujá", "unidade": "KG", "quantidade": 12, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Margarina com sal - balde 3kg", "unidade": "BALDE", "quantidade": 60, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Melhorador de farinha em pó 300g", "unidade": "PCT", "quantidade": 24, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Milho verde em conserva 200g", "unidade": "SACHÊ", "quantidade": 36, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Mistura pronta para creme de confeiteiro 1kg", "unidade": "PCT", "quantidade": 60, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Papel manteiga 50cm x 20m", "unidade": "ROLO", "quantidade": 48, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Papel toalha interfolha", "unidade": "PCT", "quantidade": 120, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Polvilho azedo 500g", "unidade": "PCT", "quantidade": 24, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Polvilho doce 500g", "unidade": "PCT", "quantidade": 36, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Requeijão cremoso 400g", "unidade": "BISNAGA", "quantidade": 72, "comprovacao": "Registro pelo instrutor / Fotos (SEJUS-PI)" }
+              ]
+            },
+            "etapa_1_2": {
+              "atividade": "Realizar Curso de Marcenaria",
+              "carga_horaria": "120 horas",
+              "vagas": 120,
+              "turmas": {
+                "quantidade": 6,
+                "alunos_por_turma": 20,
+                "criterio_distribuicao": "02 turmas por oficina"
+              },
+              "unidades_penais": [
+                "Penitenciária Mista Juiz Fontes Ibiapina – Parnaíba-PI",
+                "Penitenciária Bispo Sebastião Alves de Sousa – Buriti dos Lopes-PI",
+                "Penitenciária José Arimateia Barbosa Leite – Campo Maior-PI",
+                "Cadeia Pública de Altos – Altos-PI",
+                "Colônia Agrícola Major César Oliveira – Altos-PI",
+                "Penitenciária Gonçalo de Castro Lima – Floriano-PI"
+              ],
+              "estrutura_didatica": {
+                "teoria": "Sala de aula",
+                "pratica": "Oficinas de marcenaria"
+              },
+              "grade_curricular": {
+                "carga_horaria_total": 120,
+                "conteudos_basicos": [
+                  {
+                    "componente": "Segurança do trabalho",
+                    "teorica_horas": 4,
+                    "pratica_horas": 6,
+                    "total_horas": 10
+                  },
+                  {
+                    "componente": "Leitura de medidas",
+                    "teorica_horas": 4,
+                    "pratica_horas": 6,
+                    "total_horas": 10
+                  },
+                  {
+                    "componente": "Tipos de madeira",
+                    "teorica_horas": 4,
+                    "pratica_horas": 6,
+                    "total_horas": 10
+                  },
+                  {
+                    "componente": "Empreendedorismo e finanças empresarial básica",
+                    "teorica_horas": 4,
+                    "pratica_horas": 6,
+                    "total_horas": 10
+                  }
+                ],
+                "conteudos_especificos": [
+                  {
+                    "componente": "Ferramentas manuais e elétricas",
+                    "teorica_horas": 8,
+                    "pratica_horas": 12,
+                    "total_horas": 20
+                  },
+                  {
+                    "componente": "Técnicas de corte e encaixe",
+                    "teorica_horas": 8,
+                    "pratica_horas": 12,
+                    "total_horas": 20
+                  },
+                  {
+                    "componente": "Montagem de móveis simples",
+                    "teorica_horas": 8,
+                    "pratica_horas": 12,
+                    "total_horas": 20
+                  },
+                  {
+                    "componente": "Lixamento e acabamento",
+                    "teorica_horas": 8,
+                    "pratica_horas": 12,
+                    "total_horas": 20
+                  }
+                ],
+                "resumo_carga_horaria": {
+                  "teorica_horas": 48,
+                  "pratica_horas": 72,
+                  "percentual_teorica": "40%",
+                  "percentual_pratica": "60%"
+                },
+                "observacao": "Os conteúdos poderão sofrer ajustes pedagógicos ou operacionais, vedada qualquer redução de conteúdo ou da carga horária estabelecida."
+              },
+              "insumos": [
+                { "item": "Apostila", "unidade": "UND", "quantidade": 120, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Caderno", "unidade": "UND", "quantidade": 120, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Lápis", "unidade": "UND", "quantidade": 120, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Borracha", "unidade": "UND", "quantidade": 120, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Apontador", "unidade": "UND", "quantidade": 120, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Pasta", "unidade": "UND", "quantidade": 120, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Caneta", "unidade": "UND", "quantidade": 120, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Camiseta", "unidade": "UND", "quantidade": 120, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Certificado", "unidade": "UND", "quantidade": 120, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+                { "item": "Lanche", "unidade": "UND", "quantidade": 120, "comprovacao": "Recibo pelo aluno / Fotos / Atesto NF pelo Fiscal" },
+      
+                { "item": "Madeira serrada", "unidade": "M³", "quantidade": 2.5, "comprovacao": "Fotos / Recibo instrutor (Doação IBAMA)" },
+                { "item": "Compensado 15mm", "unidade": "Chapa", "quantidade": 36, "comprovacao": "Fotos / Recibo instrutor (Doação IBAMA)" },
+                { "item": "MDF 15mm", "unidade": "Chapa", "quantidade": 30, "comprovacao": "Fotos / Recibo instrutor (Doação IBAMA)" },
+                { "item": "Sarrafos de madeira", "unidade": "Metro linear", "quantidade": 800, "comprovacao": "Fotos / Recibo instrutor (Doação IBAMA)" },
+      
+                { "item": "Cola branca PVA", "unidade": "Litro", "quantidade": 36, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Cola de contato", "unidade": "Litro", "quantidade": 15, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Parafusos para madeira", "unidade": "KG", "quantidade": 18, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Pregos sortidos", "unidade": "KG", "quantidade": 12, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Lixas (grãos diversos)", "unidade": "Folha", "quantidade": 900, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Selador para madeira", "unidade": "Litro", "quantidade": 15, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Tinta esmalte sintético", "unidade": "Litro", "quantidade": 15, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Verniz para madeira", "unidade": "Litro", "quantidade": 20, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Thinner / solvente", "unidade": "Litro", "quantidade": 12, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Estopa", "unidade": "KG", "quantidade": 20, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Pincéis diversos", "unidade": "UND", "quantidade": 30, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Rolos de pintura", "unidade": "UND", "quantidade": 15, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+      
+                { "item": "Trena metálica", "unidade": "UND", "quantidade": 10, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Esquadro metálico", "unidade": "UND", "quantidade": 10, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Lápis de carpinteiro", "unidade": "UND", "quantidade": 90, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Óculos de proteção", "unidade": "UND", "quantidade": 60, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Luvas de proteção", "unidade": "PAR", "quantidade": 60, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Máscaras PFF2", "unidade": "UND", "quantidade": 360, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" },
+                { "item": "Avental de proteção", "unidade": "UND", "quantidade": 60, "comprovacao": "Registro instrutor / Fotos (SEJUS-PI)" }
+              ]
+            },
+            "etapa_1_3": {
+          "nome": "Curso de Corte e Costura Industrial",
+          "carga_horaria_total": 120,
+          "participantes": 40,
+          "turmas": {
+            "quantidade": 2,
+            "alunos_por_turma": 20
+          },
+          "unidades_penais": [
+            "Unidade Penal Feminina de Teresina",
+            "Modulo Feminino da Penitenciaria Mista de Parnaiba"
+          ],
+          "metodologia": {
+            "aulas_teoricas": true,
+            "aulas_praticas": true,
+            "descricao": "Aulas teoricas em sala de aula e aulas praticas em oficinas."
+          },
+          "grade_curricular": {
+            "conteudos_basicos": {
+              "carga_horaria": 40,
+              "itens": [
+                "Introducao ao corte e costura",
+                "Tipos de tecidos e suas aplicacoes",
+                "Nocoes de medidas e modelagem basica",
+                "Leitura e interpretacao de moldes",
+                "Seguranca no trabalho e uso de EPIs",
+                "Organizacao do ambiente de costura",
+                "Nocoes de precificacao e empreendedorismo"
+              ]
+            },
+            "conteudos_especificos": {
+              "carga_horaria": 80,
+              "itens": [
+                "Tecnicas de corte manual",
+                "Costura reta e acabamentos",
+                "Tipos de pontos e costuras",
+                "Montagem de pecas basicas",
+                "Aplicacao de aviamentos",
+                "Ajustes e consertos de roupas",
+                "Tiragem de medidas individuais",
+                "Operacao de maquina de costura",
+                "Confeccao de pecas simples",
+                "Acabamento e passadoria",
+                "Avaliacao final"
+              ]
+            },
+            "distribuicao": {
+              "teoria_horas": 40,
+              "pratica_horas": 80
+            }
+          },
+          "insumos": {
+            "materiais_individuais": [
+              "Apostila",
+              "Caderno",
+              "Lapis",
+              "Borracha",
+              "Apontador",
+              "Pasta",
+              "Caneta",
+              "Camiseta",
+              "Certificado",
+              "Lanche"
+            ],
+            "materiais_oficina": [
+              "Fita metrica",
+              "Tesoura para tecido",
+              "Agulhas diversas",
+              "Giz para tecido",
+              "Alfinetes",
+              "Malhas diversas",
+              "Ribanas",
+              "Elasticos",
+              "Papel grafite",
+              "Linhas e fios"
+            ]
+          },
+          "observacao": "Permite ajustes pedagogicos ou operacionais, vedada reducao de carga horaria ou conteudo."
+        },
+        "etapa_1_4": {
+          "nome": "Curso de Piscicultura",
+          "carga_horaria_total": 120,
+          "participantes": 40,
+          "turmas": {
+            "quantidade": 2,
+            "alunos_por_turma": 20,
+            "planejamento": "Uma turma por semestre."
+          },
+          "unidades_penais": [
+            "Colonia Agricola Major Cesar Oliveira - Altos/PI"
+          ],
+          "metodologia": {
+            "aulas_teoricas": true,
+            "aulas_praticas": true,
+            "descricao": "Aulas teoricas em sala e aulas praticas em tanques de piscicultura."
+          },
+          "grade_curricular": {
+            "conteudos_basicos": {
+              "carga_horaria": 40,
+              "itens": [
+                "Introducao a piscicultura",
+                "Nocoes de sustentabilidade e meio ambiente",
+                "Seguranca do trabalho",
+                "Nocoes de precificacao e empreendedorismo"
+              ]
+            },
+            "conteudos_especificos": {
+              "carga_horaria": 80,
+              "itens": [
+                "Especies de peixes cultivaveis",
+                "Sistemas de criacao",
+                "Preparacao de viveiros e tanques",
+                "Monitoramento e qualidade da agua",
+                "Manejo e alimentacao",
+                "Sanidade e controle de doencas",
+                "Despesca e comercializacao"
+              ]
+            },
+            "distribuicao": {
+              "teoria_horas": 44,
+              "pratica_horas": 76
+            }
+          },
+          "estrutura_utilizada": [
+            "Sala de aula",
+            "Tanques de piscicultura existentes"
+          ],
+          "observacao": "Permite ajustes pedagogicos ou operacionais, vedada reducao de carga horaria ou conteudo."
+        }
+      }
+    }

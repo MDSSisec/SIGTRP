@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import { useProjectData } from "@/lib/project-data-context"
 
 interface DadosIdentificacaoResponsavelTecnico {
   nome: string
@@ -18,17 +19,41 @@ interface PropsFormularioIdentificacaoResponsavelTecnico {
   projectId?: string
 }
 
+const VAZIO_RT: DadosIdentificacaoResponsavelTecnico = {
+  nome: "",
+  cargo: "",
+  telefone: "",
+  celular: "",
+  email: "",
+}
+
+function getInicialResponsavelTecnico(projectData: ReturnType<typeof useProjectData>): DadosIdentificacaoResponsavelTecnico {
+  const arr = projectData?.identificacao?.responsaveis_tecnicos
+  const r = arr?.length ? arr[0] : undefined
+  if (!r) return VAZIO_RT
+  return {
+    nome: r.nome ?? "",
+    cargo: r.cargo ?? "",
+    telefone: r.telefone ?? "",
+    celular: r.telefone ?? "",
+    email: r.email ?? "",
+  }
+}
+
 function FormularioIdentificacaoResponsavelTecnico({
   onChange,
+  projectId,
 }: PropsFormularioIdentificacaoResponsavelTecnico) {
-  const [dadosFormulario, setDadosFormulario] =
-    useState<DadosIdentificacaoResponsavelTecnico>({
-      nome: "",
-      cargo: "",
-      telefone: "",
-      celular: "",
-      email: "",
-    })
+  const projectData = useProjectData()
+  const [dadosFormulario, setDadosFormulario] = useState<DadosIdentificacaoResponsavelTecnico>(() =>
+    projectId === "2" && projectData ? getInicialResponsavelTecnico(projectData) : VAZIO_RT
+  )
+
+  useEffect(() => {
+    if (projectId === "2" && projectData) {
+      setDadosFormulario(getInicialResponsavelTecnico(projectData))
+    }
+  }, [projectId, projectData])
 
   const aoAlterar = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target

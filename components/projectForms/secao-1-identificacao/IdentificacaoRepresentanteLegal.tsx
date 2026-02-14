@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import { useProjectData } from "@/lib/project-data-context"
 
 interface DadosIdentificacaoRepresentanteLegal {
   nome: string
@@ -20,19 +21,44 @@ interface PropsFormularioIdentificacaoRepresentanteLegal {
   projectId?: string
 }
 
+const VAZIO_REP: DadosIdentificacaoRepresentanteLegal = {
+  nome: "",
+  matriculaSiape: "",
+  profissao: "",
+  cargo: "",
+  estadoCivil: "",
+  telefone: "",
+  email: "",
+}
+
+function getInicialRepresentanteLegal(projectData: ReturnType<typeof useProjectData>): DadosIdentificacaoRepresentanteLegal {
+  const r = projectData?.identificacao?.representante_legal
+  if (!r) return VAZIO_REP
+  return {
+    nome: r.nome ?? "",
+    matriculaSiape: r.matricula ?? "",
+    profissao: "",
+    cargo: r.cargo ?? "",
+    estadoCivil: r.estado_civil ?? "",
+    telefone: r.telefone ?? "",
+    email: r.email ?? "",
+  }
+}
+
 function FormularioIdentificacaoRepresentanteLegal({
   onChange,
+  projectId,
 }: PropsFormularioIdentificacaoRepresentanteLegal) {
-  const [dadosFormulario, setDadosFormulario] =
-    useState<DadosIdentificacaoRepresentanteLegal>({
-      nome: "",
-      matriculaSiape: "",
-      profissao: "",
-      cargo: "",
-      estadoCivil: "",
-      telefone: "",
-      email: "",
-    })
+  const projectData = useProjectData()
+  const [dadosFormulario, setDadosFormulario] = useState<DadosIdentificacaoRepresentanteLegal>(() =>
+    projectId === "2" && projectData ? getInicialRepresentanteLegal(projectData) : VAZIO_REP
+  )
+
+  useEffect(() => {
+    if (projectId === "2" && projectData) {
+      setDadosFormulario(getInicialRepresentanteLegal(projectData))
+    }
+  }, [projectId, projectData])
 
   const aoAlterar = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target

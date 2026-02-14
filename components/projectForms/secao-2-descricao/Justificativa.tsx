@@ -1,8 +1,9 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Label } from "@/components/ui/label"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import { useProjectData } from "@/lib/project-data-context"
 import { cn } from "@/lib/utils"
 
 interface DadosJustificativa {
@@ -18,14 +19,38 @@ interface PropsFormularioJustificativa {
   projectId?: string
 }
 
-function FormularioJustificativa({ onChange }: PropsFormularioJustificativa) {
-  const [dadosFormulario, setDadosFormulario] = useState<DadosJustificativa>({
-    caracterizacaoInteresses: "",
-    publicoAlvo: "",
-    problema: "",
-    resultadosEsperados: "",
-    relacaoPrograma: "",
-  })
+const VAZIO: DadosJustificativa = {
+  caracterizacaoInteresses: "",
+  publicoAlvo: "",
+  problema: "",
+  resultadosEsperados: "",
+  relacaoPrograma: "",
+}
+
+function getInicialJustificativa(projectData: ReturnType<typeof useProjectData>): DadosJustificativa {
+  const d = projectData?.descricao_projeto
+  const j = d?.justificativa_motivacao
+  if (!d && !j) return VAZIO
+  return {
+    caracterizacaoInteresses: j?.caracterizacao_interesses_reciprocos ?? "",
+    publicoAlvo: d?.publico_alvo ?? j?.publico_alvo ?? "",
+    problema: d?.problema ?? j?.problema ?? "",
+    resultadosEsperados: d?.resultados_esperados ?? j?.resultados_esperados ?? "",
+    relacaoPrograma: d?.relacao_proposta_programa ?? j?.relacao_proposta_programa ?? "",
+  }
+}
+
+function FormularioJustificativa({ onChange, projectId }: PropsFormularioJustificativa) {
+  const projectData = useProjectData()
+  const iniciais =
+    projectId === "2" && projectData ? getInicialJustificativa(projectData) : VAZIO
+  const [dadosFormulario, setDadosFormulario] = useState<DadosJustificativa>(iniciais)
+
+  useEffect(() => {
+    if (projectId === "2" && projectData) {
+      setDadosFormulario(getInicialJustificativa(projectData))
+    }
+  }, [projectId, projectData])
 
   const aoAlterar = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target

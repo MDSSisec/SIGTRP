@@ -13,8 +13,14 @@ interface CronogramaContextValue {
 
 const CronogramaContext = createContext<CronogramaContextValue | null>(null)
 
-export function CronogramaProvider({ children }: { children: React.ReactNode }) {
-  const [data, setData] = useState<CronogramaData>({ metas: [] })
+interface CronogramaProviderProps {
+  children: React.ReactNode
+  /** Dados iniciais (ex.: do projeto modelo quando id === 2) */
+  initialData?: CronogramaData
+}
+
+export function CronogramaProvider({ children, initialData }: CronogramaProviderProps) {
+  const [data, setData] = useState<CronogramaData>(initialData ?? { metas: [] })
 
   const addMeta = useCallback((meta?: MetaCronograma) => {
     setData((prev) => ({

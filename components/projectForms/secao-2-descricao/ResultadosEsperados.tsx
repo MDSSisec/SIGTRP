@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import { useProjectData } from "@/lib/project-data-context"
 
 interface DadosResultadosEsperados {
   resultados: string[]
@@ -14,12 +15,18 @@ interface PropsFormularioResultadosEsperados {
   projectId?: string
 }
 
+const VAZIO: DadosResultadosEsperados = { resultados: [""] }
+
 function FormularioResultadosEsperados({
   onChange,
+  projectId,
 }: PropsFormularioResultadosEsperados) {
-  const [dadosFormulario, setDadosFormulario] = useState<DadosResultadosEsperados>({
-    resultados: [""],
-  })
+  const projectData = useProjectData()
+  const iniciais =
+    projectId === "2" && projectData?.resultados_esperados?.itens?.length
+      ? { resultados: projectData.resultados_esperados!.itens!.slice() }
+      : VAZIO
+  const [dadosFormulario, setDadosFormulario] = useState<DadosResultadosEsperados>(iniciais)
 
   const aoAlterarResultado = (indice: number, valor: string) => {
     const atualizados = [...dadosFormulario.resultados]

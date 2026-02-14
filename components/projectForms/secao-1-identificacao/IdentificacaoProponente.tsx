@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import { useProjectData } from "@/lib/project-data-context"
 
 interface DadosIdentificacaoProponente {
   nome: string
@@ -25,23 +26,67 @@ interface PropsFormularioIdentificacaoProponente {
   projectId?: string
 }
 
+const VAZIO_Proponente: DadosIdentificacaoProponente = {
+  nome: "",
+  cnpj: "",
+  dataFundacao: "",
+  registroCnpj: "",
+  enderecoCompleto: "",
+  bairro: "",
+  municipio: "",
+  cep: "",
+  uf: "",
+  telefoneFax: "",
+  email: "",
+  paginaWeb: "",
+}
+
+/** Converte DD/MM/YYYY para YYYY-MM-DD (input type="date") */
+function dataBrParaInput(d: string | undefined): string {
+  if (!d) return ""
+  const parts = d.trim().split(/[/-]/)
+  if (parts.length !== 3) return d
+  const [a, b, c] = parts
+  if (a.length === 4) return d
+  return `${c}-${b.padStart(2, "0")}-${a.padStart(2, "0")}`
+}
+
+function getInicialProponente(projectData: ReturnType<typeof useProjectData>): DadosIdentificacaoProponente {
+  const e = projectData?.identificacao?.entidade_proponente
+  if (!e) return VAZIO_Proponente
+  const end = e.endereco
+  const contato = e.contato
+  const email = contato?.emails?.length ? contato.emails[0] ?? "" : ""
+  return {
+    nome: e.nome ?? "",
+    cnpj: e.cnpj ?? "",
+    dataFundacao: dataBrParaInput(e.data_fundacao) || (e.data_fundacao ?? ""),
+    registroCnpj: e.registro_cnpj ?? "",
+    enderecoCompleto: end?.logradouro ?? "",
+    bairro: end?.bairro ?? "",
+    municipio: end?.municipio ?? "",
+    cep: end?.cep ?? "",
+    uf: end?.uf ?? "",
+    telefoneFax: contato?.telefone ?? "",
+    email,
+    paginaWeb: contato?.site ?? "",
+  }
+}
+
 function FormularioIdentificacaoProponente({
   onChange,
+  projectId,
 }: PropsFormularioIdentificacaoProponente) {
-  const [dadosFormulario, setDadosFormulario] = useState<DadosIdentificacaoProponente>({
-    nome: "",
-    cnpj: "",
-    dataFundacao: "",
-    registroCnpj: "",
-    enderecoCompleto: "",
-    bairro: "",
-    municipio: "",
-    cep: "",
-    uf: "",
-    telefoneFax: "",
-    email: "",
-    paginaWeb: "",
-  })
+  const projectData = useProjectData()
+  const [dadosFormulario, setDadosFormulario] = useState<DadosIdentificacaoProponente>(() =>
+    projectId === "2" && projectData ? getInicialProponente(projectData) : VAZIO_Proponente
+  )
+
+  useEffect(() => {
+    if (projectId === "2" && projectData) {
+      setDadosFormulario(getInicialProponente(projectData))
+    }
+  }, [projectId, projectData])
 
   const aoAlterar = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target

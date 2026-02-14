@@ -6,15 +6,21 @@ import {
   DEFAULT_FORM_SECTION,
   PROJECT_FORM_SECTIONS,
 } from "@/components/projectForms"
+import type { CronogramaData } from "@/components/projectForms/secao-2-descricao/etapas-cronograma/types"
 import { CronogramaProvider } from "@/components/projectForms/secao-2-descricao/CronogramaContext"
 import StatusStepper from "@/components/shared/StatusStepper/statusStepper"
 import { useBreadcrumb } from "@/lib/breadcrumb-context"
+import {
+  ProjectDataProvider,
+  mapModeloCronogramaToForm,
+} from "@/lib/project-data-context"
 import {
   STATUS_PROJETO_STEPS,
   statusToStepIndex,
   type StatusProjeto,
 } from "@/lib/project-status"
 import projetosData from "../dataProjetos.json"
+import projetoModelo from "../projetoModelo.json"
 
 /**
  * Página de edição do projeto.
@@ -48,19 +54,26 @@ export function ProjectEditContent() {
     return () => setProjectName(null)
   }, [projeto?.nome, setProjectName])
 
-  return (
-    <div className="px-6">
-      {projeto && (
-        <div className="mb-6 rounded-xl border bg-card p-6 shadow-sm">
-          <StatusStepper steps={STATUS_PROJETO_STEPS} currentStep={currentStep} collapsible collapsibleLabel="Status do projeto" />
-        </div>
-      )}
+  const projectData = projectId === "2" ? (projetoModelo as import("@/lib/project-data-context").ProjectModelData) : null
+  const initialCronograma: CronogramaData | undefined = projectData
+    ? (mapModeloCronogramaToForm(projectData.etapas_cronograma) as CronogramaData)
+    : undefined
 
-      <div className="w-full min-h-[50vh] rounded-xl border bg-muted/40 p-6">
-        <CronogramaProvider>
-          <FormSection projectId={projectId} />
-        </CronogramaProvider>
+  return (
+    <ProjectDataProvider projectId={projectId} projectData={projectData}>
+      <div className="px-6">
+        {projeto && (
+          <div className="mb-6 rounded-xl border bg-card p-6 shadow-sm">
+            <StatusStepper steps={STATUS_PROJETO_STEPS} currentStep={currentStep} collapsible collapsibleLabel="Status do projeto" />
+          </div>
+        )}
+
+        <div className="w-full min-h-[50vh] rounded-xl border bg-muted/40 p-6">
+          <CronogramaProvider initialData={initialCronograma}>
+            <FormSection projectId={projectId} />
+          </CronogramaProvider>
+        </div>
       </div>
-    </div>
+    </ProjectDataProvider>
   )
 }

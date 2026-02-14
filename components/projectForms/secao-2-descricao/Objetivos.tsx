@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import { useProjectData } from "@/lib/project-data-context"
 import { cn } from "@/lib/utils"
 
 interface DadosObjetivos {
@@ -16,11 +17,28 @@ interface PropsFormularioObjetivos {
   projectId?: string
 }
 
-function FormularioObjetivos({ onChange }: PropsFormularioObjetivos) {
+function getInicialObjetivos(projectData: ReturnType<typeof useProjectData>): DadosObjetivos {
+  const o = projectData?.objetivos
+  if (!o) return { objetivoGeral: "", objetivosEspecificos: [""] }
+  const especificos = o.objetivos_especificos?.length ? o.objetivos_especificos : [""]
+  return {
+    objetivoGeral: o.objetivo_geral ?? "",
+    objetivosEspecificos: especificos,
+  }
+}
+
+function FormularioObjetivos({ onChange, projectId }: PropsFormularioObjetivos) {
+  const projectData = useProjectData()
   const [dadosFormulario, setDadosFormulario] = useState<DadosObjetivos>({
     objetivoGeral: "",
     objetivosEspecificos: [""],
   })
+
+  useEffect(() => {
+    if (projectId === "2" && projectData) {
+      setDadosFormulario(getInicialObjetivos(projectData))
+    }
+  }, [projectId, projectData])
 
   const aoAlterarObjetivoGeral = (
     e: React.ChangeEvent<HTMLTextAreaElement>
