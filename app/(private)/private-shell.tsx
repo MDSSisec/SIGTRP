@@ -122,10 +122,10 @@ function PrivateShellInner({ children }: { children: React.ReactNode }) {
         spaciousMenu={isProjectEditPage}
       />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+        <header className="flex min-w-0 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 overflow-hidden">
           <HeaderBreadcrumb menuBreadcrumb={menuBreadcrumb} />
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <main className="flex flex-1 flex-col gap-4 p-4 pt-0 min-w-0 overflow-auto">
           {children}
         </main>
       </SidebarInset>

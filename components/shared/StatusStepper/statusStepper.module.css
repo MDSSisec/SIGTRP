@@ -1,7 +1,31 @@
 .wrapper {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     overflow-y: visible;
-    padding: 0.25rem 0.5rem 1rem 0.5rem;
+    padding: 0.25rem 0 0.5rem 0;
+    margin-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+/* Garante que a barra de rolagem apareça quando o conteúdo for mais largo que a tela */
+.wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.wrapper::-webkit-scrollbar-track {
+    background: var(--muted);
+    border-radius: 4px;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+    background: var(--muted-foreground);
+    border-radius: 4px;
+}
+
+.wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--foreground);
 }
 
 .container {
@@ -21,19 +45,31 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-width: 7rem;
+    min-width: 6.5rem;
 }
 
 .circle {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
     border: 2px solid;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
     transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .stepInner {
+        min-width: 7rem;
+    }
+    .circle {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0.5rem;
+    }
 }
 
 .completed {
@@ -54,10 +90,18 @@
 }
 
 .label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 500;
-    max-width: 7rem;
+    max-width: 6.5rem;
     word-break: break-word;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .label {
+        font-size: 0.75rem;
+        max-width: 7rem;
+    }
 }
 
 .labelActive {
@@ -85,11 +129,14 @@
 
 .fullWidth {
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .trigger {
     display: flex;
     width: 100%;
+    min-width: 0;
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
@@ -111,16 +158,27 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    min-width: 0;
+    overflow: hidden;
 }
 
-.triggerIcon {
-    color: var(--muted-foreground);
-    flex-shrink: 0;
+.triggerContent span:first-of-type {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .triggerSubLabel {
     color: var(--muted-foreground);
     font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.triggerIcon {
+    color: var(--muted-foreground);
+    flex-shrink: 0;
 }
 
 .chevron {

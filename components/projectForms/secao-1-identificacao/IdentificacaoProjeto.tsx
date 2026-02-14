@@ -71,8 +71,8 @@ function FormularioIdentificacaoProjeto({
           1. Identificação do Projeto
         </h2>
 
-        <div className="grid gap-5 sm:grid-cols-1">
-          <div className="space-y-2">
+        <div className="grid min-w-0 gap-5 grid-cols-1">
+          <div className="space-y-2 min-w-0">
             <Label htmlFor="nomeProjeto" className="font-medium text-foreground">
               Nome do Projeto
             </Label>
@@ -83,12 +83,12 @@ function FormularioIdentificacaoProjeto({
               placeholder="Ex: Programa Acredita no Primeiro Passo"
               value={dadosFormulario.nomeProjeto}
               onChange={aoAlterar}
-              className="bg-white"
+              className="bg-white min-w-0"
             />
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="space-y-2">
+          <div className="grid gap-5 grid-cols-1 md:grid-cols-2 min-w-0">
+            <div className="space-y-2 min-w-0">
               <Label htmlFor="localExecucao" className="font-medium text-foreground">
                 Local de Execução
               </Label>
@@ -99,10 +99,10 @@ function FormularioIdentificacaoProjeto({
               placeholder="Ex: Aracaju - SE"
               value={dadosFormulario.localExecucao}
               onChange={aoAlterar}
-              className="bg-white"
+              className="bg-white min-w-0"
             />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 min-w-0">
               <Label htmlFor="duracao" className="font-medium text-foreground">
                 Duração
               </Label>
@@ -113,7 +113,7 @@ function FormularioIdentificacaoProjeto({
               placeholder="Ex: 6 meses"
               value={dadosFormulario.duracao}
               onChange={aoAlterar}
-              className="bg-white"
+              className="bg-white min-w-0"
             />
             </div>
           </div>

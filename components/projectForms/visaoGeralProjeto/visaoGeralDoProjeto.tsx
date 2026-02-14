@@ -60,9 +60,9 @@ const SECOES_VISAO_GERAL: { slug: string; title: string }[] = [
 
 export function VisaoGeralDoProjeto({ projectId }: ProjectFormSectionProps) {
   return (
-    <div className="space-y-8">
-      <div className="border-b pb-4">
-        <h2 className="text-lg font-semibold text-foreground">
+    <div className="min-w-0 max-w-full space-y-6 sm:space-y-8">
+      <div className="min-w-0 border-b pb-4">
+        <h2 className="text-base font-semibold text-foreground sm:text-lg truncate">
           Visão geral do projeto
         </h2>
         <p className="text-muted-foreground text-sm mt-1">
@@ -70,7 +70,7 @@ export function VisaoGeralDoProjeto({ projectId }: ProjectFormSectionProps) {
         </p>
       </div>
 
-      <div className="space-y-8">
+      <div className="min-w-0 max-w-full space-y-6 sm:space-y-8">
         {SECOES_VISAO_GERAL.map(({ slug, title }) => {
           const FormSection = PROJECT_FORM_SECTIONS[slug]
           if (!FormSection) return null
@@ -79,9 +79,9 @@ export function VisaoGeralDoProjeto({ projectId }: ProjectFormSectionProps) {
             <section
               key={slug}
               id={`secao-${slug}`}
-              className="rounded-xl border border-input bg-card shadow-sm overflow-hidden"
+              className="min-w-0 max-w-full rounded-xl border border-input bg-card shadow-sm overflow-hidden"
             >
-              <div className="p-4 bg-background">
+              <div className="min-w-0 max-w-full overflow-x-auto p-4 bg-background">
                 <ReadOnlyWrapper>
                   <FormSection projectId={projectId} readOnlyView />
                 </ReadOnlyWrapper>

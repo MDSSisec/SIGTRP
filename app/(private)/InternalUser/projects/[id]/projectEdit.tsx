@@ -61,14 +61,14 @@ export function ProjectEditContent() {
 
   return (
     <ProjectDataProvider projectId={projectId} projectData={projectData}>
-      <div className="px-6">
+      <div className="min-w-0 max-w-full px-4 sm:px-6">
         {projeto && (
-          <div className="mb-6 rounded-xl border bg-card p-6 shadow-sm">
+          <div className="mb-4 sm:mb-6 rounded-xl border bg-card p-4 sm:p-6 shadow-sm overflow-hidden">
             <StatusStepper steps={STATUS_PROJETO_STEPS} currentStep={currentStep} collapsible collapsibleLabel="Status do projeto" />
           </div>
         )}
 
-        <div className="w-full min-h-[50vh] rounded-xl border bg-muted/40 p-6">
+        <div className="w-full min-w-0 min-h-[50vh] rounded-xl border bg-muted/40 p-4 sm:p-6 overflow-auto">
           <CronogramaProvider initialData={initialCronograma}>
             <FormSection projectId={projectId} />
           </CronogramaProvider>
