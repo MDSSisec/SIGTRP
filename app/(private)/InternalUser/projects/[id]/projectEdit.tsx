@@ -6,6 +6,7 @@ import {
   DEFAULT_FORM_SECTION,
   PROJECT_FORM_SECTIONS,
 } from "@/components/projectForms"
+import { CronogramaProvider } from "@/components/projectForms/secao-2-descricao/CronogramaContext"
 import StatusStepper from "@/components/shared/StatusStepper/statusStepper"
 import { useBreadcrumb } from "@/lib/breadcrumb-context"
 import {
@@ -55,8 +56,10 @@ export function ProjectEditContent() {
         </div>
       )}
 
-      <div className="min-h-[50vh] rounded-xl border bg-muted/40 p-6">
-        <FormSection projectId={projectId} />
+      <div className="w-full min-h-[50vh] rounded-xl border bg-muted/40 p-6">
+        <CronogramaProvider>
+          <FormSection projectId={projectId} />
+        </CronogramaProvider>
       </div>
     </div>
   )

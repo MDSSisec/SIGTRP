@@ -41,7 +41,7 @@ function FormularioIdentificacaoResponsavelTecnico({
     <div className="space-y-8 rounded-xl bg-muted/50 p-6">
       <section className="space-y-5">
         <h2 className="text-base font-semibold text-foreground border-b pb-2">
-          Identificação do Responsável Técnico pelo Projeto
+          4. Identificação do Responsável Técnico pelo Projeto
         </h2>
 
         <div className="grid gap-5 sm:grid-cols-1">

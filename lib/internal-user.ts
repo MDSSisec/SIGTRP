@@ -19,7 +19,7 @@ import type { SidebarConfig } from "./sidebar-types"
  */
 export const dashboardMenuConfig: SidebarConfig = {
   user: {
-    name: "UserName",
+    name: "adm",
     email: "m@example.com",
     avatar: "",
   },
@@ -27,6 +27,14 @@ export const dashboardMenuConfig: SidebarConfig = {
     { name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" },
   ],
   navMain: [
+    {
+      title: "Visão Geral do Projeto",
+      url: "#",
+      icon: Home,
+      items: [
+        { title: "Visão Geral do Projeto", url: "#", slug: "visao-geral" },
+      ],
+    },
     {
       title: "I - Identificação",
       url: "#",

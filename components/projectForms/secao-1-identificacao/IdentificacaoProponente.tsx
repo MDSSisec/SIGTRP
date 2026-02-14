@@ -54,7 +54,7 @@ function FormularioIdentificacaoProponente({
     <div className="space-y-8">
       <section className="space-y-5">
         <h2 className="text-base font-semibold text-foreground border-b pb-2">
-          Identificação do(a) Proponente
+          2. Identificação do(a) Proponente
         </h2>
 
         <div className="grid gap-5 sm:grid-cols-1">

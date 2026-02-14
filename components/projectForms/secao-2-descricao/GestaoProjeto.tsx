@@ -1,8 +1,10 @@
 "use client"
 
-type Props = { projectId?: string }
+interface GestaoProjetoProps {
+  projectId?: string
+}
 
-export function GestaoProjeto({ projectId }: Props) {
+export default function GestaoProjeto({ projectId }: GestaoProjetoProps) {
   return (
     <div className="space-y-4">
       <h2 className="text-lg font-semibold">11. Gestão do Projeto</h2>

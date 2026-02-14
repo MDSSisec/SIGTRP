@@ -6,11 +6,12 @@ import { Observacoes } from "./observacoes/Observacoes"
 import Objetivos from "./secao-2-descricao/Objetivos"
 import { ValorTotal } from "./secao-5-planilhas/ValorTotal"
 import { Metodologia } from "./secao-2-descricao/Metodologia"
-import { GestaoProjeto } from "./secao-2-descricao/GestaoProjeto"
+import GestaoProjeto from "./secao-2-descricao/GestaoProjeto"
 import Justificativa from "./secao-2-descricao/Justificativa"
 import { EtapasCronograma } from "./secao-2-descricao/etapas-cronograma"
 import { BaseTerritorial } from "./secao-3-participantes/BaseTerritorial"
 import { ResultadosEsperados } from "./secao-2-descricao/ResultadosEsperados"
+import { VisaoGeralDoProjeto } from "./visaoGeralProjeto/visaoGeralDoProjeto"
 import { ServicosAcessados } from "./secao-3-participantes/ServicosAcessados"
 import IdentificacaoProjeto from "./secao-1-identificacao/IdentificacaoProjeto"
 import { CronogramaDesembolso } from "./secao-5-planilhas/CronogramaDesembolso"
@@ -18,8 +19,8 @@ import { ResumoPlanoAplicacao } from "./secao-5-planilhas/ResumoPlanoAplicacao"
 import { DetalhamentoOrcamento } from "./secao-5-planilhas/DetalhamentoOrcamento"
 import { PublicoBeneficiario } from "./secao-3-participantes/PublicoBeneficiario"
 import { IndicadoresEficiencia } from "./secao-6-monitoramento/IndicadoresEficiencia"
-import { PerfilSocioOcupacional } from "./secao-3-participantes/PerfilSocioOcupacional"
 import IdentificacaoProponente from "./secao-1-identificacao/IdentificacaoProponente"
+import { PerfilSocioOcupacional } from "./secao-3-participantes/PerfilSocioOcupacional"
 import { ProcedimentosMonitoramento } from "./secao-6-monitoramento/ProcedimentosMonitoramento"
 import { HistoricoSituacaoTerritorio } from "./secao-3-participantes/HistoricoSituacaoTerritorio"
 import { OutrasInformacoesProponente } from "./secao-4-caracterizacao/OutrasInformacoesProponente"
@@ -27,10 +28,11 @@ import { PovosComunidadesTradicionais } from "./secao-3-participantes/PovosComun
 import IdentificacaoRepresentanteLegal from "./secao-1-identificacao/IdentificacaoRepresentanteLegal"
 import IdentificacaoResponsavelTecnico from "./secao-1-identificacao/IdentificacaoResponsavelTecnico"
 
-export type ProjectFormSectionProps = { projectId?: string }
+export type ProjectFormSectionProps = { projectId?: string; readOnlyView?: boolean }
 
 /** Mapeamento slug (query ?secao=) → componente do formulário TRP */
 export const PROJECT_FORM_SECTIONS: Record<string, ComponentType<ProjectFormSectionProps>> = {
+  "visao-geral": VisaoGeralDoProjeto,
   "identificacao-projeto": IdentificacaoProjeto,
   metas: Metas,
   objetivos: Objetivos,
