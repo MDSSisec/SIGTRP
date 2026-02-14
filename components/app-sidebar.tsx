@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import React, { Suspense } from "react"
 import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
@@ -48,7 +48,15 @@ export function AppSidebar({
         <TeamSwitcher teams={t} />
       </SidebarHeader>
       <SidebarContent className={spaciousMenu ? "gap-5" : "gap-1"}>
-        <NavMain items={n} onMenuItemClick={onMenuItemClick} spaciousMenu={spaciousMenu} />
+        <Suspense
+          fallback={
+            <div className="px-2 py-3 text-sidebar-foreground/70 text-sm">
+              Carregando menu...
+            </div>
+          }
+        >
+          <NavMain items={n} onMenuItemClick={onMenuItemClick} spaciousMenu={spaciousMenu} />
+        </Suspense>
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={u} />
