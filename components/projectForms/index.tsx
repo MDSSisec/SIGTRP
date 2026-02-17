@@ -61,4 +61,4 @@ export const PROJECT_FORM_SECTIONS: Record<string, ComponentType<ProjectFormSect
 }
 
 /** Slug padrão quando nenhuma seção é informada (primeira tela) */
-export const DEFAULT_FORM_SECTION = "identificacao-projeto"
+export const DEFAULT_FORM_SECTION = "visao-geral"
