@@ -51,17 +51,6 @@ const EtapaItem: React.FC<Props> = ({
         />
       </div>
 
-      <div className="space-y-2">
-        <Label className="font-medium text-foreground">Produto</Label>
-        <textarea
-          value={etapa.produto}
-          onChange={(e) => handleChange("produto", e.target.value)}
-          placeholder="Produto esperado"
-          rows={2}
-          className="w-full min-w-0 rounded-md border border-input bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-y min-h-[3rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        />
-      </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="space-y-2">
           <Label className="font-medium text-foreground">Valor (R$)</Label>

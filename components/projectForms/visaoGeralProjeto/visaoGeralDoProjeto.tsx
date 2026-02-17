@@ -70,6 +70,12 @@ export function VisaoGeralDoProjeto({ projectId }: ProjectFormSectionProps) {
         </p>
       </div>
 
+      <div className="min-w-0 rounded-xl border border-input bg-card px-4 py-3 text-center">
+        <h1 className="text-lg font-semibold text-foreground sm:text-xl">
+          TERMO DE REFERÊNCIA DE PROJETO - TRP (Portaria MDS nº 1.131, de 25 de novembro de 2025)
+        </h1>
+      </div>
+
       <div className="min-w-0 max-w-full space-y-6 sm:space-y-8">
         {SECOES_VISAO_GERAL.map(({ slug, title }) => {
           const FormSection = PROJECT_FORM_SECTIONS[slug]

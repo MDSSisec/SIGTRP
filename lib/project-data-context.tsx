@@ -140,7 +140,7 @@ function parseValorModelo(s: string | undefined): number {
 export interface CronogramaDataMapped {
   metas: Array<{
     titulo: string
-    etapas: Array<{ descricao: string; produto: string; valor: number; inicio: string; termino: string }>
+    etapas: Array<{ descricao: string; valor: number; inicio: string; termino: string }>
     quadrosConteudosProgramaticos?: unknown[]
     quadroInsumosPorCurso?: unknown[]
   }>
@@ -159,7 +159,6 @@ export function mapModeloCronogramaToForm(
       titulo: m.meta ?? "",
       etapas: (m.etapas ?? []).map((e) => ({
         descricao: e.atividade ?? "",
-        produto: "",
         valor: parseValorModelo(e.valor),
         inicio: e.inicio ?? "",
         termino: e.termino ?? "",

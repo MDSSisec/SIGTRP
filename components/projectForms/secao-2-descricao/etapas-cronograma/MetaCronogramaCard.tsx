@@ -23,7 +23,6 @@ const MetaCronogramaCard: React.FC<Props> = ({
   const addEtapa = () => {
     const novaEtapa: Etapa = {
       descricao: "",
-      produto: "",
       valor: 0,
       inicio: "",
       termino: "",

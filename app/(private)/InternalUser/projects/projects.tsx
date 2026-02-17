@@ -78,6 +78,8 @@ const filtrosProjetos: FiltroConfig[] = [
     options: [
       { label: "Todos", value: "" },
       { label: "TED", value: "TED" },
+      { label: "Convênio", value: "Convenio" },
+      { label: "Emenda", value: "Emenda" },
     ],
   },
 ]

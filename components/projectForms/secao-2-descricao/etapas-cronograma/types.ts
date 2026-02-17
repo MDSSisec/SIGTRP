@@ -1,7 +1,6 @@
 export interface Etapa {
   id?: string
   descricao: string
-  produto: string
   valor: number
   inicio: string
   termino: string

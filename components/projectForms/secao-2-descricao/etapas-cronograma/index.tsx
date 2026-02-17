@@ -16,7 +16,6 @@ interface CronogramaFormProps {
 
 const novaEtapaVazia = (): Etapa => ({
   descricao: "",
-  produto: "",
   valor: 0,
   inicio: "",
   termino: "",
@@ -124,7 +123,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                 Meta nº
               </th>
               <th className="border border-input px-3 py-2 text-left font-semibold text-foreground">
-                Etapa/Produto
+                Etapa
               </th>
               <th className="border border-input px-3 py-2 text-left font-semibold text-foreground whitespace-nowrap min-w-[10rem]">
                 Valor (R$)
@@ -223,45 +222,24 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                           </td>
                         )}
                         <td className="border border-input p-2 align-top w-full min-w-0">
-                          <div className="space-y-3 w-full min-w-0">
-                            <div className="flex items-start gap-2 w-full min-w-0">
-                              <span className="text-xs font-medium text-foreground shrink-0 pt-2">
-                                Etapa:
-                              </span>
-                              <textarea
-                                value={etapa.descricao}
-                                onChange={(e) =>
-                                  updateEtapa(
-                                    metaIndex,
-                                    etapaIndex,
-                                    "descricao",
-                                    e.target.value
-                                  )
-                                }
-                                placeholder="Descrição da etapa"
-                                rows={2}
-                                className="flex-1 min-w-0 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-y min-h-[2.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                              />
-                            </div>
-                            <div className="flex items-start gap-2 w-full min-w-0">
-                              <span className="text-xs font-medium text-foreground shrink-0 pt-2">
-                                Produto:
-                              </span>
-                              <textarea
-                                value={etapa.produto}
-                                onChange={(e) =>
-                                  updateEtapa(
-                                    metaIndex,
-                                    etapaIndex,
-                                    "produto",
-                                    e.target.value
-                                  )
-                                }
-                                placeholder="Produto esperado"
-                                rows={2}
-                                className="flex-1 min-w-0 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-y min-h-[2.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                              />
-                            </div>
+                          <div className="flex items-start gap-2 w-full min-w-0">
+                            <span className="text-xs font-medium text-foreground shrink-0 pt-2">
+                              Etapa:
+                            </span>
+                            <textarea
+                              value={etapa.descricao}
+                              onChange={(e) =>
+                                updateEtapa(
+                                  metaIndex,
+                                  etapaIndex,
+                                  "descricao",
+                                  e.target.value
+                                )
+                              }
+                              placeholder="Descrição da etapa"
+                              rows={2}
+                              className="flex-1 min-w-0 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-y min-h-[2.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            />
                           </div>
                         </td>
                         <td className="border border-input p-1 align-top">
