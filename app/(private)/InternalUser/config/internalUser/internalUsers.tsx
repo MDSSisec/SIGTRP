@@ -9,39 +9,18 @@ import {
   DataTable,
   type TableColumn,
 } from "@/components/shared/Tables/GenericTable/genericTable"
+import {
+  PERFIL_USUARIO_OPTIONS,
+  STATUS_USUARIO_OPTIONS,
+} from "@/constants/user"
+import type { PerfilUsuario, StatusUsuario, Usuario } from "@/lib/types/user"
+import { getUsuarioStatusStyle } from "@/lib/services/user"
+import { filterUsuarios } from "@/lib/utils"
+import dadosIniciaisJson from "@/lib/exempleData/internalUser.json"
 
-type StatusUsuario = "Ativo" | "Inativo" | "Pendente"
+const dadosIniciais = dadosIniciaisJson as Usuario[]
 
-type PerfilUsuario = "Administrador" | "Usuário" | "Gestor"
-
-type Usuario = {
-  id: number
-  nome: string
-  email: string
-  status: StatusUsuario
-  perfil: PerfilUsuario
-}
-
-const dadosIniciais: Usuario[] = [
-  { id: 1, nome: "Maria Silva", email: "maria.silva@email.com", status: "Ativo", perfil: "Administrador" },
-  { id: 2, nome: "João Santos", email: "joao.santos@email.com", status: "Ativo", perfil: "Usuário" },
-  { id: 3, nome: "Ana Costa", email: "ana.costa@email.com", status: "Inativo", perfil: "Usuário" },
-  { id: 4, nome: "Carlos Lima", email: "carlos.lima@email.com", status: "Pendente", perfil: "Gestor" },
-  { id: 5, nome: "Fernanda Oliveira", email: "fernanda@email.com", status: "Ativo", perfil: "Gestor" },
-]
-
-const getStatusStyle = (status: StatusUsuario) => {
-  switch (status) {
-    case "Ativo":
-      return "bg-green-100 text-green-700"
-    case "Inativo":
-      return "bg-red-100 text-red-700"
-    case "Pendente":
-      return "bg-yellow-100 text-yellow-700"
-    default:
-      return ""
-  }
-}
+import styles from "./internalUsers.module.css"
 
 const columns: TableColumn<Usuario>[] = [
   { id: "nome", label: "Nome", align: "left" },
@@ -50,9 +29,7 @@ const columns: TableColumn<Usuario>[] = [
     label: "Status",
     align: "center",
     render: (row) => (
-      <span
-        className={`inline-flex min-w-[5rem] items-center justify-center rounded-full px-2 py-1 text-xs font-medium ${getStatusStyle(row.status)}`}
-      >
+      <span className={getUsuarioStatusStyle(row.status)}>
         {row.status}
       </span>
     ),
@@ -63,17 +40,13 @@ const columns: TableColumn<Usuario>[] = [
     label: "Ações",
     align: "center",
     render: () => (
-      <div className="flex justify-center gap-2">
-        <button
-          type="button"
-          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
-          aria-label="Editar"
-        >
+      <div className={styles.actions}>
+        <button type="button" className={styles.actionButton} aria-label="Editar">
           <Pencil size={16} />
         </button>
         <button
           type="button"
-          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 text-red-600 hover:text-red-800"
+          className={`${styles.actionButton} ${styles.deleteButton}`}
           aria-label="Excluir"
         >
           <Trash2 size={16} />
@@ -88,35 +61,13 @@ const filtrosUsuarios: FiltroConfig[] = [
   {
     name: "status",
     type: "select",
-    options: [
-      { label: "Todos", value: "" },
-      { label: "Ativo", value: "Ativo" },
-      { label: "Inativo", value: "Inativo" },
-      { label: "Pendente", value: "Pendente" },
-    ],
+    options: [{ label: "Todos", value: "" }, ...STATUS_USUARIO_OPTIONS],
   },
   {
     name: "perfil",
     type: "select",
-    options: [
-      { label: "Todos", value: "" },
-      { label: "Administrador", value: "Administrador" },
-      { label: "Usuário", value: "Usuário" },
-      { label: "Gestor", value: "Gestor" },
-    ],
+    options: [{ label: "Todos", value: "" }, ...PERFIL_USUARIO_OPTIONS],
   },
-]
-
-const statusOptions: { label: string; value: StatusUsuario }[] = [
-  { label: "Ativo", value: "Ativo" },
-  { label: "Inativo", value: "Inativo" },
-  { label: "Pendente", value: "Pendente" },
-]
-
-const perfilOptions: { label: string; value: PerfilUsuario }[] = [
-  { label: "Administrador", value: "Administrador" },
-  { label: "Usuário", value: "Usuário" },
-  { label: "Gestor", value: "Gestor" },
 ]
 
 export function InternalUsersContent() {
@@ -130,17 +81,10 @@ export function InternalUsersContent() {
     perfil: "Usuário" as PerfilUsuario,
   })
 
-  const usuariosFiltrados = useMemo(() => {
-    return usuarios.filter((u) => {
-      const nome = (filtrosValores.nome ?? "").trim().toLowerCase()
-      if (nome && !u.nome.toLowerCase().includes(nome)) return false
-      const status = filtrosValores.status ?? ""
-      if (status && u.status !== status) return false
-      const perfil = filtrosValores.perfil ?? ""
-      if (perfil && u.perfil !== perfil) return false
-      return true
-    })
-  }, [filtrosValores, usuarios])
+  const usuariosFiltrados = useMemo(
+    () => filterUsuarios(usuarios, filtrosValores),
+    [filtrosValores, usuarios]
+  )
 
   const abrirPopup = () => {
     setForm({ nome: "", email: "", status: "Ativo", perfil: "Usuário" })
@@ -161,80 +105,75 @@ export function InternalUsersContent() {
   }
 
   return (
-    <div className="px-6">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-xl font-semibold">Usuários Internos</h1>
-        <OpenPopUpButton
-          title="+ Adicionar usuário"
-          onClick={abrirPopup}
-        />
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Usuários Internos</h1>
+        <OpenPopUpButton title="+ Adicionar usuário" onClick={abrirPopup} />
       </div>
 
       <Popup open={popupAberto} title="Cadastrar usuário" onClose={fecharPopup}>
-        <form onSubmit={handleSalvarUsuario} className="space-y-4">
+        <form onSubmit={handleSalvarUsuario} className={styles.form}>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+            <label className={styles.label}>Nome</label>
             <input
               type="text"
               value={form.nome}
               onChange={(e) => setForm((f) => ({ ...f, nome: e.target.value }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              className={styles.input}
               placeholder="Nome completo"
               required
             />
           </div>
+
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+            <label className={styles.label}>E-mail</label>
             <input
               type="email"
               value={form.email}
               onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              className={styles.input}
               placeholder="email@exemplo.com"
               required
             />
           </div>
+
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+            <label className={styles.label}>Status</label>
             <select
               value={form.status}
               onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as StatusUsuario }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white"
+              className={styles.select}
             >
-              {statusOptions.map((opt) => (
+              {STATUS_USUARIO_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
               ))}
             </select>
           </div>
+
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Perfil</label>
+            <label className={styles.label}>Perfil</label>
             <select
               value={form.perfil}
               onChange={(e) => setForm((f) => ({ ...f, perfil: e.target.value as PerfilUsuario }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white"
+              className={styles.select}
             >
-              {perfilOptions.map((opt) => (
+              {PERFIL_USUARIO_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
               ))}
             </select>
           </div>
-          <div className="flex justify-end gap-2 pt-2">
-            <button
-              type="button"
-              onClick={fecharPopup}
-              className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 text-sm hover:bg-gray-50"
-            >
+
+          <div className={styles.formActions}>
+            <button type="button" onClick={fecharPopup} className={styles.cancelButton}>
               Cancelar
             </button>
-            <button
-              type="submit"
-              className="px-4 py-2 rounded-lg bg-[#1e2938] text-white text-sm hover:opacity-90"
-            >
+            <button type="submit" className={styles.saveButton}>
               Salvar
             </button>
           </div>
         </form>
       </Popup>
+
       <FiltroGenerico
         filtros={filtrosUsuarios}
         valores={filtrosValores}
@@ -243,6 +182,7 @@ export function InternalUsersContent() {
         }
         onLimpar={() => setFiltrosValores({})}
       />
+
       <DataTable<Usuario>
         columns={columns}
         data={usuariosFiltrados}

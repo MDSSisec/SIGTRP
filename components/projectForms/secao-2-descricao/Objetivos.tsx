@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
-import { useProjectData } from "@/lib/project-data-context"
+import { useProjectData } from "@/lib/contexts/project-data-context"
 import { cn } from "@/lib/utils"
 
 interface DadosObjetivos {

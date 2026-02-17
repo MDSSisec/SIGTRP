@@ -9,18 +9,17 @@ import {
 import type { CronogramaData } from "@/components/projectForms/secao-2-descricao/etapas-cronograma/types"
 import { CronogramaProvider } from "@/components/projectForms/secao-2-descricao/CronogramaContext"
 import StatusStepper from "@/components/shared/StatusStepper/statusStepper"
-import { useBreadcrumb } from "@/lib/breadcrumb-context"
+import { useBreadcrumb } from "@/lib/contexts/breadcrumb-context"
+import { ProjectDataProvider } from "@/lib/contexts/project-data-context"
 import {
-  ProjectDataProvider,
   mapModeloCronogramaToForm,
-} from "@/lib/project-data-context"
-import {
   STATUS_PROJETO_STEPS,
   statusToStepIndex,
+  type ProjectModelData,
   type StatusProjeto,
-} from "@/lib/project-status"
-import projetosData from "../dataProjetos.json"
-import projetoModelo from "../projetoModelo.json"
+} from "@/lib/services/project"
+import projetosData from "@/lib/exempleData/dataProjetos.json"
+import projetoModelo from "@/lib/exempleData/projetoModelo.json"
 
 /**
  * Página de edição do projeto.
@@ -54,7 +53,7 @@ export function ProjectEditContent() {
     return () => setProjectName(null)
   }, [projeto?.nome, setProjectName])
 
-  const projectData = projectId === "2" ? (projetoModelo as import("@/lib/project-data-context").ProjectModelData) : null
+  const projectData = projectId === "2" ? (projetoModelo as ProjectModelData) : null
   const initialCronograma: CronogramaData | undefined = projectData
     ? (mapModeloCronogramaToForm(projectData.etapas_cronograma) as CronogramaData)
     : undefined

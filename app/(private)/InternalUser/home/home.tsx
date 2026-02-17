@@ -1,33 +1,60 @@
 "use client"
 
+import styles from "./home.module.css"
 import { useRouter } from "next/navigation"
-import { FolderPlus, FolderOpen, ClipboardList, CheckCircle, Search, Clock, LayoutGrid } from "lucide-react"
+import { ROUTE_PROJECTS_PAGE } from "@/constants/routes"
 import ActionCard from "@/components/shared/ActionCard/actionCard"
 import TotalCard from "@/components/shared/Totais/TotalCard/totalCard"
+import { FolderPlus, FolderOpen, ClipboardList, CheckCircle, Search, Clock, LayoutGrid } from "lucide-react"
+import { CONST_HOME_ACTIONS_CARDS_SUBTITLES, CONST_HOME_ACTIONS_CARDS_TITLES, CONST_HOME_DESCRIPTION, CONST_HOME_SUBTITLES, CONST_HOME_TITLES } from "@/constants/home"
 
+
+// Remover os totais no futuro para puxar do banco
 const totaisHome = [
-  { title: "Projetos", total: 20, icon: LayoutGrid, description: "Total de projetos" },
-  { title: "Aprovados", total: 12, icon: CheckCircle, description: "Projetos aprovados" },
-  { title: "Em Análise", total: 5, icon: Search, description: "Projetos em análise" },
-  { title: "Pendências", total: 3, icon: Clock, description: "Projetos com pendências" },
-  { title: "Concluídos", total: 10, icon: CheckCircle, description: "Projetos concluídos" },
+  {
+    title: CONST_HOME_TITLES.TITLE_TOTAL_PROJETOS,
+    description: CONST_HOME_DESCRIPTION.DESCRIPTION_TOTAL_PROJETOS,
+    icon: LayoutGrid,
+    total: 20,
+  },
+  { title: CONST_HOME_TITLES.TITLE_APROVADOS,
+    description: CONST_HOME_DESCRIPTION.DESCRIPTION_APROVADOS,
+    icon: CheckCircle,
+    total: 12,
+  },
+  { title: CONST_HOME_TITLES.TITLE_EM_ANALISE,
+    description: CONST_HOME_DESCRIPTION.DESCRIPTION_EM_ANALISE,
+    icon: Search,
+    total: 5,
+  },
+  { title: CONST_HOME_TITLES.TITLE_COM_PENDENCIAS,
+    description: CONST_HOME_DESCRIPTION.DESCRIPTION_COM_PENDENCIAS,
+    icon: Clock,
+    total: 3,
+  },
+  { title: CONST_HOME_TITLES.TITLE_CONCLUIDOS,
+    description: CONST_HOME_DESCRIPTION.DESCRIPTION_CONCLUIDOS,
+    icon: CheckCircle,
+    total: 10,
+  },
 ]
 
 export function InternalUserHome() {
   const router = useRouter()
 
   return (
-    <div className="space-y-6 sm:space-y-8 w-full min-w-0">
-      <div>
-        <h1 className="text-2xl font-semibold text-foreground">
-          Bem-vindo ao SIGTRP
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>
+          {CONST_HOME_TITLES.TITLE_BEM_VINDO}
         </h1>
-        <p className="text-muted-foreground mt-1">
-          Área do usuário interno. Escolha uma ação abaixo para continuar.
+
+        <p className={styles.subtitle}>
+          {CONST_HOME_SUBTITLES.SUBTITLE_TITLE}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 w-full min-w-0">
+      <div className={styles.gridTotals}>
         {totaisHome.map((item) => (
           <TotalCard
             key={item.title}
@@ -39,24 +66,26 @@ export function InternalUserHome() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full min-w-0">
+      <div className={styles.gridActions}>
         <ActionCard
           icon={FolderPlus}
-          title="Novo Projeto"
-          subtitle="Iniciar um novo projeto"
-          onClick={() => router.push("/InternalUser/projects")}
+          title={CONST_HOME_ACTIONS_CARDS_TITLES.TITLE_ACTION_CARD_NOVO_PROJETO}
+          subtitle={CONST_HOME_ACTIONS_CARDS_SUBTITLES.DESCRIPTION_ACTION_CARD_NOVO_PROJETO}
+          onClick={() => router.push(ROUTE_PROJECTS_PAGE.INTERNAL_USER)}
         />
+
         <ActionCard
           icon={FolderOpen}
-          title="Projetos"
-          subtitle="Visualize todos os projetos"
-          onClick={() => router.push("/InternalUser/projects")}
+          title={CONST_HOME_ACTIONS_CARDS_TITLES.TITLE_ACTION_CARD_PROJETOS}
+          subtitle={CONST_HOME_ACTIONS_CARDS_SUBTITLES.DESCRIPTION_ACTION_CARD_PROJETOS}
+          onClick={() => router.push(ROUTE_PROJECTS_PAGE.INTERNAL_USER)}
         />
+
         <ActionCard
           icon={ClipboardList}
-          title="Análise Pendentes"
-          subtitle="Visualize todas as análises pendêntes"
-          onClick={() => router.push("/InternalUser/projects")}
+          title={CONST_HOME_ACTIONS_CARDS_TITLES.TITLE_ACTION_CARD_ANALISE_PENDENTES}
+          subtitle={CONST_HOME_ACTIONS_CARDS_SUBTITLES.DESCRIPTION_ACTION_CARD_ANALISE_PENDENTES}
+          onClick={() => router.push(ROUTE_PROJECTS_PAGE.INTERNAL_USER)}
         />
       </div>
     </div>

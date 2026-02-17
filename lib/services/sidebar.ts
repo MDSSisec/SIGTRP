@@ -11,30 +11,17 @@ import {
   Settings,
   MessageCircle,
 } from "lucide-react"
-import type { SidebarConfig } from "./sidebar-types"
+import type { SidebarConfig, UserRole } from "@/lib/types/sidebar"
 
-/**
- * Menu do Projeto (formulário TRP - seções I a VI).
- * Use para páginas de edição/gestão do projeto.
- */
+export type { NavMainItem, SidebarConfig, SidebarUser, SidebarTeam, UserRole, PrivateArea } from "@/lib/types/sidebar"
+export { getPrivateAreaFromPath } from "@/lib/types/sidebar"
+
+/** Menu do Projeto (formulário TRP - seções I a VI). */
 export const dashboardMenuConfig: SidebarConfig = {
-  user: {
-    name: "adm",
-    email: "m@example.com",
-    avatar: "",
-  },
-  teams: [
-    { name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" },
-  ],
+  user: { name: "adm", email: "m@example.com", avatar: "" },
+  teams: [{ name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" }],
   navMain: [
-    {
-      title: "Visão Geral do Projeto",
-      url: "#",
-      icon: Home,
-      items: [
-        { title: "Visão Geral do Projeto", url: "#", slug: "visao-geral" },
-      ],
-    },
+    { title: "Visão Geral do Projeto", url: "#", icon: Home, items: [{ title: "Visão Geral do Projeto", url: "#", slug: "visao-geral" }] },
     {
       title: "I - Identificação",
       url: "#",
@@ -78,9 +65,7 @@ export const dashboardMenuConfig: SidebarConfig = {
       title: "IV - Caracterização do(a) proponente",
       url: "#",
       icon: Building2,
-      items: [
-        { title: "12. Outras informações julgadas apropiadas sobre o(a) proponente", url: "#", slug: "outras-informacoes-proponente" },
-      ],
+      items: [{ title: "12. Outras informações julgadas apropiadas sobre o(a) proponente", url: "#", slug: "outras-informacoes-proponente" }],
     },
     {
       title: "V - Dados Financeiros",
@@ -102,50 +87,55 @@ export const dashboardMenuConfig: SidebarConfig = {
         { title: "24. Indicadores de eficiência e eficácia", url: "#", slug: "indicadores-eficiencia" },
       ],
     },
-    {
-      title: "Observações",
-      url: "#",
-      icon: MessageCircle,
-      items: [
-        { title: "25. Observações", url: "#", slug: "observacoes" },
-      ],
-    }
+    { title: "Observações", url: "#", icon: MessageCircle, items: [{ title: "25. Observações", url: "#", slug: "observacoes" }] },
   ],
 }
 
-/**
- * Menu da Home do usuário interno (navegação geral).
- */
+/** Menu da Home do usuário interno (navegação geral). */
 export const internalUserHomeMenuConfig: SidebarConfig = {
-  user: {
-    name: "UserName",
-    email: "m@example.com",
-    avatar: "",
-  },
-  teams: [
-    { name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" },
-  ],
+  user: { name: "UserName", email: "m@example.com", avatar: "" },
+  teams: [{ name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" }],
   navMain: [
-    {
-      title: "Início",
-      url: "/InternalUser/home",
-      icon: Home,
-      isActive: true,
-      items: [{ title: "Página inicial", url: "/InternalUser/home" }],
-    },
-    {
-      title: "Projetos",
-      url: "#",
-      icon: FolderOpen,
-      items: [
-        { title: "Todos os projetos", url: "/InternalUser/projects" },
-      ],
-    },
+    { title: "Início", url: "/InternalUser/home", icon: Home, isActive: true, items: [{ title: "Página inicial", url: "/InternalUser/home" }] },
+    { title: "Projetos", url: "#", icon: FolderOpen, items: [{ title: "Todos os projetos", url: "/InternalUser/projects" }] },
     {
       title: "Configurações",
       url: "#",
       icon: Settings,
-      items: [{ title: "Usuários Internos", url: "/InternalUser/config/internalUser" }, { title: "Usuários Externos", url: "/InternalUser/config/externalUser" }, { title: "Configurações do Sistema", url: "/InternalUser/config/configSistema" }],
+      items: [
+        { title: "Usuários Internos", url: "/InternalUser/config/internalUser" },
+        { title: "Usuários Externos", url: "/InternalUser/config/externalUser" },
+        { title: "Configurações do Sistema", url: "/InternalUser/config/configSistema" },
+      ],
     },
   ],
+}
+
+/** Menu do usuário externo (apenas Projetos). */
+export const externalUserHomeMenuConfig: SidebarConfig = {
+  user: { name: "UserName", email: "m@example.com", avatar: "" },
+  teams: [{ name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" }],
+  navMain: [
+    { title: "Projetos", url: "/ExternalUser/projects", isActive: true, items: [{ title: "Ver projetos", url: "/ExternalUser/projects" }] },
+  ],
+}
+
+const routeMenuMap: Record<string, SidebarConfig> = {
+  "/InternalUser/dashboard": dashboardMenuConfig,
+  "/InternalUser/home": internalUserHomeMenuConfig,
+  "/InternalUser": internalUserHomeMenuConfig,
+  "/ExternalUser/home": externalUserHomeMenuConfig,
+  "/ExternalUser/projects": externalUserHomeMenuConfig,
+  "/ExternalUser": externalUserHomeMenuConfig,
+}
+
+/**
+ * Retorna a config do sidebar para a rota (e opcionalmente o role do usuário).
+ * Em /InternalUser/projects/:id usa o menu do formulário TRP (I a VI).
+ */
+export function getSidebarConfig(pathname: string, _userRole?: UserRole): SidebarConfig {
+  if (/^\/InternalUser\/projects\/[^/]+$/.test(pathname)) return dashboardMenuConfig
+  const segments = pathname.split("/").filter(Boolean)
+  const pathKey = segments.length >= 2 ? `/${segments[0]}/${segments[1]}` : `/${segments[0] ?? ""}`
+  return routeMenuMap[pathKey] ?? routeMenuMap[`/${segments[0]}`] ?? internalUserHomeMenuConfig
 }

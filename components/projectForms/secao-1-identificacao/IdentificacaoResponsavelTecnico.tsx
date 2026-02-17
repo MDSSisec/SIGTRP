@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
-import { useProjectData } from "@/lib/project-data-context"
+import { useProjectData } from "@/lib/contexts/project-data-context"
 
 interface DadosIdentificacaoResponsavelTecnico {
   nome: string

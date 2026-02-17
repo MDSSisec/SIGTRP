@@ -1,8 +1,8 @@
 .card {
-    background: #ffffff;
-    border: 1px solid #d1d5db;
-    border-radius: 12px;
-    padding: 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-5);
     width: 100%;
     max-width: 24rem;
     position: relative;
@@ -12,23 +12,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.75rem;
+    margin-bottom: var(--spacing-3);
 }
 
 .titleContainer {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--spacing-3);
 }
 
 .mainIcon {
-    color: #000000;
+    color: var(--foreground);
 }
 
 .title {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #374151;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--muted-foreground);
 }
 
 .infoWrapper {
@@ -36,30 +36,30 @@
 }
 
 .infoIcon {
-    color: #6b7280;
+    color: var(--muted-foreground);
     cursor: pointer;
     transition: color 0.2s ease;
 }
 
 .infoIcon:hover {
-    color: #000000;
+    color: var(--foreground);
 }
 
 .tooltip {
     position: absolute;
     right: 0;
-    margin-top: 0.5rem;
+    margin-top: var(--spacing-2);
     width: 12rem;
-    background: #000000;
-    color: #ffffff;
-    font-size: 0.75rem;
-    border-radius: 8px;
-    padding: 0.5rem;
+    background: var(--foreground);
+    color: var(--primary-foreground);
+    font-size: var(--font-size-xs);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2);
     z-index: 20;
 }
 
 .total {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: #000000;
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--foreground);
 }

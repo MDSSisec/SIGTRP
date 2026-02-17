@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
-import { getSidebarConfig } from "@/lib/sidebar-config"
+import { getSidebarConfig } from "@/lib/services/sidebar"
 import { cn } from "@/lib/utils"
 
 export type StatusObservacao = "aberto" | "concluido"
