@@ -11,7 +11,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import type { NavMainItem, SidebarConfig, SidebarTeam, SidebarUser } from "@/lib/services/sidebar"
+import type { NavMainItem, SidebarConfig, SidebarTeam, SidebarUser } from "@/types/sidebar"
 
 export type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
   /** Configuração do menu (itens, usuário, times). Se não passar, precisa passar user, teams e navMain. */

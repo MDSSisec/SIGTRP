@@ -2,9 +2,10 @@
 
 import Link from "next/link"
 import { usePathname, useSearchParams } from "next/navigation"
-import { useCallback, useEffect, useMemo, useState } from "react"
-import { ChevronRight, type LucideIcon } from "lucide-react"
+import { useCallback, useEffect, useState } from "react"
+import { ChevronRight } from "lucide-react"
 
+import { DEFAULT_FORM_SECTION } from "@/features/projects/forms"
 import {
   Collapsible,
   CollapsibleContent,
@@ -20,27 +21,19 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-
-type NavSubItem = {
-  title: string
-  url: string
-  slug?: string
-}
-
-type NavItem = {
-  title: string
-  url: string
-  icon?: LucideIcon
-  isActive?: boolean
-  items?: NavSubItem[]
-}
+import type { NavMainItem, NavMainSubItem } from "@/types/sidebar"
+import {
+  getNavOpenKeyFromPath,
+  getSubItemHref,
+  isSubItemActive,
+} from "@/lib/utils"
 
 export function NavMain({
   items,
   onMenuItemClick,
   spaciousMenu,
 }: {
-  items: NavItem[]
+  items: NavMainItem[]
   onMenuItemClick?: (parentTitle: string, childTitle: string) => void
   /** Maior espaçamento entre itens (ex.: página de edição do projeto). */
   spaciousMenu?: boolean
@@ -49,56 +42,30 @@ export function NavMain({
   const searchParams = useSearchParams()
   const secao = searchParams.get("secao")
 
-  const projectId = useMemo(() => {
-    const m = pathname.match(/^\/InternalUser\/projects\/([^/]+)/)
-    return m?.[1] ?? null
-  }, [pathname])
+  const projectId = pathname.match(/^\/InternalUser\/projects\/([^/]+)/)?.[1] ?? null
 
-  const getOpenKeyFromPath = useCallback(() => {
-    if (projectId) {
-      if (secao) {
-        const item = items.find((i) =>
-          i.items?.some((sub) => "slug" in sub && sub.slug === secao)
-        )
-        return item?.title ?? null
-      }
-      return items[0]?.title ?? null
-    }
-    const item = items.find((i) =>
-      i.items?.some((sub) => sub.url === pathname)
-    )
-    return item?.title ?? null
-  }, [items, pathname, projectId, secao])
+  const getOpenKey = useCallback(
+    () => getNavOpenKeyFromPath(items, pathname, secao, projectId),
+    [items, pathname, projectId, secao]
+  )
 
-  const getSubItemHref = useCallback(
-    (sub: NavSubItem) => {
-      if (projectId && sub.slug) {
-        return `/InternalUser/projects/${projectId}?secao=${sub.slug}`
-      }
-      return sub.url
-    },
+  const getSubItemHrefFor = useCallback(
+    (sub: NavMainSubItem) => getSubItemHref(projectId, sub),
     [projectId]
   )
 
-  const isSubItemActive = useCallback(
-    (sub: NavSubItem) => {
-      if (projectId && sub.slug) {
-        const currentSecao = secao ?? "identificacao-projeto"
-        return currentSecao === sub.slug
-      }
-      return pathname === sub.url
-    },
-    [projectId, pathname, secao]
+  const isSubItemActiveCheck = useCallback(
+    (sub: NavMainSubItem) =>
+      isSubItemActive(sub, pathname, secao, projectId, DEFAULT_FORM_SECTION),
+    [pathname, projectId, secao]
   )
 
-  const [openKey, setOpenKey] = useState<string | null>(() =>
-    getOpenKeyFromPath()
-  )
+  const [openKey, setOpenKey] = useState<string | null>(getOpenKey)
 
   useEffect(() => {
-    const key = getOpenKeyFromPath()
+    const key = getOpenKey()
     if (key !== null) setOpenKey(key)
-  }, [getOpenKeyFromPath])
+  }, [getOpenKey])
 
   return (
     <SidebarGroup>
@@ -127,10 +94,10 @@ export function NavMain({
                       <SidebarMenuSubItem key={subItem.title}>
                         <SidebarMenuSubButton
                           asChild
-                          isActive={isSubItemActive(subItem)}
+                          isActive={isSubItemActiveCheck(subItem)}
                         >
                           <Link
-                            href={getSubItemHref(subItem)}
+                            href={getSubItemHrefFor(subItem)}
                             onClick={() =>
                               onMenuItemClick?.(item.title, subItem.title)
                             }

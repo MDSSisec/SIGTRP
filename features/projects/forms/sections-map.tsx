@@ -1,0 +1,64 @@
+"use client"
+
+import type { ComponentType } from "react"
+import Metas from "./secao-2-descricao/Metas"
+import { Observacoes } from "./observacoes/Observacoes"
+import Objetivos from "./secao-2-descricao/Objetivos"
+import { ValorTotal } from "./secao-5-planilhas/ValorTotal"
+import { Metodologia } from "./secao-2-descricao/Metodologia"
+import GestaoProjeto from "./secao-2-descricao/GestaoProjeto"
+import Justificativa from "./secao-2-descricao/Justificativa"
+import { EtapasCronograma } from "./secao-2-descricao/etapas-cronograma"
+import { BaseTerritorial } from "./secao-3-participantes/BaseTerritorial"
+import { ResultadosEsperados } from "./secao-2-descricao/ResultadosEsperados"
+import { ServicosAcessados } from "./secao-3-participantes/ServicosAcessados"
+import IdentificacaoProjeto from "./secao-1-identificacao/IdentificacaoProjeto"
+import { CronogramaDesembolso } from "./secao-5-planilhas/CronogramaDesembolso"
+import { ResumoPlanoAplicacao } from "./secao-5-planilhas/ResumoPlanoAplicacao"
+import { DetalhamentoOrcamento } from "./secao-5-planilhas/DetalhamentoOrcamento"
+import { PublicoBeneficiario } from "./secao-3-participantes/PublicoBeneficiario"
+import { IndicadoresEficiencia } from "./secao-6-monitoramento/IndicadoresEficiencia"
+import IdentificacaoProponente from "./secao-1-identificacao/IdentificacaoProponente"
+import { PerfilSocioOcupacional } from "./secao-3-participantes/PerfilSocioOcupacional"
+import { ProcedimentosMonitoramento } from "./secao-6-monitoramento/ProcedimentosMonitoramento"
+import { HistoricoSituacaoTerritorio } from "./secao-3-participantes/HistoricoSituacaoTerritorio"
+import { OutrasInformacoesProponente } from "./secao-4-caracterizacao/OutrasInformacoesProponente"
+import { PovosComunidadesTradicionais } from "./secao-3-participantes/PovosComunidadesTradicionais"
+import IdentificacaoRepresentanteLegal from "./secao-1-identificacao/IdentificacaoRepresentanteLegal"
+import IdentificacaoResponsavelTecnico from "./secao-1-identificacao/IdentificacaoResponsavelTecnico"
+
+export type ProjectFormSectionProps = { projectId?: string; readOnlyView?: boolean }
+
+const SECTIONS_WITHOUT_VISAO_GERAL: Record<string, ComponentType<ProjectFormSectionProps>> = {
+  "identificacao-projeto": IdentificacaoProjeto,
+  metas: Metas,
+  objetivos: Objetivos,
+  metodologia: Metodologia,
+  "valor-total": ValorTotal,
+  justificativa: Justificativa,
+  "etapas-cronograma": EtapasCronograma,
+  "gestao-projeto": GestaoProjeto,
+  "base-territorial": BaseTerritorial,
+  "servicos-acessados": ServicosAcessados,
+  "resultados-esperados": ResultadosEsperados,
+  "publico-beneficiario": PublicoBeneficiario,
+  "cronograma-desembolso": CronogramaDesembolso,
+  "resumo-plano-aplicacao": ResumoPlanoAplicacao,
+  "detalhamento-orcamento": DetalhamentoOrcamento,
+  "indicadores-eficiencia": IndicadoresEficiencia,
+  "perfil-socio-ocupacional": PerfilSocioOcupacional,
+  "identificacao-proponente": IdentificacaoProponente,
+  "procedimentos-monitoramento": ProcedimentosMonitoramento,
+  "historico-situacao-territorio": HistoricoSituacaoTerritorio,
+  "outras-informacoes-proponente": OutrasInformacoesProponente,
+  "povos-comunidades-tradicionais": PovosComunidadesTradicionais,
+  "identificacao-representante-legal": IdentificacaoRepresentanteLegal,
+  "identificacao-responsavel-tecnico": IdentificacaoResponsavelTecnico,
+  observacoes: Observacoes,
+}
+
+export function getFormSection(slug: string): ComponentType<ProjectFormSectionProps> | undefined {
+  return SECTIONS_WITHOUT_VISAO_GERAL[slug]
+}
+
+export { SECTIONS_WITHOUT_VISAO_GERAL }

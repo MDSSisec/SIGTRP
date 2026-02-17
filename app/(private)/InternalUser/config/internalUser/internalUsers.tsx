@@ -13,8 +13,8 @@ import {
   PERFIL_USUARIO_OPTIONS,
   STATUS_USUARIO_OPTIONS,
 } from "@/constants/user"
-import type { PerfilUsuario, StatusUsuario, Usuario } from "@/lib/types/user"
-import { getUsuarioStatusStyle } from "@/lib/services/user"
+import type { PerfilUsuario, StatusUsuario, Usuario } from "@/types/user"
+import { getUsuarioStatusStyle } from "@/services/user.service"
 import { filterUsuarios } from "@/lib/utils"
 import dadosIniciaisJson from "@/lib/exempleData/internalUser.json"
 

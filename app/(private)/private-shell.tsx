@@ -19,7 +19,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { BreadcrumbProvider, useBreadcrumb } from "@/lib/contexts/breadcrumb-context"
-import { getSidebarConfig } from "@/lib/services/sidebar"
+import { getSidebarConfig } from "@/services/sidebar.service"
 
 function HeaderBreadcrumb({
   menuBreadcrumb,

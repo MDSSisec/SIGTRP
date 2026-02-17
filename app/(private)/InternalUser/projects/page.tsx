@@ -1,4 +1,4 @@
-import { ProjectsContent } from "./projects"
+import { ProjectsContent } from "@/features/projects"
 
 export default function ProjectsPage() {
   return <ProjectsContent />

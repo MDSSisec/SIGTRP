@@ -1,4 +1,4 @@
-import type { Usuario } from "@/lib/types/user"
+import type { Usuario } from "@/types/user"
 
 /**
  * Filtra lista de usuários por nome, status e perfil (valores do filtro genérico).
