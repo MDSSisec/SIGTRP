@@ -5,7 +5,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
 import { useProjectData } from "@/lib/contexts/project-data-context"
-import { cn } from "@/lib/utils"
+
+import styles from "./IdentificacaoProjeto.module.css"
+import { IDENTIFICACAO_PROJETO_DESCRIPTIONS, IDENTIFICACAO_PROJETO_LABELS, IDENTIFICACAO_PROJETO_PLACEHOLDERS, IDENTIFICACAO_PROJETO_TITLES } from "@/constants/identificacaoProjeto"
+import { SESSOES_VISAO_GERAL_TITLE } from "@/constants/visaoGeral"
 
 interface DadosIdentificacaoProjeto {
   nomeProjeto: string
@@ -42,6 +45,7 @@ function FormularioIdentificacaoProjeto({
   projectId,
 }: PropsFormularioIdentificacaoProjeto) {
   const projectData = useProjectData()
+
   const [dadosFormulario, setDadosFormulario] = useState<DadosIdentificacaoProjeto>(() =>
     projectId === "2" && projectData ? getInicialIdentificacao(projectData) : VAZIO
   )
@@ -61,89 +65,82 @@ function FormularioIdentificacaoProjeto({
     onChange?.(dadosAtualizados)
   }
 
-  const classeDoInput =
-    "border-input placeholder:text-muted-foreground h-9 w-full min-w-0 rounded-md border bg-white px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]"
-
   return (
-    <div className="space-y-8 rounded-xl bg-muted/50 p-6">
-      <section className="space-y-5">
-        <h2 className="text-base font-semibold text-foreground border-b pb-2">
-          1. Identificação do Projeto
+    <div className={styles.container}>
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>
+        {SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_IDENTIFICACAO_PROJETO}
         </h2>
 
-        <div className="grid min-w-0 gap-5 grid-cols-1">
-          <div className="space-y-2 min-w-0">
-            <Label htmlFor="nomeProjeto" className="font-medium text-foreground">
-              Nome do Projeto
+        <div className={styles.formGrid}>
+          <div className={styles.field}>
+            <Label htmlFor="nomeProjeto" className={styles.label}>
+              {IDENTIFICACAO_PROJETO_LABELS.LABEL_NOME_PROJETO}
             </Label>
             <Input
               id="nomeProjeto"
-              type="text"
               name="nomeProjeto"
-              placeholder="Ex: Programa Acredita no Primeiro Passo"
+              placeholder={IDENTIFICACAO_PROJETO_PLACEHOLDERS.PLACEHOLDER_NOME_PROJETO}
               value={dadosFormulario.nomeProjeto}
               onChange={aoAlterar}
-              className="bg-white min-w-0"
+              className={styles.input}
             />
           </div>
 
-          <div className="grid gap-5 grid-cols-1 md:grid-cols-2 min-w-0">
-            <div className="space-y-2 min-w-0">
-              <Label htmlFor="localExecucao" className="font-medium text-foreground">
-                Local de Execução
+          <div className={styles.gridTwo}>
+            <div className={styles.field}>
+              <Label htmlFor="localExecucao" className={styles.label}>
+                {IDENTIFICACAO_PROJETO_LABELS.LABEL_LOCAL_EXECUCAO}
               </Label>
-            <Input
-              id="localExecucao"
-              type="text"
-              name="localExecucao"
-              placeholder="Ex: Aracaju - SE"
-              value={dadosFormulario.localExecucao}
-              onChange={aoAlterar}
-              className="bg-white min-w-0"
-            />
+              <Input
+                id="localExecucao"
+                name="localExecucao"
+                placeholder={IDENTIFICACAO_PROJETO_PLACEHOLDERS.PLACEHOLDER_LOCAL_EXECUCAO}
+                value={dadosFormulario.localExecucao}
+                onChange={aoAlterar}
+                className={styles.input}
+              />
             </div>
-            <div className="space-y-2 min-w-0">
-              <Label htmlFor="duracao" className="font-medium text-foreground">
-                Duração
+
+            <div className={styles.field}>
+              <Label htmlFor="duracao" className={styles.label}>
+                {IDENTIFICACAO_PROJETO_LABELS.LABEL_DURACAO}
               </Label>
-            <Input
-              id="duracao"
-              type="text"
-              name="duracao"
-              placeholder="Ex: 6 meses"
-              value={dadosFormulario.duracao}
-              onChange={aoAlterar}
-              className="bg-white min-w-0"
-            />
+              <Input
+                id="duracao"
+                name="duracao"
+                placeholder={IDENTIFICACAO_PROJETO_PLACEHOLDERS.PLACEHOLDER_DURACAO}
+                value={dadosFormulario.duracao}
+                onChange={aoAlterar}
+                className={styles.input}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="space-y-5">
-        <h2 className="text-base font-semibold text-foreground border-b pb-2">
-          Resumo do Projeto
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>
+          {IDENTIFICACAO_PROJETO_LABELS.LABEL_RESUMO_PROJETO}
         </h2>
-        <div className="space-y-2">
-          <Label htmlFor="resumoProjeto" className="font-medium text-foreground">
-            Descreva de forma objetiva o projeto
+
+        <div className={styles.field}>
+          <Label htmlFor="resumoProjeto" className={styles.label}>
+            {IDENTIFICACAO_PROJETO_DESCRIPTIONS.DESCRIPTION_RESUMO_PROJETO}
           </Label>
           <textarea
             id="resumoProjeto"
             name="resumoProjeto"
-            placeholder="Descreva de forma objetiva o projeto..."
+            placeholder={IDENTIFICACAO_PROJETO_PLACEHOLDERS.PLACEHOLDER_RESUMO_PROJETO}
             value={dadosFormulario.resumoProjeto}
             onChange={aoAlterar}
             rows={6}
-            className={cn(
-              classeDoInput,
-              "min-h-[8rem] resize-y py-2 md:text-sm"
-            )}
+            className={styles.textarea}
           />
         </div>
       </section>
 
-      <div className="flex flex-wrap items-center justify-end gap-3 border-t pt-6">
+      <div className={styles.actions}>
         <GenericButton variant="editar" onClick={() => {}} />
         <GenericButton variant="salvar" onClick={() => {}} />
       </div>

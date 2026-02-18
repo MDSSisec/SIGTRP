@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronDown, LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -86,8 +86,39 @@ export default function StatusStepper({
   collapsibleLabel = "Status do projeto",
 }: StatusStepperProps) {
   const [open, setOpen] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const currentStepInfo = steps[currentStep];
   const CurrentIcon = currentStepInfo?.icon;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Evita hydration mismatch: Radix Collapsible gera IDs diferentes no servidor e no cliente.
+  // No primeiro render (SSR) mostramos conteúdo estático; após mount, o Collapsible.
+  if (collapsible && !mounted) {
+    return (
+      <div className={styles.fullWidth}>
+        <div className={styles.trigger} aria-hidden>
+          <span className={styles.triggerContent}>
+            {CurrentIcon && (
+              <CurrentIcon size={18} className={styles.triggerIcon} />
+            )}
+            <span>{collapsibleLabel}</span>
+            {currentStepInfo && (
+              <span className={styles.triggerSubLabel}>
+                — {currentStepInfo.title}
+              </span>
+            )}
+          </span>
+          <ChevronDown size={18} className={styles.chevron} />
+        </div>
+        <div className={styles.motionWrapper}>
+          <StepperContent steps={steps} currentStep={currentStep} />
+        </div>
+      </div>
+    );
+  }
 
   if (collapsible) {
     return (

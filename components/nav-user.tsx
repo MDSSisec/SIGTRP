@@ -1,5 +1,7 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import {
   BadgeCheck,
   Bell,
@@ -8,7 +10,6 @@ import {
   LogOut,
   Sparkles,
 } from "lucide-react"
-import { useRouter } from "next/navigation"
 
 import {
   Avatar,
@@ -31,6 +32,31 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
+/** Conteúdo do botão do usuário (avatar + nome + email + chevron) para evitar duplicação. */
+function NavUserButtonContent({
+  user,
+}: {
+  user: { name: string; email: string; avatar: string }
+}) {
+  return (
+    <>
+      <Avatar className="h-8 w-8 rounded-lg">
+        {user.avatar ? (
+          <AvatarImage src={user.avatar} alt={user.name} />
+        ) : null}
+        <AvatarFallback className="rounded-lg">
+          {user.name.slice(0, 2).toUpperCase()}
+        </AvatarFallback>
+      </Avatar>
+      <div className="grid flex-1 text-left text-sm leading-tight">
+        <span className="truncate font-medium">{user.name}</span>
+        <span className="truncate text-xs">{user.email}</span>
+      </div>
+      <ChevronsUpDown className="ml-auto size-4" />
+    </>
+  )
+}
+
 export function NavUser({
   user,
 }: {
@@ -42,10 +68,33 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar()
   const router = useRouter()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleLogout = () => {
     // Aqui você pode adicionar lógica de limpeza de sessão se necessário
     router.push("/")
+  }
+
+  // Evita hydration mismatch: Radix gera IDs diferentes no servidor e no cliente.
+  // No primeiro render (SSR) mostramos só o botão estático; após mount, o dropdown.
+  if (!mounted) {
+    return (
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton
+            size="lg"
+            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+            aria-hidden
+          >
+            <NavUserButtonContent user={user} />
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    )
   }
 
   return (
@@ -57,19 +106,7 @@ export function NavUser({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg">
-                {user.avatar ? (
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                ) : null}
-                <AvatarFallback className="rounded-lg">
-                  {user.name.slice(0, 2).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto size-4" />
+              <NavUserButtonContent user={user} />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -80,18 +117,7 @@ export function NavUser({
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
-                  {user.avatar ? (
-                    <AvatarImage src={user.avatar} alt={user.name} />
-                  ) : null}
-                  <AvatarFallback className="rounded-lg">
-                    {user.name.slice(0, 2).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
-                </div>
+                <NavUserButtonContent user={user} />
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />

@@ -1,8 +1,99 @@
 "use client"
 
 import React, { useEffect, useRef } from "react"
+import { FileDown } from "lucide-react"
+import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import {
+  DESCRICAO_VISAO_GERAL,
+  SESSOES_VISAO_GERAL_SLUG,
+  SESSOES_VISAO_GERAL_TITLE,
+  TITULO_DOCUMENTO_TRP,
+  TITULO_VISAO_GERAL,
+} from "@/constants/visaoGeral"
 import { getFormSection } from "../sections-map"
 import type { ProjectFormSectionProps } from "../sections-map"
+import styles from "./visaoGeralDoProjeto.module.css"
+import { COMUNS_TITLES } from "@/constants/communs"
+
+/** Ordem e títulos das seções para a visão geral (mesma ordem do menu do projeto). */
+const SECOES_VISAO_GERAL: { slug: string; title: string }[] = [
+
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_IDENTIFICACAO_PROJETO, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_IDENTIFICACAO_PROJETO 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_IDENTIFICACAO_PROPOSTA, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_IDENTIFICACAO_PROPOSTA 
+  }, 
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_IDENTIFICACAO_REPRESENTANTE_LEGAL, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_IDENTIFICACAO_REPRESENTANTE_LEGAL 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_IDENTIFICACAO_RESPONSAVEL_TECNICO, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_IDENTIFICACAO_RESPONSAVEL_TECNICO 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_JUSTIFICATIVA_MOTIVACAO, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_JUSTIFICATIVA_MOTIVACAO 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_OBJETIVOS, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_OBJETIVOS 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_METAS, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_METAS 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_ETAPAS_CRONOGRAMA, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_ETAPAS_CRONOGRAMA 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_METODOLOGIA, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_METODOLOGIA 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_RESULTADOS_ESPERADOS, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_RESULTADOS_ESPERADOS 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_GESTAO_PROJETO, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_GESTAO_PROJETO 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_HISTORICO_SITUACAO_TERRITORIO, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_HISTORICO_SITUACAO_TERRITORIO 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_BASE_TERRITORIAL, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_BASE_TERRITORIAL 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_PUBLICO_BENEFICIARIO, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_PUBLICO_BENEFICIARIO
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_POVOS_COMUNIDADES_TRADICIONAIS, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_POVOS_COMUNIDADES_TRADICIONAIS 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_PERFIL_SOCIO_OCUPACIONAL, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_PERFIL_SOCIO_OCUPACIONAL 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_SERVICOS_ACESSADOS, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_SERVICOS_ACESSADOS 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_OUTRAS_INFORMACOES_PROPOSTA, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_OUTRAS_INFORMACOES_PROPOSTA 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_VALOR_TOTAL, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_VALOR_TOTAL 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_CRONOGRAMA_DESENBOLSO, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_CRONOGRAMA_DESENBOLSO 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_DETALHAMENTO_ORCAMENTO, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_DETALHAMENTO_ORCAMENTO 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_RESUMO_PLANO_APLICACAO, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_RESUMO_PLANO_APLICACAO 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_PROCEDIMENTOS_MONITORAMENTO, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_PROCEDIMENTOS_MONITORAMENTO 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_INDICADORES_EFICIENCIA, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_INDICADORES_EFICIENCIA 
+  },
+  { slug: SESSOES_VISAO_GERAL_SLUG.SLUG_SESSAO_OBSERVACOES, 
+    title: SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_OBSERVACOES 
+  },
+]
 
 /** Desabilita inputs e oculta botões para modo somente leitura. */
 function ReadOnlyWrapper({ children }: { children: React.ReactNode }) {
@@ -11,11 +102,13 @@ function ReadOnlyWrapper({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
+
     el.querySelectorAll("input, textarea, select").forEach((node) => {
       const n = node as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
       n.setAttribute("readonly", "")
       n.setAttribute("disabled", "")
     })
+
     el.querySelectorAll("button").forEach((node) => {
       const btn = node as HTMLButtonElement
       btn.style.display = "none"
@@ -23,61 +116,47 @@ function ReadOnlyWrapper({ children }: { children: React.ReactNode }) {
   }, [])
 
   return (
-    <div ref={ref} className="pointer-events-none select-text">
+    <div ref={ref} className={styles.readOnlyWrapper}>
       {children}
     </div>
   )
 }
 
-/** Ordem e títulos das seções para a visão geral (mesma ordem do menu do projeto). */
-const SECOES_VISAO_GERAL: { slug: string; title: string }[] = [
-  { slug: "identificacao-projeto", title: "1. Identificação do Projeto" },
-  { slug: "identificacao-proponente", title: "2. Identificação do(a) proponente" },
-  { slug: "identificacao-representante-legal", title: "3. Identificação do representante legal do(a) proponente" },
-  { slug: "identificacao-responsavel-tecnico", title: "4. Identificação do responsável técnico" },
-  { slug: "justificativa", title: "5. Justificativa e motivação para celebração do instrumento" },
-  { slug: "objetivos", title: "6. Objetivos" },
-  { slug: "metas", title: "7. Metas" },
-  { slug: "etapas-cronograma", title: "8. Etapas e cronograma de execução" },
-  { slug: "metodologia", title: "9. Metodologia" },
-  { slug: "resultados-esperados", title: "10. Resultados esperados" },
-  { slug: "gestao-projeto", title: "11. Gestão do Projeto" },
-  { slug: "historico-situacao-territorio", title: "12. Histórico e situação socioeconômica do território" },
-  { slug: "base-territorial", title: "13. Detalhamento da base territorial do projeto" },
-  { slug: "publico-beneficiario", title: "14. Público beneficiário do projeto" },
-  { slug: "povos-comunidades-tradicionais", title: "15. Povos ou comunidades tradicionais" },
-  { slug: "perfil-socio-ocupacional", title: "16. Perfil sócio-ocupacional do público beneficiário" },
-  { slug: "servicos-acessados", title: "17. Serviços acessados pelo público beneficiário" },
-  { slug: "outras-informacoes-proponente", title: "18. Outras informações sobre o(a) proponente" },
-  { slug: "valor-total", title: "19. Valor total do projeto" },
-  { slug: "cronograma-desembolso", title: "20. Cronograma de desembolso" },
-  { slug: "detalhamento-orcamento", title: "21. Detalhamento do orçamento" },
-  { slug: "resumo-plano-aplicacao", title: "22. Resumo do plano de aplicação" },
-  { slug: "procedimentos-monitoramento", title: "23. Procedimentos de monitoramento e avaliação" },
-  { slug: "indicadores-eficiencia", title: "24. Indicadores de eficiência e eficácia" },
-  { slug: "observacoes", title: "25. Observações" },
-]
-
 export function VisaoGeralDoProjeto({ projectId }: ProjectFormSectionProps) {
   return (
-    <div className="min-w-0 max-w-full space-y-6 sm:space-y-8">
-      <div className="min-w-0 border-b pb-4">
-        <h2 className="text-base font-semibold text-foreground sm:text-lg truncate">
-          Visão geral do projeto
-        </h2>
-        <p className="text-muted-foreground text-sm mt-1">
-          Todas as seções do formulário TRP em uma única tela. Somente leitura — use o menu para editar cada seção.
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <div className={styles.headerTop}>
+          <h2 className={styles.title}>
+            {TITULO_VISAO_GERAL}
+          </h2>
+
+          <GenericButton
+            variant="outline"
+            size="sm"
+            icon={FileDown}
+            className={styles.exportButton}
+            onClick={() => {
+              // TODO: implementar exportação para PDF
+            }}
+          >
+            {COMUNS_TITLES.TITLE_EXPORTAR_PDF}
+          </GenericButton>
+        </div>
+
+        <p className={styles.description}>
+          {DESCRICAO_VISAO_GERAL}
         </p>
       </div>
 
-      <div className="min-w-0 rounded-xl border border-input bg-card px-4 py-3 text-center">
-        <h1 className="text-lg font-semibold text-foreground sm:text-xl">
-          TERMO DE REFERÊNCIA DE PROJETO - TRP (Portaria MDS nº 1.131, de 25 de novembro de 2025)
+      <div className={styles.documentHeader}>
+        <h1 className={styles.documentTitle}>
+          {TITULO_DOCUMENTO_TRP}
         </h1>
       </div>
 
-      <div className="min-w-0 max-w-full space-y-6 sm:space-y-8">
-        {SECOES_VISAO_GERAL.map(({ slug, title }) => {
+      <div className={styles.sectionsWrapper}>
+        {SECOES_VISAO_GERAL.map(({ slug }) => {
           const FormSection = getFormSection(slug)
           if (!FormSection) return null
 
@@ -85,9 +164,9 @@ export function VisaoGeralDoProjeto({ projectId }: ProjectFormSectionProps) {
             <section
               key={slug}
               id={`secao-${slug}`}
-              className="min-w-0 max-w-full rounded-xl border border-input bg-card shadow-sm overflow-hidden"
+              className={styles.section}
             >
-              <div className="min-w-0 max-w-full overflow-x-auto p-4 bg-background">
+              <div className={styles.sectionContent}>
                 <ReadOnlyWrapper>
                   <FormSection projectId={projectId} readOnlyView />
                 </ReadOnlyWrapper>
