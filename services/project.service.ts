@@ -1,36 +1,8 @@
-import type {
-  CronogramaDataMapped,
-  ProjectModelData,
-  StatusProjeto,
-} from "@/types/project"
-import { parseValorModelo } from "@/lib/utils"
-import { STATUS_PROJETO_LIST } from "@/constants/project"
+import type { StatusProjeto } from "@/constants/project"
+import { STATUS_PROJETO_LIST, STATUS_PROJETO_STEPS } from "@/constants/project"
 
-export type {
-  CronogramaDataMapped,
-  ProjectModelData,
-  StatusProjeto,
-} from "@/types/project"
+export type { StatusProjeto } from "@/constants/project"
 export { STATUS_PROJETO_LIST, STATUS_PROJETO_STEPS } from "@/constants/project"
-
-export function mapModeloCronogramaToForm(
-  etapasCronograma: ProjectModelData["etapas_cronograma"]
-): CronogramaDataMapped {
-  if (!etapasCronograma?.metas?.length) return { metas: [] }
-  return {
-    metas: etapasCronograma.metas.map((m) => ({
-      titulo: m.meta ?? "",
-      etapas: (m.etapas ?? []).map((e) => ({
-        descricao: e.atividade ?? "",
-        valor: parseValorModelo(e.valor),
-        inicio: e.inicio ?? "",
-        termino: e.termino ?? "",
-      })),
-      quadrosConteudosProgramaticos: [],
-      quadroInsumosPorCurso: [],
-    })),
-  }
-}
 
 export function statusToStepIndex(status: StatusProjeto | string): number {
   const i = STATUS_PROJETO_LIST.indexOf(status as StatusProjeto)

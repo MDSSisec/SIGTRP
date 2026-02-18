@@ -30,7 +30,7 @@ function HeaderBreadcrumb({
   const { projectName } = useBreadcrumb()
 
   const isProjectsList = pathname === "/InternalUser/projects"
-  const isProjectEdit = /^\/InternalUser\/projects\/[^/]+$/.test(pathname)
+  const isProjectEdit = /^\/InternalUser\/projects\/(ted|convenio|emenda)\/[^/]+$/.test(pathname)
   const showProjectsBreadcrumb = isProjectsList || isProjectEdit
 
   const breadcrumbContent = useMemo(() => {
@@ -108,7 +108,7 @@ function PrivateShellInner({ children }: { children: React.ReactNode }) {
     [pathname]
   )
 
-  const isProjectEditPage = /^\/InternalUser\/projects\/[^/]+$/.test(pathname)
+  const isProjectEditPage = /^\/InternalUser\/projects\/(ted|convenio|emenda)\/[^/]+$/.test(pathname)
 
   const handleMenuItemClick = (parentTitle: string, childTitle: string) => {
     setMenuBreadcrumb({ parent: parentTitle, child: childTitle })

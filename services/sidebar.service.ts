@@ -131,10 +131,10 @@ const routeMenuMap: Record<string, SidebarConfig> = {
 
 /**
  * Retorna a config do sidebar para a rota (e opcionalmente o role do usuário).
- * Em /InternalUser/projects/:id usa o menu do formulário TRP (I a VI).
+ * Em /InternalUser/projects/ted|convenio|emenda/:id usa o menu do formulário (TRP para TED).
  */
 export function getSidebarConfig(pathname: string, _userRole?: UserRole): SidebarConfig {
-  if (/^\/InternalUser\/projects\/[^/]+$/.test(pathname)) return dashboardMenuConfig
+  if (/^\/InternalUser\/projects\/(ted|convenio|emenda)\/[^/]+$/.test(pathname)) return dashboardMenuConfig
   const segments = pathname.split("/").filter(Boolean)
   const pathKey = segments.length >= 2 ? `/${segments[0]}/${segments[1]}` : `/${segments[0] ?? ""}`
   return routeMenuMap[pathKey] ?? routeMenuMap[`/${segments[0]}`] ?? internalUserHomeMenuConfig

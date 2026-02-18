@@ -13,6 +13,34 @@ import {
 } from "lucide-react"
 
 // ================================
+// TIPO DE PROJETO (TED, Convênio, Emenda)
+// ================================
+
+export const PROJECT_TYPES = ["TED", "Convenio", "Emenda"] as const
+export type ProjectTipo = (typeof PROJECT_TYPES)[number]
+
+/** Opções para filtro/select (label exibido, value no dado) */
+export const PROJECT_TYPE_OPTIONS: { label: string; value: ProjectTipo | "" }[] = [
+  { label: "Todos", value: "" },
+  { label: "TED", value: "TED" },
+  { label: "Convênio", value: "Convenio" },
+  { label: "Emenda", value: "Emenda" },
+]
+
+/** Segmento da URL de edição por tipo (ex.: ted, convenio, emenda) */
+const PROJECT_TYPE_SEGMENT: Record<ProjectTipo, string> = {
+  TED: "ted",
+  Convenio: "convenio",
+  Emenda: "emenda",
+}
+
+/** Monta a URL de edição do projeto por tipo (ex.: /InternalUser/projects/ted/2) */
+export function getProjectEditPath(tipo: ProjectTipo, id: number | string): string {
+  const segment = PROJECT_TYPE_SEGMENT[tipo]
+  return `/InternalUser/projects/${segment}/${id}`
+}
+
+// ================================
 // STATUS DE PROJETO
 // ================================
 

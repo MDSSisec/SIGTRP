@@ -6,12 +6,20 @@
 type NavItemLike = { title: string; items?: Array<{ url: string; slug?: string }> }
 type SubItemLike = { url: string; slug?: string }
 
-/** Gera o href de um subitem (projeto com ?secao= ou URL direta). */
+/**
+ * Gera o href de um subitem (projeto com ?secao= ou URL direta).
+ * @param projectTypeSegment - Segmento do tipo (ted, convenio, emenda) ou null para rota legada
+ * @param projectId - ID do projeto
+ */
 export function getSubItemHref(
+  projectTypeSegment: string | null,
   projectId: string | null,
   sub: SubItemLike
 ): string {
   if (projectId && sub.slug) {
+    if (projectTypeSegment) {
+      return `/InternalUser/projects/${projectTypeSegment}/${projectId}?secao=${sub.slug}`
+    }
     return `/InternalUser/projects/${projectId}?secao=${sub.slug}`
   }
   return sub.url

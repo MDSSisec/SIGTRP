@@ -11,8 +11,9 @@ import {
   type TableColumn,
 } from "@/components/shared/Tables/GenericTable/genericTable"
 
-import { getStatusStyle, STATUS_PROJETO_LIST, type StatusProjeto } from "@/features/projects/services/project.service"
-import projetosDataJson from "@/features/projects/model/dataProjetos.json"
+import { getProjectEditPath, PROJECT_TYPE_OPTIONS, type ProjectTipo } from "@/constants/project"
+import { getStatusStyle, STATUS_PROJETO_LIST, type StatusProjeto } from "@/services/project.service"
+import projetosDataJson from "@/data/projetos.json"
 
 import styles from "./styles/projetos.module.css"
 
@@ -21,7 +22,7 @@ type Projeto = {
   nome: string
   responsavel: string
   status: StatusProjeto
-  tipo: string
+  tipo: ProjectTipo
 }
 
 const columns: TableColumn<Projeto>[] = [
@@ -48,7 +49,7 @@ const columns: TableColumn<Projeto>[] = [
     render: (row) => (
       <div className={styles.actionsCell}>
         <Link
-          href={`/InternalUser/projects/${row.id}`}
+          href={getProjectEditPath(row.tipo, row.id)}
           className={styles.actionLink}
           aria-label="Editar"
         >
@@ -80,12 +81,7 @@ const filtrosProjetos: FiltroConfig[] = [
   {
     name: "tipo",
     type: "select",
-    options: [
-      { label: "Todos", value: "" },
-      { label: "TED", value: "TED" },
-      { label: "Convênio", value: "Convenio" },
-      { label: "Emenda", value: "Emenda" },
-    ],
+    options: PROJECT_TYPE_OPTIONS,
   },
 ]
 

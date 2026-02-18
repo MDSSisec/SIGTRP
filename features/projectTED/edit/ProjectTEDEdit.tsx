@@ -5,9 +5,9 @@ import { useEffect, useMemo } from "react"
 import {
   DEFAULT_FORM_SECTION,
   PROJECT_FORM_SECTIONS,
-} from "@/features/projects/forms"
-import type { CronogramaData } from "@/features/projects/forms/secao-2-descricao/etapas-cronograma/types"
-import { CronogramaProvider } from "@/features/projects/forms/secao-2-descricao/CronogramaContext"
+} from "@/features/projectTED/forms"
+import type { CronogramaData } from "@/features/projectTED/forms/secao-2-descricao/etapas-cronograma/types"
+import { CronogramaProvider } from "@/features/projectTED/forms/secao-2-descricao/CronogramaContext"
 import StatusStepper from "@/components/shared/StatusStepper/statusStepper"
 import { useBreadcrumb } from "@/lib/contexts/breadcrumb-context"
 import { ProjectDataProvider } from "@/lib/contexts/project-data-context"
@@ -16,16 +16,15 @@ import {
   STATUS_PROJETO_STEPS,
   statusToStepIndex,
   type ProjectModelData,
-  type StatusProjeto,
-} from "@/features/projects/services/project.service"
-import projetosData from "@/features/projects/model/dataProjetos.json"
-import projetoModelo from "@/features/projects/model/projetoModelo.json"
+} from "@/features/projectTED/services/projectTED.service"
+import type { StatusProjeto } from "@/constants/project"
+import projetosData from "@/data/projetos.json"
+import projetoModelo from "@/features/projectTED/model/projetoModelo.json"
 
 /**
- * Página de edição do projeto.
- * O sidebar exibe os itens do formulário TRP (I a VI) via dashboardMenuConfig.
+ * Página de edição do projeto TED (formulário TRP I a VI).
  */
-export function ProjectEditContent() {
+export function ProjectTEDEditContent() {
   const params = useParams()
   const searchParams = useSearchParams()
   const projectId = (params?.id as string) ?? ""

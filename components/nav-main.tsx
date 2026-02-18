@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
 import { ChevronRight } from "lucide-react"
 
-import { DEFAULT_FORM_SECTION } from "@/features/projects/forms"
+import { DEFAULT_FORM_SECTION } from "@/features/projectTED/forms"
 import {
   Collapsible,
   CollapsibleContent,
@@ -42,7 +42,9 @@ export function NavMain({
   const searchParams = useSearchParams()
   const secao = searchParams.get("secao")
 
-  const projectId = pathname.match(/^\/InternalUser\/projects\/([^/]+)/)?.[1] ?? null
+  const projectEditMatch = pathname.match(/^\/InternalUser\/projects\/(ted|convenio|emenda)\/([^/]+)/)
+  const projectTypeSegment = projectEditMatch?.[1] ?? null
+  const projectId = projectEditMatch?.[2] ?? pathname.match(/^\/InternalUser\/projects\/([^/]+)/)?.[1] ?? null
 
   const getOpenKey = useCallback(
     () => getNavOpenKeyFromPath(items, pathname, secao, projectId),
@@ -50,8 +52,8 @@ export function NavMain({
   )
 
   const getSubItemHrefFor = useCallback(
-    (sub: NavMainSubItem) => getSubItemHref(projectId, sub),
-    [projectId]
+    (sub: NavMainSubItem) => getSubItemHref(projectTypeSegment, projectId, sub),
+    [projectTypeSegment, projectId]
   )
 
   const isSubItemActiveCheck = useCallback(

@@ -1,7 +1,14 @@
 /**
  * Serviços globais (compartilhados por várias features).
- * Serviços de domínio ficam nas features (ex.: features/projects/services).
  */
+
+export {
+  getStatusStyle,
+  statusToStepIndex,
+  STATUS_PROJETO_LIST,
+  STATUS_PROJETO_STEPS,
+} from "./project.service"
+export type { StatusProjeto } from "./project.service"
 
 export {
   getUsuarioStatusStyle,
