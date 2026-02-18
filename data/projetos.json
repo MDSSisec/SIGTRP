@@ -4,7 +4,7 @@
         "nome": "Curso de Corte e Costura",
         "responsavel": "Maria Silva",
         "status": "Projeto em Execução",
-        "tipo": "TED"
+        "tipo": "Convenio"
     },
     {
         "id": 2,
@@ -25,14 +25,14 @@
         "nome": "Projeto Jovem Aprendiz",
         "responsavel": "Carlos Lima",
         "status": "TRP em Elaboração",
-        "tipo": "TED"
+        "tipo": "Convenio"
     },
     {
         "id": 5,
         "nome": "Programa Inclusão Digital",
         "responsavel": "Fernanda Souza",
         "status": "Projeto em Execução",
-        "tipo": "TED"
+        "tipo": "Convenio"
     },
     {
         "id": 6,
@@ -46,7 +46,7 @@
         "nome": "Projeto Mulheres Empreendedoras",
         "responsavel": "Patrícia Gomes",
         "status": "Projeto Encerrado",
-        "tipo": "TED"
+        "tipo": "Emenda"
     },
     {
         "id": 8,

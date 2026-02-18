@@ -21,7 +21,16 @@ export const dashboardMenuConfig: SidebarConfig = {
   user: { name: "adm", email: "m@example.com", avatar: "" },
   teams: [{ name: "SIGTRP", logo: GalleryVerticalEnd, plan: "MDS" }],
   navMain: [
-    { title: "Visão Geral do Projeto", url: "#", icon: Home, items: [{ title: "Visão Geral do Projeto", url: "#", slug: "visao-geral" }] },
+    { title: "Visão Geral do Projeto", 
+      url: "#", 
+      icon: Home, 
+      isActive: true,
+      items: [
+        { title: "Informações do Projeto", url: "#", slug: "informacoes-projeto" },
+        { title: "Visão Geral do Projeto", url: "#", slug: "visao-geral" },
+        
+        ],
+    },
     {
       title: "I - Identificação",
       url: "#",

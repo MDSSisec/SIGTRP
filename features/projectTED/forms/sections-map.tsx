@@ -26,10 +26,12 @@ import { OutrasInformacoesProponente } from "./secao-4-caracterizacao/OutrasInfo
 import { PovosComunidadesTradicionais } from "./secao-3-participantes/PovosComunidadesTradicionais"
 import IdentificacaoRepresentanteLegal from "./secao-1-identificacao/IdentificacaoRepresentanteLegal"
 import IdentificacaoResponsavelTecnico from "./secao-1-identificacao/IdentificacaoResponsavelTecnico"
+import { InformacoesDoProjeto } from "./informacoesDoProjeto/informacoesDoProjeto"
 
 export type ProjectFormSectionProps = { projectId?: string; readOnlyView?: boolean }
 
 const SECTIONS_WITHOUT_VISAO_GERAL: Record<string, ComponentType<ProjectFormSectionProps>> = {
+  "informacoes-projeto": InformacoesDoProjeto,
   "identificacao-projeto": IdentificacaoProjeto,
   metas: Metas,
   objetivos: Objetivos,
