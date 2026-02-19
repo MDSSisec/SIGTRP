@@ -200,3 +200,4 @@ export function InformacoesDoProjeto({ projectId, readOnlyView }: ProjectFormSec
     </div>
   )
 }
+
