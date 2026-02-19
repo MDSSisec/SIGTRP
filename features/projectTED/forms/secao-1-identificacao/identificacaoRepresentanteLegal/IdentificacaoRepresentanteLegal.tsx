@@ -5,6 +5,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
 import { useProjectData } from "@/lib/contexts/project-data-context"
+import styles from "./IdentificacaoRepresentanteLegal.module.css"
+import { IDENTIFICACAO_REPRESENTANTE_LEGAL_LABELS, IDENTIFICACAO_REPRESENTANTE_LEGAL_PLACEHOLDERS } from "@/constants/identificacaoRepresentanteLegal"
+import { SESSOES_VISAO_GERAL_TITLE } from "@/constants/visaoGeral"
 
 interface DadosIdentificacaoRepresentanteLegal {
   nome: string
@@ -34,6 +37,7 @@ const VAZIO_REP: DadosIdentificacaoRepresentanteLegal = {
 function getInicialRepresentanteLegal(projectData: ReturnType<typeof useProjectData>): DadosIdentificacaoRepresentanteLegal {
   const r = projectData?.identificacao?.representante_legal
   if (!r) return VAZIO_REP
+
   return {
     nome: r.nome ?? "",
     matriculaSiape: r.matricula ?? "",
@@ -50,6 +54,7 @@ function FormularioIdentificacaoRepresentanteLegal({
   projectId,
 }: PropsFormularioIdentificacaoRepresentanteLegal) {
   const projectData = useProjectData()
+
   const [dadosFormulario, setDadosFormulario] = useState<DadosIdentificacaoRepresentanteLegal>(() =>
     projectId === "2" && projectData ? getInicialRepresentanteLegal(projectData) : VAZIO_REP
   )
@@ -68,102 +73,112 @@ function FormularioIdentificacaoRepresentanteLegal({
   }
 
   return (
-    <div className="space-y-8 rounded-xl bg-muted/50 p-6">
-      <section className="space-y-5">
-        <h2 className="text-base font-semibold text-foreground border-b pb-2">
-          3. Identificação do Representante Legal do(a) Proponente
+    <div className={styles.container}>
+      <section className={styles.section}>
+        <h2 className={styles.title}>
+          {SESSOES_VISAO_GERAL_TITLE.TITLE_SESSAO_IDENTIFICACAO_REPRESENTANTE_LEGAL}
         </h2>
 
-        <div className="grid gap-5 sm:grid-cols-1">
-          <div className="space-y-2">
-            <Label htmlFor="nome" className="font-medium text-foreground">
-              Nome
+        <div className={styles.formGrid}>
+          <div className={styles.fieldGroup}>
+            <Label htmlFor="nome" className={styles.label}>
+              {IDENTIFICACAO_REPRESENTANTE_LEGAL_LABELS.LABEL_NOME}
+              <span className={styles.required}></span>
             </Label>
             <Input
               id="nome"
-              name="nome"
+              name={IDENTIFICACAO_REPRESENTANTE_LEGAL_LABELS.LABEL_NOME}
               value={dadosFormulario.nome}
               onChange={aoAlterar}
-              placeholder="Nome completo do representante legal"
-              className="bg-white"
+              placeholder={IDENTIFICACAO_REPRESENTANTE_LEGAL_PLACEHOLDERS.PLACEHOLDER_NOME}
+              className={styles.input}
             />
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="matriculaSiape" className="font-medium text-foreground">
-                Matrícula SIAPE
+          <div className={styles.grid2}>
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="matriculaSiape" className={styles.label}>
+                {IDENTIFICACAO_REPRESENTANTE_LEGAL_LABELS.LABEL_MATRICULA_SIAPE}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="matriculaSiape"
                 name="matriculaSiape"
                 value={dadosFormulario.matriculaSiape}
                 onChange={aoAlterar}
-                placeholder="Ex: 1234567"
-                className="bg-white"
+                placeholder={IDENTIFICACAO_REPRESENTANTE_LEGAL_PLACEHOLDERS.PLACEHOLDER_MATRICULA_SIAPE}
+                className={styles.input}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="profissao" className="font-medium text-foreground">
-                Profissão
+
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="profissao" className={styles.label}>
+                {IDENTIFICACAO_REPRESENTANTE_LEGAL_LABELS.LABEL_PROFISSAO}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="profissao"
                 name="profissao"
                 value={dadosFormulario.profissao}
                 onChange={aoAlterar}
-                placeholder="Ex: Advogado, Administrador"
-                className="bg-white"
+                placeholder={IDENTIFICACAO_REPRESENTANTE_LEGAL_PLACEHOLDERS.PLACEHOLDER_PROFISSAO}
+                className={styles.input}
               />
             </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="cargo" className="font-medium text-foreground">
-                Cargo
+          <div className={styles.grid2}>
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="cargo" className={styles.label}>
+                {IDENTIFICACAO_REPRESENTANTE_LEGAL_LABELS.LABEL_CARGO}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="cargo"
                 name="cargo"
                 value={dadosFormulario.cargo}
                 onChange={aoAlterar}
-                placeholder="Ex: Diretor presidente"
-                className="bg-white"
+                placeholder={IDENTIFICACAO_REPRESENTANTE_LEGAL_PLACEHOLDERS.PLACEHOLDER_CARGO}
+                className={styles.input}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="estadoCivil" className="font-medium text-foreground">
-                Estado Civil
+
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="estadoCivil" className={styles.label}>
+                {IDENTIFICACAO_REPRESENTANTE_LEGAL_LABELS.LABEL_ESTADO_CIVIL}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="estadoCivil"
                 name="estadoCivil"
                 value={dadosFormulario.estadoCivil}
                 onChange={aoAlterar}
-                placeholder="Ex: Solteiro(a), Casado(a)"
-                className="bg-white"
+                placeholder={IDENTIFICACAO_REPRESENTANTE_LEGAL_PLACEHOLDERS.PLACEHOLDER_ESTADO_CIVIL}
+                className={styles.input}
               />
             </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="telefone" className="font-medium text-foreground">
-                Número de Telefone com DDD
+          <div className={styles.grid2}>
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="telefone" className={styles.label}>
+                {IDENTIFICACAO_REPRESENTANTE_LEGAL_LABELS.LABEL_TELEFONE}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="telefone"
                 name="telefone"
                 value={dadosFormulario.telefone}
                 onChange={aoAlterar}
-                placeholder="(79) 99999-9999"
-                className="bg-white"
+                placeholder={IDENTIFICACAO_REPRESENTANTE_LEGAL_PLACEHOLDERS.PLACEHOLDER_TELEFONE}
+                className={styles.input}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email" className="font-medium text-foreground">
-                E-mail
+
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="email" className={styles.label}>
+                {IDENTIFICACAO_REPRESENTANTE_LEGAL_LABELS.LABEL_EMAIL}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="email"
@@ -171,15 +186,15 @@ function FormularioIdentificacaoRepresentanteLegal({
                 type="email"
                 value={dadosFormulario.email}
                 onChange={aoAlterar}
-                placeholder="exemplo@email.com"
-                className="bg-white"
+                placeholder={IDENTIFICACAO_REPRESENTANTE_LEGAL_PLACEHOLDERS.PLACEHOLDER_EMAIL}
+                className={styles.input}
               />
             </div>
           </div>
         </div>
       </section>
 
-      <div className="flex flex-wrap items-center justify-end gap-3 border-t pt-6">
+      <div className={styles.actions}>
         <GenericButton variant="editar" onClick={() => {}} />
         <GenericButton variant="salvar" onClick={() => {}} />
       </div>

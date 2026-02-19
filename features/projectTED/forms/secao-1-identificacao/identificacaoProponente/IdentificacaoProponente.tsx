@@ -1,10 +1,15 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import React, { useEffect, useState } from "react"
+import styles from "./IdentificacaoProponente.module.css"
 import { useProjectData } from "@/lib/contexts/project-data-context"
+import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import { 
+  IDENTIFICACAO_PROPONENTE_LABELS, 
+  IDENTIFICACAO_PROPONENTE_PLACEHOLDERS
+} from "@/constants/identificacaoProponente"
 
 interface DadosIdentificacaoProponente {
   nome: string
@@ -41,7 +46,6 @@ const VAZIO_Proponente: DadosIdentificacaoProponente = {
   paginaWeb: "",
 }
 
-/** Converte DD/MM/YYYY para YYYY-MM-DD (input type="date") */
 function dataBrParaInput(d: string | undefined): string {
   if (!d) return ""
   const parts = d.trim().split(/[/-]/)
@@ -54,9 +58,11 @@ function dataBrParaInput(d: string | undefined): string {
 function getInicialProponente(projectData: ReturnType<typeof useProjectData>): DadosIdentificacaoProponente {
   const e = projectData?.identificacao?.entidade_proponente
   if (!e) return VAZIO_Proponente
+
   const end = e.endereco
   const contato = e.contato
   const email = contato?.emails?.length ? contato.emails[0] ?? "" : ""
+
   return {
     nome: e.nome ?? "",
     cnpj: e.cnpj ?? "",
@@ -78,6 +84,7 @@ function FormularioIdentificacaoProponente({
   projectId,
 }: PropsFormularioIdentificacaoProponente) {
   const projectData = useProjectData()
+
   const [dadosFormulario, setDadosFormulario] = useState<DadosIdentificacaoProponente>(() =>
     projectId === "2" && projectData ? getInicialProponente(projectData) : VAZIO_Proponente
   )
@@ -96,44 +103,46 @@ function FormularioIdentificacaoProponente({
   }
 
   return (
-    <div className="space-y-8">
-      <section className="space-y-5">
-        <h2 className="text-base font-semibold text-foreground border-b pb-2">
-          2. Identificação do(a) Proponente
-        </h2>
+    <div className={styles.container}>
+      <section className={styles.section}>
+        <h2 className={styles.title}>2. Identificação do(a) Proponente</h2>
 
-        <div className="grid gap-5 sm:grid-cols-1">
-          <div className="space-y-2">
-            <Label htmlFor="nome" className="font-medium text-foreground">
-              Nome
+        <div className={styles.formGrid}>
+          <div className={styles.fieldGroup}>
+            <Label htmlFor="nome" className={styles.label}>
+              {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_NOME}
+              <span className={styles.required}></span>
             </Label>
             <Input
               id="nome"
               name="nome"
               value={dadosFormulario.nome}
               onChange={aoAlterar}
-              placeholder="Nome do proponente"
-              className="bg-white"
+              placeholder={IDENTIFICACAO_PROPONENTE_PLACEHOLDERS.PLACEHOLDER_NOME}
+              className={styles.input}
             />
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="cnpj" className="font-medium text-foreground">
-                CNPJ
+          <div className={styles.grid2}>
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="cnpj" className={styles.label}>
+                {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_CNPJ}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="cnpj"
                 name="cnpj"
                 value={dadosFormulario.cnpj}
                 onChange={aoAlterar}
-                placeholder="00.000.000/0000-00"
-                className="bg-white"
+                placeholder={IDENTIFICACAO_PROPONENTE_PLACEHOLDERS.PLACEHOLDER_CNPJ}
+                className={styles.input}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="dataFundacao" className="font-medium text-foreground">
-                Data da Fundação
+
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="dataFundacao" className={styles.label}>
+                {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_DATA_FUNDACAO}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="dataFundacao"
@@ -141,113 +150,124 @@ function FormularioIdentificacaoProponente({
                 type="date"
                 value={dadosFormulario.dataFundacao}
                 onChange={aoAlterar}
-                className="bg-white"
+                className={styles.input}
               />
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="registroCnpj" className="font-medium text-foreground">
-              Registro no CNPJ
+          <div className={styles.fieldGroup}>
+            <Label htmlFor="registroCnpj" className={styles.label}>
+              {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_REGISTRO_CNPJ}
+              <span className={styles.required}></span>
             </Label>
             <Input
               id="registroCnpj"
               name="registroCnpj"
               value={dadosFormulario.registroCnpj}
               onChange={aoAlterar}
-              placeholder="Número do registro"
-              className="bg-white"
+              placeholder={IDENTIFICACAO_PROPONENTE_PLACEHOLDERS.PLACEHOLDER_REGISTRO_CNPJ}
+              className={styles.input}
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="enderecoCompleto" className="font-medium text-foreground">
-              Endereço Completo
+          <div className={styles.fieldGroup}>
+            <Label htmlFor="enderecoCompleto" className={styles.label}>
+              {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_ENDERECO_COMPLETO}
+              <span className={styles.required}></span>
             </Label>
             <Input
               id="enderecoCompleto"
               name="enderecoCompleto"
               value={dadosFormulario.enderecoCompleto}
               onChange={aoAlterar}
-              placeholder="Rua, número, complemento"
-              className="bg-white"
+              placeholder={IDENTIFICACAO_PROPONENTE_PLACEHOLDERS.PLACEHOLDER_ENDERECO_COMPLETO}
+              className={styles.input}
             />
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="cep" className="font-medium text-foreground">
-                CEP
+          <div className={styles.grid2}>
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="cep" className={styles.label}>
+                {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_CEP}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="cep"
                 name="cep"
                 value={dadosFormulario.cep}
                 onChange={aoAlterar}
-                placeholder="00000-000"
-                className="bg-white"
+                placeholder={IDENTIFICACAO_PROPONENTE_PLACEHOLDERS.PLACEHOLDER_CEP}
+                className={styles.input}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="uf" className="font-medium text-foreground">
-                UF
+
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="uf" className={styles.label}>
+                {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_UF}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="uf"
                 name="uf"
                 value={dadosFormulario.uf}
                 onChange={aoAlterar}
-                placeholder="SE"
+                placeholder={IDENTIFICACAO_PROPONENTE_PLACEHOLDERS.PLACEHOLDER_UF}
                 maxLength={2}
-                className="bg-white"
+                className={styles.input}
               />
             </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="bairro" className="font-medium text-foreground">
-                Bairro
+          <div className={styles.grid2}>
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="bairro" className={styles.label}>
+                {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_BAIRRO}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="bairro"
                 name="bairro"
                 value={dadosFormulario.bairro}
                 onChange={aoAlterar}
-                className="bg-white"
+                className={styles.input}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="municipio" className="font-medium text-foreground">
-                Município
+
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="municipio" className={styles.label}>
+                {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_MUNICIPIO}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="municipio"
                 name="municipio"
                 value={dadosFormulario.municipio}
                 onChange={aoAlterar}
-                className="bg-white"
+                className={styles.input}
               />
             </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="telefoneFax" className="font-medium text-foreground">
-                Telefone / Fax (com DDD)
+          <div className={styles.grid2}>
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="telefoneFax" className={styles.label}>
+                {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_TELEFONE_FAX}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="telefoneFax"
                 name="telefoneFax"
                 value={dadosFormulario.telefoneFax}
                 onChange={aoAlterar}
-                placeholder="(79) 99999-9999"
-                className="bg-white"
+                placeholder={IDENTIFICACAO_PROPONENTE_PLACEHOLDERS.PLACEHOLDER_TELEFONE_FAX}
+                className={styles.input}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email" className="font-medium text-foreground">
-                E-mail
+
+            <div className={styles.fieldGroup}>
+              <Label htmlFor="email" className={styles.label}>
+                {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_EMAIL}
+                <span className={styles.required}></span>
               </Label>
               <Input
                 id="email"
@@ -255,29 +275,30 @@ function FormularioIdentificacaoProponente({
                 type="email"
                 value={dadosFormulario.email}
                 onChange={aoAlterar}
-                placeholder="exemplo@email.com"
-                className="bg-white"
+                placeholder={IDENTIFICACAO_PROPONENTE_PLACEHOLDERS.PLACEHOLDER_EMAIL}
+                className={styles.input}
               />
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="paginaWeb" className="font-medium text-foreground">
-              Página na WEB (site)
+          <div className={styles.fieldGroup}>
+            <Label htmlFor="paginaWeb" className={styles.label}>
+              {IDENTIFICACAO_PROPONENTE_LABELS.LABEL_PAGINA_WEB}
+              <span className={styles.required}></span>
             </Label>
             <Input
               id="paginaWeb"
               name="paginaWeb"
               value={dadosFormulario.paginaWeb}
               onChange={aoAlterar}
-              placeholder="https://..."
-              className="bg-white"
+              placeholder={IDENTIFICACAO_PROPONENTE_PLACEHOLDERS.PLACEHOLDER_PAGINA_WEB}
+              className={styles.input}
             />
           </div>
         </div>
       </section>
 
-      <div className="flex flex-wrap items-center justify-end gap-3 border-t pt-6">
+      <div className={styles.actions}>
         <GenericButton variant="editar" onClick={() => {}} />
         <GenericButton variant="salvar" onClick={() => {}} />
       </div>
