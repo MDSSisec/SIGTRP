@@ -116,20 +116,20 @@ function PrivateShellInner({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <SidebarProvider>
+    <SidebarProvider className="h-svh overflow-hidden">
       <AppSidebar
         config={sidebarConfig}
         onMenuItemClick={handleMenuItemClick}
         spaciousMenu={isProjectEditPage}
       />
       <SidebarInset>
-        <header className="flex min-w-0 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 overflow-hidden pr-4">
+        <header className="sticky top-0 z-10 flex min-w-0 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 overflow-hidden pr-4 bg-background border-b border-border/40">
           <HeaderBreadcrumb menuBreadcrumb={menuBreadcrumb} />
           <div className="ml-auto">
             <ModeToggle />
           </div>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 pt-0 min-w-0 overflow-auto">
+        <main className="flex min-h-0 flex-1 flex-col gap-4 p-4 pt-0 min-w-0 overflow-auto">
           {children}
         </main>
       </SidebarInset>
