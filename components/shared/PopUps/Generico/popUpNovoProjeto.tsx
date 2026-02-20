@@ -36,10 +36,10 @@ export default function PopupNovoProjeto({ open, onClose }: PopupNovoProjetoProp
             className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
             defaultValue=""
           >
-            <option value="" disabled>Selecione o tipo</option>
-            <option value="Empreende">Empreende</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Comercial">Comercial</option>
+            <option value="" disabled className="dark:bg-sidebar">Selecione o tipo</option>
+            <option value="Empreende" className="dark:bg-sidebar">Empreende</option>
+            <option value="Marketing" className="dark:bg-sidebar">Marketing</option>
+            <option value="Comercial" className="dark:bg-sidebar">Comercial</option>
           </select>
         </div>
 

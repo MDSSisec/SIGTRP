@@ -27,21 +27,21 @@ export default function Popup({
       />
 
       {/* Conteúdo */}
-      <div className="relative bg-white w-full max-w-lg rounded-xl border border-gray-300 p-6 z-10">
+      <div className="relative bg-white dark:bg-sidebar w-full max-w-lg rounded-xl border border-gray-300 dark:border-sidebar-border p-6 z-10 shadow-lg">
         
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold text-black">
+          <h2 className="text-lg font-semibold text-foreground">
             {title}
           </h2>
 
           <button onClick={onClose}>
-            <X size={20} className="text-gray-600 hover:text-black" />
+            <X size={20} className="text-muted-foreground hover:text-foreground transition-colors" />
           </button>
         </div>
 
         {/* Corpo */}
-        <div>{children}</div>
+        <div className="text-foreground">{children}</div>
 
       </div>
     </div>
