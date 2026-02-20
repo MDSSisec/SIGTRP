@@ -125,7 +125,7 @@
     overflow-x: auto;
     overflow-y: visible;
     padding: 1rem;
-    background: var(--background);
+    /* background: var(--background); */
 }
 
 /* Campos com fundo branco em todas as seções da visão geral (incl. readonly/disabled) */

@@ -77,7 +77,7 @@ function FormularioObservacoes({ onChange }: PropsFormularioObservacoes) {
       <section className="space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
           <h2 className="text-base font-semibold text-foreground">
-            25. Observações
+            Observações
           </h2>
           <GenericButton
             variant="outline"

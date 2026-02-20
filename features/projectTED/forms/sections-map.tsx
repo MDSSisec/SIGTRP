@@ -27,6 +27,7 @@ import { PovosComunidadesTradicionais } from "./secao-3-participantes/PovosComun
 import IdentificacaoRepresentanteLegal from "./secao-1-identificacao/identificacaoRepresentanteLegal/IdentificacaoRepresentanteLegal"
 import IdentificacaoResponsavelTecnico from "./secao-1-identificacao/IdentificacaoResponsavelTecnico/IdentificacaoResponsavelTecnico"
 import { InformacoesDoProjeto } from "./informacoesDoProjeto/informacoesDoProjeto"
+import { AndamentoDoProjeto } from "./andamentoDoProjeto/andamentoDoProjeto"
 
 export type ProjectFormSectionProps = { projectId?: string; readOnlyView?: boolean }
 
@@ -57,6 +58,7 @@ const SECTIONS_WITHOUT_VISAO_GERAL: Record<string, ComponentType<ProjectFormSect
   "identificacao-representante-legal": IdentificacaoRepresentanteLegal,
   "identificacao-responsavel-tecnico": IdentificacaoResponsavelTecnico,
   observacoes: Observacoes,
+  "andamento-projeto": AndamentoDoProjeto,
 }
 
 export function getFormSection(slug: string): ComponentType<ProjectFormSectionProps> | undefined {

@@ -31,7 +31,14 @@ export const dashboardMenuConfig: SidebarConfig = {
         
         ],
     },
-    { title: "Observações", url: "#", icon: MessageCircle, items: [{ title: "Observações", url: "#", slug: "observacoes" }] },
+    { title: "Observações", 
+      url: "#", 
+      icon: MessageCircle, 
+      items: [
+        { title: "Observações", url: "#", slug: "observacoes" },
+        { title: "Andamento do Projeto", url: "#", slug: "andamento-projeto" },
+      ] 
+    },
     {
       title: "I - Identificação",
       url: "#",

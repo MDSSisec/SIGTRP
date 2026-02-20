@@ -1,12 +1,12 @@
 {
     "id": 2,
-    "nome": "Programa Acredita no Primeiro Passo",
+    "nome": "Programa Acredita no Primeiro Passo (Clicar aqui para ver o modelo completo de TED)",
     "responsavel": "João Santos",
     "status": "Projeto Encerrado",
     "tipo": "TED",
     "identificacao": {
       "projeto": {
-        "nome": "Programa Acredita no Primeiro Passo",
+        "nome": "Programa Acredita no Primeiro Passo (Clicar aqui para ver o modelo completo de TED)",
         "local_execucao": "Unidades Penais do Estado do Piauí",
         "duracao": "24 meses",
         "resumo": "Implantação de Oficinas e oferta qualificação profissional para pessoas cadastradas no Cadastro Único para Programas Sociais do Governo Federal (CadÚnico), com idade entre 16 a 65 anos, no âmbito do sistema prisional do Piauí."
