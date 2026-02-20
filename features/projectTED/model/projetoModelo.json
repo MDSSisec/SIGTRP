@@ -189,6 +189,112 @@
           { "elemento": "Contratação de Serv. Terceiros PJ", "codigo": "339039", "mds_sisec": 1500000.00, "contrapartida": 0, "total": 1500000.00 }
         ],
         "total_geral": { "mds_sisec": 2611077.84, "contrapartida": 26208.00, "total": 2637285.84 }
+      },
+      "detalhamento_orcamento": {
+        "metas": [
+          {
+            "meta": "Meta 1 - Realizar Capacitações profissionais para 500 pessoas no sistema prisional do Piauí, inscritas no CadÚnico.",
+            "etapas": [
+              {
+                "descricao_etapa": "Etapa 1.1 - Realizar Curso de Panificação, com carga horária de 120 horas, para 240 pessoas, distribuídas em 12 turmas com 20 alunos por turma.",
+                "itens": [
+                  { "item_despesa": "1.1.1 - Contratação de Instituição de Ensino para realizar a capacitação profissional na área de panificação com 120 horas/aula (Incluindo todas as despesas exigidas no Art. 6º, § 3º da Portaria 1.131/2025 e o mínimo exigido de 60% na atividade finalística a ser mensurada no processo de seleção)", "codigo": "33.90.39", "unidade": "Unid.", "quantidade": 12, "valor_unitario": 60000, "valor_total": 720000, "fonte_recurso": "SISEC" }
+                ],
+                "total_etapa": 720000
+              },
+              {
+                "descricao_etapa": "Etapa 1.2 – Realizar Curso de Marcenaria, com carga horária de 120 horas, para 120 pessoas, distribuídas em 06 turmas com 20 alunos por turma",
+                "itens": [
+                  { "item_despesa": "1.2.1 - Contratação de Instituição de Ensino para realizar a capacitação profissional na área de marcenaria com 120 horas/aula (Incluindo todas as despesas exigidas no Art. 6º, § 3º da Portaria 1.131/2025 e o mínimo exigido de 60% na atividade finalística a ser mensurada no processo de seleção)", "codigo": "33.90.39", "unidade": "unid.", "quantidade": 6, "valor_unitario": 60000, "valor_total": 360000, "fonte_recurso": "SISEC" }
+                ],
+                "total_etapa": 360000
+              },
+              {
+                "descricao_etapa": "Etapa 1.3 - Realizar Curso de Corte e Costura Industrial com carga horária de 120 horas, para 40 pessoas, distribuídas em 02 turmas com 20 alunos por turma.",
+                "itens": [
+                  { "item_despesa": "1.3.1 - Contratação de Instituição de Ensino para realizar a capacitação profissional na área de corte e costura com 120 horas/aula (Incluindo todas as despesas exigidas no Art. 6º, § 3º da Portaria 1.131/2025 e o mínimo exigido de 60% na atividade finalística a ser mensurada no processo de seleção)", "codigo": "33.90.39", "unidade": "unid.", "quantidade": 2, "valor_unitario": 60000, "valor_total": 120000, "fonte_recurso": "SISEC" }
+                ],
+                "total_etapa": 120000
+              },
+              {
+                "descricao_etapa": "Etapa 1.4 - Realizar Curso de Psicultura, com carga horária de 120 horas, para 40 pessoas, distribuídas em 02 turmas com 20 alunos por turma.",
+                "itens": [
+                  { "item_despesa": "1.4.1 - Contratação de Instituição de Ensino para realizar a capacitação profissional na área de psicultura com 120 horas/aula (Incluindo todas as despesas exigidas no Art. 6º, § 3º da Portaria 1.131/2025 e o mínimo exigido de 60% na atividade finalística a ser mensurada no processo de seleção)", "codigo": "33.90.39", "unidade": "unid.", "quantidade": 2, "valor_unitario": 60000, "valor_total": 120000, "fonte_recurso": "SISEC" }
+                ],
+                "total_etapa": 120000
+              },
+              {
+                "descricao_etapa": "Etapa 1.5 - Realizar Curso de Serralheria, com carga horária de 120 horas, para 60 pessoas, distribuídas em 02 turmas com 20 alunos por turma.",
+                "itens": [
+                  { "item_despesa": "1.4.1 - Contratação de Instituição de Ensino para realizar a capacitação profissional na área de panificação com 120 horas/aula (Incluindo todas as despesas exigidas no Art. 6º, § 3º da Portaria 1.131/2025 e o mínimo exigido de 60% na atividade finalística a ser mensurada no processo de seleção)", "codigo": "33.90.39", "unidade": "unid.", "quantidade": 3, "valor_unitario": 60000, "valor_total": 180000, "fonte_recurso": "SISEC" }
+                ],
+                "total_etapa": 180000
+              }
+            ]
+          },
+          {
+            "meta": "Meta 2 - Estruturação de 13 (treze) espaços para realização de ações de qualificação profissional, no sistema prisional do Piauí.",
+            "etapas": [
+              {
+                "descricao_etapa": "Etapa 2.1 - Implantar 7 (sete) espaços para realização de ações de qualificação profissional na área de Panificação.",
+                "itens": [
+                  { "item_despesa": "2.1.1 - Aquisição de Filtro d'água", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 949.90, "valor_total": 6649.30, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.2 - Aquisição de Amassadeira", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 13458.99, "valor_total": 94212.93, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.3 - Aquisição de Forno Turbo Elétrico", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 14, "valor_unitario": 11424.45, "valor_total": 159942.30, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.4 - Aquisição de Freezer Vertical", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 4261.70, "valor_total": 29831.90, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.5 - Aquisição Armários Transporte para pães", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 14, "valor_unitario": 2509.58, "valor_total": 35134.12, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.6 - Aquisição de Modelador", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 4580, "valor_total": 32060, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.7 - Aquisição de Estante em Aço", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 14, "valor_unitario": 495.55, "valor_total": 6937.70, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.8 - Aquisição de Batedeira Industrial", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 3327.84, "valor_total": 23294.88, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.9 - Aquisição de Geladeira Frost Free", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 3000, "valor_total": 21000, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.10 - Aquisição de Liquidificador Industrial", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 2454.75, "valor_total": 17183.25, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.11 - Aquisição de Armário Estufa", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 14, "valor_unitario": 13035.40, "valor_total": 182495.60, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.12 - Aquisição de Fogão Industrial", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 3709.26, "valor_total": 25964.82, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.13 - Aquisição de Mesa para panificação em Aço Inox", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 1135.39, "valor_total": 7947.73, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.14 - Aquisição de Cilindro Elétrico", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 8845, "valor_total": 61915, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.15 - Aquisição de Balança Elétrica Digital", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 620, "valor_total": 4340, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.16 - Aquisição de Aparelho de Ar Condicional Split 18.000 Btus", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 14, "valor_unitario": 4750, "valor_total": 66500, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.1.17 - Aquisição de Divisora de massa de pão", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 7, "valor_unitario": 4275.49, "valor_total": 29928.43, "fonte_recurso": "SISEC" }
+                ],
+                "total_etapa": 805337.96
+              },
+              {
+                "descricao_etapa": "Etapa 2.2 - Implantar 6 (seis) espaços na área da Marcenaria no sistema prisional do Piauí.",
+                "itens": [
+                  { "item_despesa": "2.2.1 - Aquisição de Serra circular de bancada", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 971.70, "valor_total": 5830.20, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.2 - Aquisição de Serra esquadrejadeira", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 13540, "valor_total": 81240, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.3 - Aquisição de Serra Tico Tico", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 648, "valor_total": 3888, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.4 - Aquisição de Serra de Meia Esquadria", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 3353.25, "valor_total": 20119.50, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.5 - Aquisição de Desempenadeira", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 3199, "valor_total": 19194, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.6 - Aquisição de Furadeira de bancada", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 1399, "valor_total": 8394, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.7 - Aquisição de Coletor de pó", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 3623.05, "valor_total": 21738.30, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.8 - Aquisição de Tupia de bancada", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 399.24, "valor_total": 2395.44, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.9 - Aquisição de Pinador Pneumático", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 757, "valor_total": 4542, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.10 - Aquisição de Rebitador Manual", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 68.74, "valor_total": 412.44, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.11 - Aquisição de Parafusadeira de impacto", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 1034.70, "valor_total": 6208.20, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.12 - Aquisição de Lixadeira Angular 7\" 220V", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 788.50, "valor_total": 4731, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.13 - Aquisição de Tupia de Coluna", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 752.40, "valor_total": 4514.40, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.14 - Aquisição de Bancada de marcenaria", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 4000, "valor_total": 24000, "fonte_recurso": "Contrapartida" },
+                  { "item_despesa": "2.2.15 - Aquisição de carrinho de transporte marcenaria", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 2513.41, "valor_total": 15080.46, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.16 - Aquisição de Kit Marcenaria", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 1805, "valor_total": 10830, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.17 - Aquisição de Coladeira de Borda", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 6990, "valor_total": 41940, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.18 - Aquisição de Compressor", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 7661.99, "valor_total": 45971.94, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.2.19 - Aquisição de Pistola pneumática para pintura", "codigo": "44.90.52.", "unidade": "unid.", "quantidade": 6, "valor_unitario": 368, "valor_total": 2208, "fonte_recurso": "Contrapartida" }
+                ],
+                "total_etapa": 323237.88
+              },
+              {
+                "descricao_etapa": "Etapa 2.3 - Impulsionar 1 (um) espaço na área da Psicultura no sistema prisional do Piauí",
+                "itens": [
+                  { "item_despesa": "2.3.1 - Aquisição de Alevinos", "codigo": "339030", "unidade": "unid.", "quantidade": 5000, "valor_unitario": 1, "valor_total": 5000, "fonte_recurso": "SISEC" },
+                  { "item_despesa": "2.3.2 - Aquisição de Ração para peixes (alevinos)", "codigo": "339030", "unidade": "kg", "quantidade": 500, "valor_unitario": 7.42, "valor_total": 3710, "fonte_recurso": "SISEC" }
+                ],
+                "total_etapa": 8710
+              }
+            ]
+          }
+        ],
+        "total_projeto": 2637285.84
       }
     },
     "monitoramento": {
