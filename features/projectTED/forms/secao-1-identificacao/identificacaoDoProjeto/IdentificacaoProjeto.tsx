@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label"
 import React, { useEffect, useState } from "react"
 import { useProjectData } from "@/lib/contexts/project-data-context"
 import { cn } from "@/lib/utils"
-
 import { IDENTIFICACAO_PROJETO_DESCRIPTIONS, IDENTIFICACAO_PROJETO_LABELS, IDENTIFICACAO_PROJETO_PLACEHOLDERS } from "@/constants/identificacaoProjeto"
 import { SESSOES_VISAO_GERAL_TITLE } from "@/constants/visaoGeral"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
