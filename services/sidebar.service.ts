@@ -31,6 +31,7 @@ export const dashboardMenuConfig: SidebarConfig = {
         
         ],
     },
+    { title: "Observações", url: "#", icon: MessageCircle, items: [{ title: "Observações", url: "#", slug: "observacoes" }] },
     {
       title: "I - Identificação",
       url: "#",
@@ -96,7 +97,6 @@ export const dashboardMenuConfig: SidebarConfig = {
         { title: "24. Indicadores de eficiência e eficácia", url: "#", slug: "indicadores-eficiencia" },
       ],
     },
-    { title: "Observações", url: "#", icon: MessageCircle, items: [{ title: "25. Observações", url: "#", slug: "observacoes" }] },
   ],
 }
 

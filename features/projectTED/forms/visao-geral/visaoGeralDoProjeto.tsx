@@ -1,7 +1,8 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useMemo, useRef } from "react"
 import { FileDown } from "lucide-react"
+import StatusStepper from "@/components/shared/StatusStepper/statusStepper"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
 import {
   DESCRICAO_VISAO_GERAL,
@@ -14,6 +15,9 @@ import { getFormSection } from "../sections-map"
 import type { ProjectFormSectionProps } from "../sections-map"
 import styles from "./visaoGeralDoProjeto.module.css"
 import { COMUNS_TITLES } from "@/constants/communs"
+import type { StatusProjeto } from "@/constants/project"
+import projetosData from "@/data/projetos.json"
+import { STATUS_PROJETO_STEPS, statusToStepIndex } from "@/features/projectTED/services/projectTED.service"
 
 /** Ordem e títulos das seções para a visão geral (mesma ordem do menu do projeto). */
 const SECOES_VISAO_GERAL: { slug: string; title: string }[] = [
@@ -123,6 +127,18 @@ function ReadOnlyWrapper({ children }: { children: React.ReactNode }) {
 }
 
 export function VisaoGeralDoProjeto({ projectId }: ProjectFormSectionProps) {
+  const projeto = useMemo(
+    () =>
+      (projetosData as { id: number; nome: string; status?: StatusProjeto }[]).find(
+        (p) => String(p.id) === projectId
+      ),
+    [projectId]
+  )
+  const currentStep = useMemo(
+    () => statusToStepIndex(projeto?.status ?? "TRP em Elaboração"),
+    [projeto?.status]
+  )
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -148,6 +164,17 @@ export function VisaoGeralDoProjeto({ projectId }: ProjectFormSectionProps) {
           {DESCRICAO_VISAO_GERAL}
         </p>
       </div>
+
+      {projeto && (
+        <div className={styles.statusCard}>
+          <StatusStepper
+            steps={STATUS_PROJETO_STEPS}
+            currentStep={currentStep}
+            collapsible
+            collapsibleLabel="Status do projeto"
+          />
+        </div>
+      )}
 
       <div className={styles.documentHeader}>
         <h1 className={styles.documentTitle}>

@@ -3,8 +3,7 @@
     max-width: 100%;
     overflow-x: auto;
     overflow-y: visible;
-    padding: var(--spacing-1) 0 var(--spacing-2) 0;
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(--spacing-1);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
 }
@@ -193,4 +192,5 @@
 
 .motionWrapper {
     overflow: hidden;
+    padding-top: var(--spacing-3);
 }

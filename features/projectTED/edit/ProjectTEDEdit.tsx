@@ -2,28 +2,30 @@
 
 import { useParams, useSearchParams } from "next/navigation"
 import { useEffect, useMemo } from "react"
+import styles from "./ProjectTEDEdit.module.css"
+
 import {
   DEFAULT_FORM_SECTION,
   PROJECT_FORM_SECTIONS,
 } from "@/features/projectTED/forms"
+
 import type { CronogramaData } from "@/features/projectTED/forms/secao-2-descricao/etapas-cronograma/types"
 import { CronogramaProvider } from "@/features/projectTED/forms/secao-2-descricao/CronogramaContext"
-import StatusStepper from "@/components/shared/StatusStepper/statusStepper"
+
 import { useBreadcrumb } from "@/lib/contexts/breadcrumb-context"
 import { ProjectDataProvider } from "@/lib/contexts/project-data-context"
+
 import {
   mapModeloCronogramaToForm,
-  STATUS_PROJETO_STEPS,
-  statusToStepIndex,
   type ProjectModelData,
 } from "@/features/projectTED/services/projectTED.service"
+
 import type { StatusProjeto } from "@/constants/project"
+
 import projetosData from "@/data/projetos.json"
 import projetoModelo from "@/features/projectTED/model/projetoModelo.json"
 
-/**
- * Página de edição do projeto TED (formulário TRP I a VI).
- */
+// Página de edição do projeto TED (formulário TRP I a VI).
 export function ProjectTEDEditContent() {
   const params = useParams()
   const searchParams = useSearchParams()
@@ -42,31 +44,21 @@ export function ProjectTEDEditContent() {
     (p) => String(p.id) === projectId
   )
 
-  const currentStep = useMemo(
-    () => statusToStepIndex(projeto?.status ?? "TRP em Elaboração"),
-    [projeto?.status]
-  )
-
   useEffect(() => {
     if (projeto?.nome) setProjectName(projeto.nome)
     return () => setProjectName(null)
   }, [projeto?.nome, setProjectName])
 
   const projectData = projectId === "2" ? (projetoModelo as ProjectModelData) : null
+
   const initialCronograma: CronogramaData | undefined = projectData
     ? (mapModeloCronogramaToForm(projectData.etapas_cronograma) as CronogramaData)
     : undefined
 
   return (
     <ProjectDataProvider projectId={projectId} projectData={projectData}>
-      <div className="min-w-0 max-w-full px-4 sm:px-6">
-        {projeto && (
-          <div className="mb-4 sm:mb-6 rounded-xl border bg-card p-4 sm:p-6 shadow-sm overflow-hidden">
-            <StatusStepper steps={STATUS_PROJETO_STEPS} currentStep={currentStep} collapsible collapsibleLabel="Status do projeto" />
-          </div>
-        )}
-
-        <div className="w-full min-w-0 min-h-[50vh] rounded-xl border bg-muted/40 p-4 sm:p-6 overflow-auto">
+      <div className={styles.pageWrapper}>
+        <div className={styles.formContainer}>
           <CronogramaProvider initialData={initialCronograma}>
             <FormSection projectId={projectId} />
           </CronogramaProvider>

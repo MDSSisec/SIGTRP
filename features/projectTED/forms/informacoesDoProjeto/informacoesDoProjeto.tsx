@@ -1,7 +1,8 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { Label } from "@/components/ui/label"
+import StatusStepper from "@/components/shared/StatusStepper/statusStepper"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
 import {
   PROJECT_TYPE_OPTIONS,
@@ -10,8 +11,10 @@ import {
   type StatusProjeto,
 } from "@/constants/project"
 import type { ProjectFormSectionProps } from "../sections-map"
+import { SESSOES_VISAO_GERAL_TITLE } from "@/constants/visaoGeral"
 import projetosData from "@/data/projetos.json"
 import styles from "./informacoesDoProjeto.module.css"
+import { STATUS_PROJETO_STEPS, statusToStepIndex } from "@/features/projectTED/services/projectTED.service"
 
 type ProjetoJson = { id: number; nome?: string; responsavel?: string; status?: string; tipo?: string }
 const projetosJson = projetosData as ProjetoJson[]
@@ -91,8 +94,31 @@ export function InformacoesDoProjeto({ projectId, readOnlyView }: ProjectFormSec
 
   const isReadOnly = Boolean(readOnlyView)
 
+  const projeto = useMemo(
+    () => projetosJson.find((p) => String(p.id) === projectId),
+    [projectId]
+  )
+  const currentStep = useMemo(
+    () => statusToStepIndex((dados?.status as StatusProjeto) ?? "TRP em Elaboração"),
+    [dados?.status]
+  )
+
+  /** Chaves das seções que o sistema marca como concluídas (preenchidas). Pode ser preenchido por API/regra de negócio. */
+  const [itensConcluidos] = useState<Set<string>>(() => new Set())
+
   return (
     <div className={styles.container}>
+      {projeto && (
+        <div className={styles.statusCard}>
+          <StatusStepper
+            steps={STATUS_PROJETO_STEPS}
+            currentStep={currentStep}
+            collapsible
+            collapsibleLabel="Status do projeto"
+          />
+        </div>
+      )}
+
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Informações do Projeto</h2>
 
@@ -189,14 +215,51 @@ export function InformacoesDoProjeto({ projectId, readOnlyView }: ProjectFormSec
             </select>
           </div>
         </div>
+
+        {!isReadOnly && (
+          <div className={styles.actions}>
+            <GenericButton variant="editar" onClick={() => {}} />
+            <GenericButton variant="salvar" onClick={() => {}} />
+          </div>
+        )}
       </section>
 
-      {!isReadOnly && (
-        <div className={styles.actions}>
-          <GenericButton variant="editar" onClick={() => {}} />
-          <GenericButton variant="salvar" onClick={() => {}} />
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Itens Preenchidos</h2>
+        <div className={styles.itensList}>
+          {(() => {
+            const entries = Object.entries(SESSOES_VISAO_GERAL_TITLE).filter(
+              ([key]) => key !== "TITLE_SESSAO_OBSERVACOES"
+            )
+            const half = Math.ceil(entries.length / 2)
+            const col1 = entries.slice(0, half)
+            const col2 = entries.slice(half)
+            const renderCol = (items: [string, string][]) => (
+              <ul className={styles.itensCol}>
+                {items.map(([key, title]) => (
+                  <li key={key} className={styles.itensListItem}>
+                    <input
+                      type="checkbox"
+                      checked={itensConcluidos.has(key)}
+                      readOnly
+                      tabIndex={-1}
+                      aria-label={`${title} ${itensConcluidos.has(key) ? "concluído" : "pendente"}`}
+                      className={styles.itensCheckbox}
+                    />
+                    <span className={styles.itensLabel}>{title}</span>
+                  </li>
+                ))}
+              </ul>
+            )
+            return (
+              <>
+                {renderCol(col1)}
+                {renderCol(col2)}
+              </>
+            )
+          })()}
         </div>
-      )}
+      </section>
     </div>
   )
 }
