@@ -124,12 +124,47 @@
         "beneficiarios_diretos": { "homens": 420, "mulheres": 80, "total": 500 },
         "beneficiarios_indiretos": { "homens": 1260, "mulheres": 240, "total": 1500 }
       },
-      "povos_comunidades_tradicionais": "Não se aplica",
-      "perfil_socio_ocupacional": "Outros: Pessoas privadas de liberdade",
-      "servicos_acessados": "Outros: Inscritos no CadÚnico"
+      "povos_comunidades_tradicionais": {
+        "pergunta": "15. Informe se o público beneficiário faz parte de algum destes povos ou comunidades tradicionais.",
+        "opcoes": [
+          { "label": "Indígenas", "selecionado": false },
+          { "label": "Comunidades quilombolas", "selecionado": false },
+          { "label": "Comunidades de terreiro", "selecionado": false },
+          { "label": "Comunidades caboclas", "selecionado": false },
+          { "label": "Extrativistas", "selecionado": false },
+          { "label": "Ribeirinhos (as)", "selecionado": false },
+          { "label": "Pescadores (as) artesanais", "selecionado": false },
+          { "label": "Outros povos e comunidades tradicionais. Quais:", "selecionado": false, "especificar": null },
+          { "label": "Não se aplica", "selecionado": true }
+        ]
+      },
+      "perfil_socio_ocupacional": {
+        "pergunta": "16. Informe o perfil sócio-ocupacional predominante do público beneficiário",
+        "opcoes": [
+          { "label": "Artesãos (ãs)", "selecionado": false },
+          { "label": "Catadores (as) de materiais recicláveis", "selecionado": false },
+          { "label": "Garimpeiros (as), mineiros (as)", "selecionado": false },
+          { "label": "Pescadores (as), extrativistas", "selecionado": false },
+          { "label": "Trabalhadores (as) de empresa recuperada", "selecionado": false },
+          { "label": "Usuários do sistema de saúde mental", "selecionado": false },
+          { "label": "Outros (Especificar)", "selecionado": true, "especificar": "Pessoas privadas de liberdade" },
+          { "label": "Não se aplica", "selecionado": false }
+        ]
+      },
+      "servicos_acessados": {
+        "pergunta": "17. Informe se o público beneficiário está acessando alguns dos serviços",
+        "opcoes": [
+          { "label": "Centros de Referência Especializado para População em Situação de Rua (Centros POP)", "selecionado": false },
+          { "label": "Centros de Atenção Psicossocial (CAPS)", "selecionado": false },
+          { "label": "Bolsa Família", "selecionado": false },
+          { "label": "Previdência Social ou Benefício de Prestação Continuada", "selecionado": false },
+          { "label": "Outros (Especificar)", "selecionado": true, "especificar": "Inscritos no CadÚnico" }
+        ]
+      }
     },
     "caracterizacao_proponente": {
-      "outras_informacoes": "A Secretaria de Estado da Justiça do Piauí (SEJUS) é o órgão da administração direta do Estado do Piauí, cujas competências estão previstas na Lei n° 7.883/2022, as quais dispõem que tem por finalidade a promoção, a manutenção, a execução e o acompanhamento da política de Governo relacionada com a cidadania, o sistema penitenciário e os serviços prisionais, competindo-lhe administrar o sistema penitenciário do Estado do Piauí, desenvolvendo programas de ressocialização dos presos, promovendo a modernização do sistema penitenciário, bem como a criação e a execução de programas de proteção especial às vítimas e testemunhas de crimes."
+      "pergunta": "18. Outras informações julgadas apropriadas sobre a entidade proponente",
+      "outras_informacoes": "A Secretaria de Estado da Justiça do Piauí (SEJUS) é o órgão da administração direta do Estado do Piauí, cujas competências estão previstas no âmbito da Lei n° 7.883/2022, as quais dispõem que tem por finalidade a promoção, a manutenção, a execução e o acompanhamento da política de Governo relacionada com a cidadania, o sistema penitenciário e os serviços prisionais, competindo-lhe administrar o sistema penitenciário do Estado do Piauí, desenvolvendo programas de ressocialização dos presos, promovendo a modernização do sistema penitenciário, bem como a criação e a execução de programas de proteção especial às vítimas e testemunhas de crimes."
     },
     "dados_fisico_financeiros": {
       "valor_total": {

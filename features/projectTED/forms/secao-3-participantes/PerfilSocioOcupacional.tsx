@@ -1,9 +1,12 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import { Check } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
+import { useProjectData } from "@/lib/contexts/project-data-context"
+import { cn } from "@/lib/utils"
 
 const OPCOES = [
   { id: "artesaos", label: "Artesãos (ãs)" },
@@ -12,7 +15,7 @@ const OPCOES = [
   { id: "pescadores_extrativistas", label: "Pescadores (as), extrativistas" },
   { id: "empresa_recuperada", label: "Trabalhadores (as) de empresa recuperada" },
   { id: "saude_mental", label: "Usuários do sistema de saúde mental" },
-  { id: "outros", label: "Outros (Especificar): CadÚnico", comEspecificar: true as const },
+  { id: "outros", label: "Outros (Especificar)", comEspecificar: true as const },
   { id: "nao_se_aplica", label: "Não se aplica" },
 ]
 
@@ -20,11 +23,40 @@ function temEspecificar(op: (typeof OPCOES)[number]): op is (typeof OPCOES)[numb
   return "comEspecificar" in op && op.comEspecificar === true
 }
 
-type Props = { projectId?: string; onChange?: (dados: { selecoes: string[]; outrosEspecificar?: string }) => void }
+function getInicialFromModel(projectData: ReturnType<typeof useProjectData>): { selecoes: string[]; outrosEspecificar: string } {
+  const data = (projectData as { participantes?: { perfil_socio_ocupacional?: unknown } } | null)?.participantes?.perfil_socio_ocupacional
+  if (!data || typeof data !== "object" || !Array.isArray((data as { opcoes?: unknown }).opcoes)) {
+    return { selecoes: [], outrosEspecificar: "" }
+  }
+  const opcoes = (data as { opcoes: { label: string; selecionado: boolean; especificar?: string | null }[] }).opcoes
+  const selecoes = OPCOES.filter((op, i) => opcoes[i]?.selecionado).map((op) => op.id)
+  const outrosOp = opcoes.find((o) => o.label.includes("Outros") && o.especificar != null)
+  const outrosEspecificar = outrosOp && typeof outrosOp.especificar === "string" ? outrosOp.especificar : ""
+  return { selecoes, outrosEspecificar }
+}
 
-export function PerfilSocioOcupacional({ projectId: _projectId, onChange }: Props) {
-  const [selecoes, setSelecoes] = useState<string[]>([])
-  const [outrosEspecificar, setOutrosEspecificar] = useState("")
+type Props = {
+  projectId?: string
+  readOnlyView?: boolean
+  onChange?: (dados: { selecoes: string[]; outrosEspecificar?: string }) => void
+}
+
+export function PerfilSocioOcupacional({ projectId, readOnlyView, onChange }: Props) {
+  const projectData = useProjectData()
+  const [selecoes, setSelecoes] = useState<string[]>(() =>
+    projectId === "2" && projectData ? getInicialFromModel(projectData).selecoes : []
+  )
+  const [outrosEspecificar, setOutrosEspecificar] = useState(() =>
+    projectId === "2" && projectData ? getInicialFromModel(projectData).outrosEspecificar : ""
+  )
+
+  useEffect(() => {
+    if (projectId === "2" && projectData) {
+      const init = getInicialFromModel(projectData)
+      setSelecoes(init.selecoes)
+      setOutrosEspecificar(init.outrosEspecificar)
+    }
+  }, [projectId, projectData])
 
   const toggle = (id: string) => {
     const next = selecoes.includes(id)
@@ -39,23 +71,41 @@ export function PerfilSocioOcupacional({ projectId: _projectId, onChange }: Prop
     onChange?.({ selecoes, outrosEspecificar: value })
   }
 
+  const pergunta =
+    ((projectData as { participantes?: { perfil_socio_ocupacional?: { pergunta?: string } } } | null)?.participantes?.perfil_socio_ocupacional as { pergunta?: string } | undefined)?.pergunta ??
+    "16. Informe o perfil sócio-ocupacional predominante do público beneficiário"
+
   return (
     <div className="space-y-8 rounded-xl bg-muted/50 p-6">
       <section className="space-y-5">
         <h2 className="text-base font-semibold text-foreground border-b pb-2">
-          16. Informe o perfil sócio-ocupacional predominante do público beneficiário
+          {pergunta}
         </h2>
 
         <div className="space-y-3">
           {OPCOES.map((op) => (
             <div key={op.id} className="flex flex-wrap items-center gap-3">
-              <input
-                type="checkbox"
-                id={op.id}
-                checked={selecoes.includes(op.id)}
-                onChange={() => toggle(op.id)}
-                className="h-4 w-4 rounded border-input bg-white text-primary focus:ring-2 focus:ring-primary/20"
-              />
+              {readOnlyView ? (
+                <span
+                  className={cn(
+                    "flex h-4 w-4 shrink-0 items-center justify-center rounded border border-input bg-white",
+                    selecoes.includes(op.id) && "border-[#0a0a0a]"
+                  )}
+                  aria-hidden
+                >
+                  {selecoes.includes(op.id) && (
+                    <Check className="h-2.5 w-2.5 text-[#0a0a0a]" strokeWidth={3} />
+                  )}
+                </span>
+              ) : (
+                <input
+                  type="checkbox"
+                  id={op.id}
+                  checked={selecoes.includes(op.id)}
+                  onChange={() => toggle(op.id)}
+                  className="h-4 w-4 rounded border-input bg-white text-primary focus:ring-2 focus:ring-primary/20"
+                />
+              )}
               <Label
                 htmlFor={op.id}
                 className="font-medium text-foreground cursor-pointer"
@@ -67,6 +117,8 @@ export function PerfilSocioOcupacional({ projectId: _projectId, onChange }: Prop
                   value={outrosEspecificar}
                   onChange={(e) => handleOutrosChange(e.target.value)}
                   placeholder="Especificar"
+                  disabled={readOnlyView}
+                  readOnly={readOnlyView}
                   className="max-w-xs bg-white border-input"
                 />
               )}
@@ -75,10 +127,12 @@ export function PerfilSocioOcupacional({ projectId: _projectId, onChange }: Prop
         </div>
       </section>
 
-      <div className="flex flex-wrap items-center justify-end gap-3 border-t pt-6">
-        <GenericButton variant="editar" onClick={() => {}} />
-        <GenericButton variant="salvar" onClick={() => {}} />
-      </div>
+      {!readOnlyView && (
+        <div className="flex flex-wrap items-center justify-end gap-3 border-t pt-6">
+          <GenericButton variant="editar" onClick={() => {}} />
+          <GenericButton variant="salvar" onClick={() => {}} />
+        </div>
+      )}
     </div>
   )
 }

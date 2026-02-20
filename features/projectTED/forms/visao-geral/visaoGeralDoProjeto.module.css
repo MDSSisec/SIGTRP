@@ -116,13 +116,14 @@
     border: 1px solid var(--input);
     background: var(--card);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .sectionContent {
     min-width: 0;
     max-width: 100%;
     overflow-x: auto;
+    overflow-y: visible;
     padding: 1rem;
     background: var(--background);
 }
@@ -146,6 +147,26 @@
     opacity: 1;
 }
 
+/* Permite rolar e redimensionar campos com texto longo na visão geral */
+.sectionContent textarea,
+.sectionContent textarea:disabled,
+.sectionContent textarea[readonly] {
+    resize: vertical;
+    min-height: 4rem;
+    max-height: 40rem;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.sectionContent input[type="text"],
+.sectionContent input[type="email"],
+.sectionContent input:not([type]),
+.sectionContent input[type="text"]:disabled,
+.sectionContent input[type="text"]:read-only {
+    overflow-x: auto;
+    min-height: 2.25rem;
+}
+
 .sectionContent input:focus,
 .sectionContent input:not(:placeholder-shown),
 .sectionContent textarea:focus,
@@ -165,4 +186,21 @@
 .readOnlyWrapper {
     pointer-events: none;
     user-select: text;
+}
+
+/* Permite rolar e selecionar texto; campos continuam disabled/readonly (não editáveis) */
+.readOnlyWrapper input,
+.readOnlyWrapper textarea,
+.readOnlyWrapper select {
+    pointer-events: auto;
+    cursor: default;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.readOnlyWrapper input:disabled,
+.readOnlyWrapper textarea:disabled,
+.readOnlyWrapper select:disabled {
+    cursor: default;
+    opacity: 1;
 }

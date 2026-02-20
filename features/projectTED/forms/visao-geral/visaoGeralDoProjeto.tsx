@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useMemo, useRef } from "react"
+import React, { useLayoutEffect, useMemo, useRef } from "react"
 import { FileDown } from "lucide-react"
 import StatusStepper from "@/components/shared/StatusStepper/statusStepper"
 import { GenericButton } from "@/components/shared/Buttons/genericButton"
@@ -99,24 +99,38 @@ const SECOES_VISAO_GERAL: { slug: string; title: string }[] = [
   },
 ]
 
-/** Desabilita inputs e oculta botões para modo somente leitura. */
+function applyReadOnly(el: HTMLElement) {
+  el.querySelectorAll("input, textarea, select").forEach((node) => {
+    const n = node as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    n.setAttribute("readonly", "")
+    n.setAttribute("disabled", "")
+    n.setAttribute("tabIndex", "-1")
+  })
+  el.querySelectorAll("button").forEach((node) => {
+    const btn = node as HTMLButtonElement
+    btn.style.display = "none"
+  })
+  el.querySelectorAll("[contenteditable]").forEach((node) => {
+    (node as HTMLElement).setAttribute("contenteditable", "false")
+  })
+}
+
+/** Desabilita inputs e oculta botões para modo somente leitura. Reaplica quando o conteúdo da seção muda. */
 function ReadOnlyWrapper({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current
     if (!el) return
 
-    el.querySelectorAll("input, textarea, select").forEach((node) => {
-      const n = node as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-      n.setAttribute("readonly", "")
-      n.setAttribute("disabled", "")
-    })
+    applyReadOnly(el)
 
-    el.querySelectorAll("button").forEach((node) => {
-      const btn = node as HTMLButtonElement
-      btn.style.display = "none"
+    const observer = new MutationObserver(() => {
+      applyReadOnly(el)
     })
+    observer.observe(el, { childList: true, subtree: true })
+
+    return () => observer.disconnect()
   }, [])
 
   return (

@@ -101,6 +101,40 @@ export interface ProjectModelData {
       forma_selecao?: string
     }
   }
+
+  caracterizacao_proponente?: {
+    pergunta?: string
+    outras_informacoes?: string
+  }
+
+  participantes?: {
+    historico_situacao_territorios?: string
+    base_territorial?: { descricao?: string; total_beneficiarios_cadunico?: number }
+    publico_beneficiario?: {
+      descricao?: string
+      link_comprovante_cadunico?: string
+      beneficiarios_diretos?: { homens?: number; mulheres?: number; total?: number }
+      beneficiarios_indiretos?: { homens?: number; mulheres?: number; total?: number }
+    }
+    povos_comunidades_tradicionais?:
+      | string
+      | {
+          pergunta?: string
+          opcoes?: Array<{ label: string; selecionado: boolean; especificar?: string | null }>
+        }
+    perfil_socio_ocupacional?:
+      | string
+      | {
+          pergunta?: string
+          opcoes?: Array<{ label: string; selecionado: boolean; especificar?: string | null }>
+        }
+    servicos_acessados?:
+      | string
+      | {
+          pergunta?: string
+          opcoes?: Array<{ label: string; selecionado: boolean; especificar?: string | null }>
+        }
+  }
 }
 
 // =========================================================
