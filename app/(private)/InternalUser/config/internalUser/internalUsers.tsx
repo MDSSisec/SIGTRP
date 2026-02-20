@@ -10,27 +10,39 @@ import {
   DataTable,
   type TableColumn,
 } from "@/components/shared/Tables/GenericTable/genericTable"
-import {
-  PERFIL_USUARIO_OPTIONS,
-  STATUS_USUARIO_OPTIONS,
-} from "@/constants/user"
-import type { PerfilUsuario, StatusUsuario, Usuario } from "@/types/user"
-import { getUsuarioStatusStyle } from "@/services/user.service"
-import { filterUsuarios } from "@/lib/utils"
-import dadosIniciaisJson from "@/lib/exempleData/internalUser.json"
+import { 
+  type Usuario, 
+  type StatusUsuario, 
+  type PerfilUsuario, 
+  statusOptions,
+  perfilOptions
+} from "./data"
+import { useUser } from "../context/UserContext"
 
-const dadosIniciais = dadosIniciaisJson as Usuario[]
-
-import styles from "./internalUsers.module.css"
+const getStatusStyle = (status: StatusUsuario) => {
+  switch (status) {
+    case "Ativo":
+      return "bg-green-100 text-green-700"
+    case "Inativo":
+      return "bg-red-100 text-red-700"
+    case "Pendente":
+      return "bg-yellow-100 text-yellow-700"
+    default:
+      return ""
+  }
+}
 
 const columns: TableColumn<Usuario>[] = [
   { id: "nome", label: "Nome", align: "left" },
+  { id: "email", label: "Email", align: "left" },
   {
     id: "status",
     label: "Status",
     align: "center",
     render: (row) => (
-      <span className={getUsuarioStatusStyle(row.status)}>
+      <span
+        className={`inline-flex min-w-[5rem] items-center justify-center rounded-full px-2 py-1 text-xs font-medium ${getStatusStyle(row.status)}`}
+      >
         {row.status}
       </span>
     ),
@@ -41,7 +53,7 @@ const columns: TableColumn<Usuario>[] = [
     label: "Ações",
     align: "center",
     render: (row) => (
-      <div className={styles.actions}>
+      <div className="flex justify-center gap-2">
         <button
           type="button"
           className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 text-amber-600 hover:text-amber-800"
@@ -75,18 +87,28 @@ const filtrosUsuarios: FiltroConfig[] = [
   {
     name: "status",
     type: "select",
-    options: [{ label: "Todos", value: "" }, ...STATUS_USUARIO_OPTIONS],
+    options: [
+      { label: "Todos", value: "" },
+      { label: "Ativo", value: "Ativo" },
+      { label: "Inativo", value: "Inativo" },
+      { label: "Pendente", value: "Pendente" },
+    ],
   },
   {
     name: "perfil",
     type: "select",
-    options: [{ label: "Todos", value: "" }, ...PERFIL_USUARIO_OPTIONS],
+    options: [
+      { label: "Todos", value: "" },
+      { label: "Administrador", value: "Administrador" },
+      { label: "Usuário", value: "Usuário" },
+      { label: "Gestor", value: "Gestor" },
+    ],
   },
 ]
 
 export function InternalUsersContent() {
+  const { internalUsers, setInternalUsers } = useUser()
   const [filtrosValores, setFiltrosValores] = useState<Record<string, string>>({})
-  const [usuarios, setUsuarios] = useState<Usuario[]>(dadosIniciais)
   const [popupAberto, setPopupAberto] = useState(false)
   const [form, setForm] = useState({
     nome: "",
@@ -95,10 +117,17 @@ export function InternalUsersContent() {
     perfil: "Usuário" as PerfilUsuario,
   })
 
-  const usuariosFiltrados = useMemo(
-    () => filterUsuarios(usuarios, filtrosValores),
-    [filtrosValores, usuarios]
-  )
+  const usuariosFiltrados = useMemo(() => {
+    return internalUsers.filter((u) => {
+      const nome = (filtrosValores.nome ?? "").trim().toLowerCase()
+      if (nome && !u.nome.toLowerCase().includes(nome)) return false
+      const status = filtrosValores.status ?? ""
+      if (status && u.status !== status) return false
+      const perfil = filtrosValores.perfil ?? ""
+      if (perfil && u.perfil !== perfil) return false
+      return true
+    })
+  }, [filtrosValores, internalUsers])
 
   const abrirPopup = () => {
     setForm({ nome: "", email: "", status: "Ativo", perfil: "Usuário" })
@@ -110,8 +139,8 @@ export function InternalUsersContent() {
   const handleSalvarUsuario = (e: React.FormEvent) => {
     e.preventDefault()
     if (!form.nome.trim() || !form.email.trim()) return
-    const novoId = Math.max(0, ...usuarios.map((u) => u.id)) + 1
-    setUsuarios((prev) => [
+    const novoId = Math.max(0, ...internalUsers.map((u) => u.id)) + 1
+    setInternalUsers((prev) => [
       ...prev,
       { id: novoId, nome: form.nome.trim(), email: form.email.trim(), status: form.status, perfil: form.perfil },
     ])
@@ -119,69 +148,72 @@ export function InternalUsersContent() {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>Usuários Internos</h1>
+    <div className="px-6">
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-xl font-semibold">Usuários Internos</h1>
         <OpenPopUpButton title="+ Adicionar usuário" onClick={abrirPopup} />
       </div>
 
       <Popup open={popupAberto} title="Cadastrar usuário" onClose={fecharPopup}>
-        <form onSubmit={handleSalvarUsuario} className={styles.form}>
+        <form onSubmit={handleSalvarUsuario} className="space-y-4">
           <div>
-            <label className={styles.label}>Nome</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
             <input
               type="text"
               value={form.nome}
               onChange={(e) => setForm((f) => ({ ...f, nome: e.target.value }))}
-              className={styles.input}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
               placeholder="Nome completo"
               required
             />
           </div>
-
           <div>
-            <label className={styles.label}>E-mail</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
             <input
               type="email"
               value={form.email}
               onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-              className={styles.input}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
               placeholder="email@exemplo.com"
               required
             />
           </div>
-
           <div>
-            <label className={styles.label}>Status</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
             <select
               value={form.status}
               onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as StatusUsuario }))}
-              className={styles.select}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white"
             >
-              {STATUS_USUARIO_OPTIONS.map((opt) => (
+              {statusOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
               ))}
             </select>
           </div>
-
           <div>
-            <label className={styles.label}>Perfil</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Perfil</label>
             <select
               value={form.perfil}
               onChange={(e) => setForm((f) => ({ ...f, perfil: e.target.value as PerfilUsuario }))}
-              className={styles.select}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white"
             >
-              {PERFIL_USUARIO_OPTIONS.map((opt) => (
+              {perfilOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
               ))}
             </select>
           </div>
-
-          <div className={styles.formActions}>
-            <button type="button" onClick={fecharPopup} className={styles.cancelButton}>
+          <div className="flex justify-end gap-2 pt-2">
+            <button
+              type="button"
+              onClick={fecharPopup}
+              className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 text-sm hover:bg-gray-50"
+            >
               Cancelar
             </button>
-            <button type="submit" className={styles.saveButton}>
+            <button
+              type="submit"
+              className="px-4 py-2 rounded-lg bg-[#1e2938] text-white text-sm hover:opacity-90"
+            >
               Salvar
             </button>
           </div>
