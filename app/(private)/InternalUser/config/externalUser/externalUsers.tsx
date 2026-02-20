@@ -167,48 +167,48 @@ export function ExternalUsersContent() {
       <Popup open={popupAberto} title="Adicionar usuário externo" onClose={fecharPopup}>
         <form onSubmit={handleSalvarUsuario} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nome</label>
             <input
               type="text"
               value={form.nome}
               onChange={(e) => setForm((f) => ({ ...f, nome: e.target.value }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-sidebar-accent text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400"
               placeholder="Nome completo"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">E-mail</label>
             <input
               type="email"
               value={form.email}
               onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-sidebar-accent text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400"
               placeholder="email@exemplo.com"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
             <select
               value={form.status}
               onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as StatusUsuario }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-sidebar-accent text-gray-900 dark:text-gray-100"
             >
               {statusOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
+                <option key={opt.value} value={opt.value} className="dark:bg-gray-800">{opt.label}</option>
               ))}
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Perfil</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Perfil</label>
             <select
               value={form.perfil}
               onChange={(e) => setForm((f) => ({ ...f, perfil: e.target.value as PerfilUsuario }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-sidebar-accent text-gray-900 dark:text-gray-100"
             >
               {perfilOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
+                <option key={opt.value} value={opt.value} className="dark:bg-gray-800">{opt.label}</option>
               ))}
             </select>
           </div>
