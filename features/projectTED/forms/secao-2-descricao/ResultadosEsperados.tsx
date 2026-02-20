@@ -53,7 +53,7 @@ function FormularioResultadosEsperados({
   const resultados = dadosFormulario.resultados
 
   return (
-    <div className="space-y-8 rounded-xl bg-muted/50 p-6">
+    <div className="space-y-8 rounded-xl bg-gray-50 dark:bg-black p-6 border border-gray-100 dark:border-neutral-800">
       <section className="space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
           <h2 className="text-base font-semibold text-foreground">
@@ -81,7 +81,7 @@ function FormularioResultadosEsperados({
                 value={texto}
                 onChange={(e) => aoAlterarResultado(indice, e.target.value)}
                 placeholder="Descreva o resultado esperado..."
-                className="bg-white"
+                className="bg-white text-gray-900"
               />
               <div className="flex justify-end">
                 {resultados.length > 1 && (

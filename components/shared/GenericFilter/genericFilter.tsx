@@ -64,7 +64,7 @@ export default function FiltroGenerico({
 
         <button
           onClick={onLimpar}
-          className="bg-gray-800 dark:bg-gray-700 text-white rounded-lg px-4 py-2 text-sm hover:bg-black dark:hover:bg-gray-600 transition"
+          className="bg-[#52525b] dark:bg-[#3f3f46] text-white rounded-lg px-4 py-2 text-sm hover:bg-[#3f3f46] dark:hover:bg-[#52525b] transition"
         >
           Limpar
         </button>

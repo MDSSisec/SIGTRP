@@ -37,7 +37,7 @@ export function ServicosAcessados({ projectId: _projectId, onChange }: Props) {
   }
 
   return (
-    <div className="space-y-8 rounded-xl bg-muted/50 p-6">
+    <div className="space-y-8">
       <section className="space-y-5">
         <h2 className="text-base font-semibold text-foreground border-b pb-2">
           17. Informe se o público beneficiário está acessando alguns dos seguintes serviços

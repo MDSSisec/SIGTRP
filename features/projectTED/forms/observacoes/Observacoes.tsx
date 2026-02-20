@@ -27,7 +27,7 @@ interface PropsFormularioObservacoes {
 }
 
 const classeInput =
-  "border-input placeholder:text-muted-foreground w-full min-w-0 rounded-md border bg-white px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm"
+  "border-input placeholder:text-muted-foreground w-full min-w-0 rounded-md border bg-white px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm text-gray-900"
 
 const classeTextarea = cn(
   classeInput,
@@ -35,7 +35,7 @@ const classeTextarea = cn(
 )
 
 const classeSelect = cn(
-  "border-input w-full min-w-0 rounded-md border bg-white px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm cursor-pointer"
+  "border-input w-full min-w-0 rounded-md border bg-white px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm cursor-pointer text-gray-900"
 )
 
 function FormularioObservacoes({ onChange }: PropsFormularioObservacoes) {
@@ -73,7 +73,7 @@ function FormularioObservacoes({ onChange }: PropsFormularioObservacoes) {
   const itens = dadosFormulario.itens
 
   return (
-    <div className="space-y-8 rounded-xl bg-muted/50 p-6">
+    <div className="space-y-8 rounded-xl bg-gray-50 dark:bg-black p-6 border border-gray-100 dark:border-neutral-800">
       <section className="space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
           <h2 className="text-base font-semibold text-foreground">

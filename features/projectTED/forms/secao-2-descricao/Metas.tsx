@@ -30,7 +30,7 @@ function FormularioMetas({ onChange }: PropsFormularioMetas) {
 
   if (metas.length === 0) {
     return (
-      <div className="space-y-8 rounded-xl bg-muted/50 p-6">
+      <div className="space-y-8 rounded-xl bg-gray-50 dark:bg-black p-6 border border-gray-100 dark:border-neutral-800">
         <section className="space-y-5">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
             <h2 className="text-base font-semibold text-foreground">
@@ -54,7 +54,7 @@ function FormularioMetas({ onChange }: PropsFormularioMetas) {
   }
 
   return (
-    <div className="space-y-8 rounded-xl bg-muted/50 p-6">
+    <div className="space-y-8 rounded-xl bg-gray-50 dark:bg-black p-6 border border-gray-100 dark:border-neutral-800">
       <section className="space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
           <h2 className="text-base font-semibold text-foreground">
@@ -82,7 +82,7 @@ function FormularioMetas({ onChange }: PropsFormularioMetas) {
                 value={meta.titulo}
                 onChange={(e) => aoAlterarTitulo(indice, e.target.value)}
                 placeholder="Ex: Atender 500 famílias no território"
-                className="bg-white"
+                className="bg-white text-gray-900"
               />
               <div className="flex justify-end">
                 {metas.length > 1 && (

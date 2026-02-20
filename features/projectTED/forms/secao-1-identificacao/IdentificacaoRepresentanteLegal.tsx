@@ -68,7 +68,7 @@ function FormularioIdentificacaoRepresentanteLegal({
   }
 
   return (
-    <div className="space-y-8 rounded-xl bg-muted/50 p-6">
+    <div className="space-y-8">
       <section className="space-y-5">
         <h2 className="text-base font-semibold text-foreground border-b pb-2">
           3. Identificação do Representante Legal do(a) Proponente

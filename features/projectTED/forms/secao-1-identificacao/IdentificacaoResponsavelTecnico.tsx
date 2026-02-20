@@ -63,7 +63,7 @@ function FormularioIdentificacaoResponsavelTecnico({
   }
 
   return (
-    <div className="space-y-8 rounded-xl bg-muted/50 p-6">
+    <div className="space-y-8">
       <section className="space-y-5">
         <h2 className="text-base font-semibold text-foreground border-b pb-2">
           4. Identificação do Responsável Técnico pelo Projeto

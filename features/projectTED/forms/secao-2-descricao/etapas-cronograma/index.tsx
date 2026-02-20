@@ -102,7 +102,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
   }
 
   return (
-    <div className="w-full min-w-0 space-y-6 rounded-xl bg-muted/50 p-6">
+    <div className="w-full min-w-0 space-y-6">
       <h2 className="text-base font-semibold text-foreground border-b pb-2">
         8. Etapas e cronograma de execução
       </h2>
