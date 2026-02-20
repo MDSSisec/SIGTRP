@@ -1,7 +1,8 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { Pencil, Trash2 } from "lucide-react"
+import Link from "next/link"
+import { Pencil, Trash2, KeyRound } from "lucide-react"
 import OpenPopUpButton from "@/components/shared/Buttons/openPopUpButton"
 import FiltroGenerico, { type FiltroConfig } from "@/components/shared/GenericFilter/genericFilter"
 import {
@@ -61,15 +62,24 @@ const columns: TableColumn<UsuarioExterno>[] = [
     id: "acoes",
     label: "Ações",
     align: "center",
-    render: () => (
+    render: (row) => (
       <div className="flex justify-center gap-2">
         <button
           type="button"
-          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300"
+          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 text-amber-600 hover:text-amber-800"
+          aria-label="Redefinir Senha"
+          title="Redefinir Senha"
+          onClick={() => alert(`Solicitação de redefinição de senha para: ${row.nome}`)}
+        >
+          <KeyRound size={16} />
+        </button>
+        <Link
+          href={`/InternalUser/config/externalUser/${row.id}`}
+          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 inline-flex items-center justify-center"
           aria-label="Editar"
         >
           <Pencil size={16} />
-        </button>
+        </Link>
         <button
           type="button"
           className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 text-red-600 hover:text-red-800"

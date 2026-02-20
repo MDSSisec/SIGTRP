@@ -1,7 +1,8 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { Pencil, Trash2 } from "lucide-react"
+import Link from "next/link"
+import { Pencil, Trash2, KeyRound } from "lucide-react"
 import OpenPopUpButton from "@/components/shared/Buttons/openPopUpButton"
 import Popup from "@/components/shared/PopUps/Generico/popUpGenerico"
 import FiltroGenerico, { type FiltroConfig } from "@/components/shared/GenericFilter/genericFilter"
@@ -39,14 +40,27 @@ const columns: TableColumn<Usuario>[] = [
     id: "acoes",
     label: "Ações",
     align: "center",
-    render: () => (
+    render: (row) => (
       <div className={styles.actions}>
-        <button type="button" className={styles.actionButton} aria-label="Editar">
-          <Pencil size={16} />
-        </button>
         <button
           type="button"
-          className={`${styles.actionButton} ${styles.deleteButton}`}
+          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 text-amber-600 hover:text-amber-800"
+          aria-label="Redefinir Senha"
+          title="Redefinir Senha"
+          onClick={() => alert(`Solicitação de redefinição de senha para: ${row.nome}`)}
+        >
+          <KeyRound size={16} />
+        </button>
+        <Link
+          href={`/InternalUser/config/internalUser/${row.id}`}
+          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 inline-flex items-center justify-center"
+          aria-label="Editar"
+        >
+          <Pencil size={16} />
+        </Link>
+        <button
+          type="button"
+          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 text-red-600 hover:text-red-800"
           aria-label="Excluir"
         >
           <Trash2 size={16} />
