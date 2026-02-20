@@ -76,7 +76,7 @@ export function PerfilSocioOcupacional({ projectId, readOnlyView, onChange }: Pr
     "16. Informe o perfil sócio-ocupacional predominante do público beneficiário"
 
   return (
-    <div className="space-y-8 rounded-xl bg-muted/50 p-6">
+    <div className="space-y-8">
       <section className="space-y-5">
         <h2 className="text-base font-semibold text-foreground border-b pb-2">
           {pergunta}

@@ -83,10 +83,10 @@ function FormularioObjetivos({ onChange, projectId }: PropsFormularioObjetivos) 
   }
 
   const classeDoTextarea =
-    "border-input placeholder:text-muted-foreground w-full min-w-0 rounded-md border bg-white px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] min-h-[8rem] resize-y md:text-sm"
+    "border-input placeholder:text-muted-foreground w-full min-w-0 rounded-md border bg-white px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] min-h-[8rem] resize-y md:text-sm text-gray-900"
 
   return (
-    <div className="space-y-8 rounded-xl bg-muted/50 p-6">
+    <div className="space-y-8 rounded-xl bg-gray-50 dark:bg-black p-6 border border-gray-100 dark:border-neutral-800">
       <section className="space-y-5">
         <h2 className="text-base font-semibold text-foreground border-b pb-2">
           6. Objetivos
@@ -143,7 +143,7 @@ function FormularioObjetivos({ onChange, projectId }: PropsFormularioObjetivos) 
                     aoAlterarObjetivoEspecifico(indice, e.target.value)
                   }
                   placeholder="Ex: Realizar 10 oficinas de capacitação"
-                  className="bg-white"
+                  className="bg-white text-gray-900"
                 />
                 <div className="flex justify-end">
                   {dadosFormulario.objetivosEspecificos.length > 1 && (

@@ -16,13 +16,13 @@
 }
 
 .thead {
-    background-color: #cbcbcb;
+    background-color: var(--muted);
 }
 
 .th {
     border: 1px solid var(--border);
     padding: var(--spacing-2);
-    color: #0a0a0a;
+    color: var(--muted-foreground);
     font-weight: var(--font-weight-medium);
 }
 
