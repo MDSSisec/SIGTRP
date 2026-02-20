@@ -1,6 +1,9 @@
-import type { SidebarConfig, UserRole } from "./sidebar-types"
-import { dashboardMenuConfig, internalUserHomeMenuConfig } from "./internal-user"
-import { externalUserHomeMenuConfig } from "./external-user"
+import type { SidebarConfig, UserRole } from "@/types/sidebar"
+import {
+  dashboardMenuConfig,
+  internalUserHomeMenuConfig,
+  externalUserHomeMenuConfig,
+} from "@/services/sidebar.service"
 
 export type {
   NavMainItem,
@@ -9,8 +12,8 @@ export type {
   SidebarTeam,
   UserRole,
   PrivateArea,
-} from "./sidebar-types"
-export { getPrivateAreaFromPath } from "./sidebar-types"
+} from "@/types/sidebar"
+export { getPrivateAreaFromPath } from "@/types/sidebar"
 
 /**
  * Mapa rota -> config do menu.
