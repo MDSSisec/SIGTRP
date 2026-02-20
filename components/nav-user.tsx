@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import { useTheme } from "next-themes"
 import {
   BadgeCheck,
   Bell,
@@ -9,6 +10,9 @@ import {
   CreditCard,
   LogOut,
   Sparkles,
+  Sun,
+  Moon,
+  Laptop,
 } from "lucide-react"
 
 import {
@@ -68,6 +72,7 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar()
   const router = useRouter()
+  const { setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -122,24 +127,17 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                <Sun className="mr-2 h-4 w-4" />
+                Claro
               </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                <Moon className="mr-2 h-4 w-4" />
+                Escuro
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                <Laptop className="mr-2 h-4 w-4" />
+                Sistema
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

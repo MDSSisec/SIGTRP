@@ -26,7 +26,7 @@ export default function FiltroGenerico({
   onLimpar,
 }: FiltroGenericoProps) {
   return (
-    <div className="bg-white border border-gray-300 rounded-xl p-4 mb-6">
+    <div className="bg-white dark:bg-sidebar border border-gray-300 dark:border-sidebar-border rounded-xl p-4 mb-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {filtros.map((filtro) => {
           if (filtro.type === "text") {
@@ -37,7 +37,7 @@ export default function FiltroGenerico({
                 placeholder={filtro.placeholder}
                 value={valores[filtro.name] || ""}
                 onChange={(e) => onChange(filtro.name, e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-full"
+                className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-sidebar-accent text-gray-900 dark:text-gray-100 rounded-lg px-3 py-2 text-sm w-full placeholder:text-gray-500 dark:placeholder:text-gray-400"
               />
             );
           }
@@ -48,10 +48,10 @@ export default function FiltroGenerico({
                 key={filtro.name}
                 value={valores[filtro.name] || ""}
                 onChange={(e) => onChange(filtro.name, e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-full"
+                className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-sidebar-accent text-gray-900 dark:text-gray-100 rounded-lg px-3 py-2 text-sm w-full"
               >
                 {filtro.options?.map((option) => (
-                  <option key={option.value} value={option.value}>
+                  <option key={option.value} value={option.value} className="dark:bg-gray-800">
                     {option.label}
                   </option>
                 ))}
@@ -64,7 +64,7 @@ export default function FiltroGenerico({
 
         <button
           onClick={onLimpar}
-          className="bg-gray-800 text-white rounded-lg px-4 py-2 text-sm hover:bg-black transition"
+          className="bg-gray-800 dark:bg-gray-700 text-white rounded-lg px-4 py-2 text-sm hover:bg-black dark:hover:bg-gray-600 transition"
         >
           Limpar
         </button>

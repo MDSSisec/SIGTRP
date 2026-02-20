@@ -16,8 +16,6 @@ import { getProjectEditPath, PROJECT_TYPE_OPTIONS, type ProjectTipo } from "@/co
 import { getStatusStyle, STATUS_PROJETO_LIST, type StatusProjeto } from "@/services/project.service"
 import projetosDataJson from "@/data/projetos.json"
 
-import styles from "./styles/projetos.module.css"
-
 type Projeto = {
   id: number
   nome: string
@@ -36,7 +34,7 @@ const columns: TableColumn<Projeto>[] = [
     align: "center",
     render: (row) => (
       <span
-        className={`${styles.statusBadge} ${getStatusStyle(row.status)}`}
+        className={`inline-flex min-w-[7.5rem] items-center justify-center rounded-full px-2 py-1 text-xs font-medium ${getStatusStyle(row.status)}`}
       >
         {row.status}
       </span>
@@ -48,10 +46,10 @@ const columns: TableColumn<Projeto>[] = [
     label: "Ações",
     align: "center",
     render: (row) => (
-      <div className={styles.actionsCell}>
+      <div className="flex justify-center gap-2">
         <Link
           href={getProjectEditPath(row.tipo, row.id)}
-          className={styles.actionLink}
+          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 inline-flex items-center justify-center transition-colors"
           aria-label="Editar"
         >
           <Pencil size={16} />
@@ -59,7 +57,7 @@ const columns: TableColumn<Projeto>[] = [
 
         <button
           type="button"
-          className={styles.deleteButton}
+          className="rounded bg-gray-200 px-2 py-1 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition-colors"
           aria-label="Excluir"
         >
           <Trash2 size={16} />
@@ -107,9 +105,9 @@ export function ProjectsContent() {
   }, [projetosBase, filtrosValores])
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>Todos os Projetos</h1>
+    <div className="px-6">
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-xl font-semibold">Todos os Projetos</h1>
         <OpenPopUpButton title="+ Adicionar projeto" onClick={() => setPopupAberto(true)} />
       </div>
 

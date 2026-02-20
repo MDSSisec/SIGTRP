@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/sidebar"
 import { BreadcrumbProvider, useBreadcrumb } from "@/lib/contexts/breadcrumb-context"
 import { getSidebarConfig } from "@/services/sidebar.service"
+import { ModeToggle } from "@/components/mode-toggle"
 
 function HeaderBreadcrumb({
   menuBreadcrumb,
@@ -122,8 +123,11 @@ function PrivateShellInner({ children }: { children: React.ReactNode }) {
         spaciousMenu={isProjectEditPage}
       />
       <SidebarInset>
-        <header className="flex min-w-0 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 overflow-hidden">
+        <header className="flex min-w-0 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 overflow-hidden pr-4">
           <HeaderBreadcrumb menuBreadcrumb={menuBreadcrumb} />
+          <div className="ml-auto">
+            <ModeToggle />
+          </div>
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 pt-0 min-w-0 overflow-auto">
           {children}
