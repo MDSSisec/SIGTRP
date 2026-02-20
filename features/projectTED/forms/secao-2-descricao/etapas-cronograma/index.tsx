@@ -107,7 +107,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
         8. Etapas e cronograma de execução
       </h2>
 
-      <div className="w-full max-w-full overflow-x-auto rounded-lg border border-input bg-white">
+      <div className="w-full max-w-full overflow-x-auto rounded-lg border border-input bg-muted">
         <table className="w-full min-w-[640px] border-collapse text-sm table-auto" style={{ width: "100%" }}>
           <colgroup>
             <col className="w-0" />
@@ -118,7 +118,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
             {!readOnlyView && <col className="w-[52px]" />}
           </colgroup>
           <thead>
-            <tr className="bg-muted/60">
+            <tr className="bg-muted">
               <th className="border border-input px-3 py-2 text-left font-semibold text-foreground whitespace-nowrap">
                 Meta nº
               </th>
@@ -153,7 +153,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                 <React.Fragment key={metaIndex}>
                   {meta.etapas.length === 0 ? (
                     <>
-                      <tr className="bg-white">
+                      <tr className="bg-background dark:bg-card">
                         <td
                           className="border border-input px-3 py-2 align-top bg-muted/30"
                           rowSpan={2}
@@ -191,7 +191,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                             onChange={(e) =>
                               updateMeta(metaIndex, { ...meta, inicio: maskDataBr(e.target.value) })
                             }
-                            className="h-8 bg-white border-input"
+                            className="h-8 bg-background dark:bg-input/30 border-input"
                           />
                         </td>
                         <td className="border border-input p-1 align-middle">
@@ -204,7 +204,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                             onChange={(e) =>
                               updateMeta(metaIndex, { ...meta, termino: maskDataBr(e.target.value) })
                             }
-                            className="h-8 bg-white border-input"
+                            className="h-8 bg-background dark:bg-input/30 border-input"
                           />
                         </td>
                         {!readOnlyView && <td className="border border-input px-2 py-2 align-middle" />}
@@ -212,7 +212,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                     </>
                   ) : (
                     meta.etapas.map((etapa, etapaIndex) => (
-                      <tr key={etapaIndex} className="bg-white">
+                      <tr key={etapaIndex} className="bg-background dark:bg-card">
                         {etapaIndex === 0 && (
                           <td
                             className="border border-input px-3 py-2 align-top bg-muted/30 font-medium"
@@ -238,7 +238,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                               }
                               placeholder="Descrição da etapa"
                               rows={2}
-                              className="flex-1 min-w-0 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-y min-h-[2.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                              className="flex-1 min-w-0 w-full rounded-md border border-input bg-background dark:bg-input/30 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-y min-h-[2.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                             />
                           </div>
                         </td>
@@ -292,7 +292,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                                 return prev
                               })
                             }}
-                            className="h-8 bg-white border-input"
+                            className="h-8 bg-background dark:bg-input/30 border-input"
                           />
                         </td>
                         <td className="border border-input p-1 align-top">
@@ -310,7 +310,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                                 maskDataBr(e.target.value)
                               )
                             }
-                            className="h-8 bg-white border-input"
+                            className="h-8 bg-background dark:bg-input/30 border-input"
                           />
                         </td>
                         <td className="border border-input p-1 align-top">
@@ -328,7 +328,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                                 maskDataBr(e.target.value)
                               )
                             }
-                            className="h-8 bg-white border-input"
+                            className="h-8 bg-background dark:bg-input/30 border-input"
                           />
                         </td>
                         {!readOnlyView && (
@@ -365,7 +365,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                           onChange={(e) =>
                             updateMeta(metaIndex, { ...meta, inicio: maskDataBr(e.target.value) })
                           }
-                          className="h-8 bg-white border-input"
+                          className="h-8 bg-background dark:bg-input/30 border-input"
                         />
                       </td>
                       <td className="border border-input p-1 align-middle">
@@ -378,7 +378,7 @@ const CronogramaForm: React.FC<CronogramaFormProps> = ({
                           onChange={(e) =>
                             updateMeta(metaIndex, { ...meta, termino: maskDataBr(e.target.value) })
                           }
-                          className="h-8 bg-white border-input"
+                          className="h-8 bg-background dark:bg-input/30 border-input"
                         />
                       </td>
                       {!readOnlyView && (

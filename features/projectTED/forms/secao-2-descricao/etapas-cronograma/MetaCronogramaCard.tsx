@@ -51,7 +51,7 @@ const MetaCronogramaCard: React.FC<Props> = ({
   )
 
   return (
-    <div className="w-full min-w-0 rounded-xl border border-input bg-white p-6 space-y-6">
+    <div className="w-full min-w-0 rounded-xl border border-input bg-muted p-6 space-y-6">
       <div className="flex justify-between items-center gap-2 w-full min-w-0">
         <h3 className="font-semibold text-lg text-foreground min-w-0 truncate">
           Meta {numeroMeta}
@@ -68,7 +68,7 @@ const MetaCronogramaCard: React.FC<Props> = ({
           value={meta.titulo}
           onChange={(e) => onChange({ ...meta, titulo: e.target.value })}
           placeholder="Ex: Capacitação da equipe"
-          className="bg-white"
+          className="bg-background dark:bg-input/30"
         />
       </div>
 

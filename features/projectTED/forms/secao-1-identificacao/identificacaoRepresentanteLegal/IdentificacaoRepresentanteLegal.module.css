@@ -40,8 +40,12 @@
 }
 
 .input {
-    background: white !important;
+    background: var(--background);
     min-width: 0;
+}
+
+.dark .input {
+    background: var(--input);
 }
 
 .input:focus,
@@ -50,12 +54,26 @@
 .input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
-    background: white !important;
+    background: var(--background) !important;
+}
+
+.dark .input:focus,
+.dark .input:not(:placeholder-shown),
+.dark .input:-webkit-autofill,
+.dark .input:-webkit-autofill:hover,
+.dark .input:-webkit-autofill:focus,
+.dark .input:-webkit-autofill:active {
+    background: var(--input) !important;
 }
 
 .input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
-    box-shadow: 0 0 0 30px white inset !important;
+    -webkit-box-shadow: 0 0 0 30px var(--background) inset !important;
+    box-shadow: 0 0 0 30px var(--background) inset !important;
+}
+
+.dark .input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px var(--input) inset !important;
+    box-shadow: 0 0 0 30px var(--input) inset !important;
 }
 
 .grid2 {

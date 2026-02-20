@@ -47,7 +47,7 @@ const EtapaItem: React.FC<Props> = ({
           onChange={(e) => handleChange("descricao", e.target.value)}
           placeholder="Descrição da etapa"
           rows={3}
-          className="w-full min-w-0 rounded-md border border-input bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-y min-h-[4rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full min-w-0 rounded-md border border-input bg-background dark:bg-input/30 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground resize-y min-h-[4rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
 
@@ -61,7 +61,7 @@ const EtapaItem: React.FC<Props> = ({
               handleChange("valor", e.target.value === "" ? 0 : e.target.value)
             }
             placeholder="0"
-            className="bg-white"
+            className="bg-background dark:bg-input/30"
           />
         </div>
 
@@ -71,7 +71,7 @@ const EtapaItem: React.FC<Props> = ({
             type="month"
             value={etapa.inicio}
             onChange={(e) => handleChange("inicio", e.target.value)}
-            className="bg-white"
+            className="bg-background dark:bg-input/30"
           />
         </div>
 
@@ -83,7 +83,7 @@ const EtapaItem: React.FC<Props> = ({
             type="month"
             value={etapa.termino}
             onChange={(e) => handleChange("termino", e.target.value)}
-            className="bg-white"
+            className="bg-background dark:bg-input/30"
           />
         </div>
       </div>
